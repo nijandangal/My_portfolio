@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="D.Nijan - Portfolio showcasing engineering projects including RFID systems, smart street lighting, and home automation.">
+  <meta name="keywords" content="portfolio, engineering, RFID, IoT, smart systems, home automation">
+  <meta name="author" content="D.Nijan">
   <title>D.Nijan — Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <body>
   <div class="page-wrapper">
     <!-- Navigation -->
-    <nav>
-      <a href="#skills">Skills</a>
-      <a href="#stats">Stats</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">Portfolio</a>
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="#skills" aria-label="Navigate to Skills section">Skills</a>
+      <a href="#stats" aria-label="Navigate to Stats section">Stats</a>
+      <a href="#testimonials" aria-label="Navigate to Testimonials section">Testimonials</a>
+      <a href="#contact" aria-label="Navigate to Contact section">Contact</a>
+      <a href="#about" aria-label="Navigate to Portfolio section">Portfolio</a>
     </nav>
 
     <!-- Hero -->
@@ -65,11 +68,20 @@
     <section id="contact" class="window">
       <h2>Contact</h2>
       <blockquote>“Every message is a bridge between minds.”</blockquote>
-      <form id="contactForm">
-        <input type="text" placeholder="Your Name" required/>
-        <input type="email" placeholder="Your Email" required/>
-        <textarea placeholder="Your Message"></textarea>
-        <button type="submit">Send</button>
+      <form id="contactForm" role="form" aria-label="Contact form">
+        <div class="form-group">
+          <label for="name" class="sr-only">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true"/>
+        </div>
+        <div class="form-group">
+          <label for="email" class="sr-only">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true"/>
+        </div>
+        <div class="form-group">
+          <label for="message" class="sr-only">Your Message</label>
+          <textarea id="message" name="message" placeholder="Your Message" rows="4" aria-required="false"></textarea>
+        </div>
+        <button type="submit" aria-label="Send message">Send</button>
       </form>
     </section>
 
@@ -103,23 +115,52 @@
       <!-- Gallery -->
       <div class="gallery">
         <div class="card">
-          <img src="https://picsum.photos/300/200?random=31" alt="RFID Vehicle Fare System"/>
+          <div class="animated-demo rfid-demo">
+            <div class="vehicle">🚗</div>
+            <div class="rfid-reader">📡</div>
+            <div class="rfid-card">💳</div>
+            <div class="payment-success">✅</div>
+          </div>
           <h3>RFID-Based Vehicle Fare Management</h3>
           <p>A centralized server system for automated fare collection using RFID technology. Features real-time tracking, secure payment processing, and integrated reporting for public transportation.</p>
         </div>
         <div class="card">
-          <img src="https://picsum.photos/300/200?random=32" alt="Street Light Control"/>
+          <div class="animated-demo streetlight-demo">
+            <div class="street-light light-off">💡</div>
+            <div class="sensor">👁️</div>
+            <div class="pedestrian">🚶</div>
+          </div>
           <h3>Smart Street Light Control System</h3>
           <p>Sensor-based street lighting management that automatically adjusts brightness based on environmental conditions and pedestrian/vehicle presence, reducing energy consumption by up to 70%.</p>
         </div>
         <div class="card">
-          <img src="https://picsum.photos/300/200?random=33" alt="Home Automation"/>
+          <div class="animated-demo home-demo">
+            <div class="smart-devices">
+              <div class="device light">💡</div>
+              <div class="device thermostat">🌡️</div>
+              <div class="device camera">📹</div>
+              <div class="device lock">🔒</div>
+            </div>
+            <div class="control-panel">📱</div>
+          </div>
           <h3>Home Automation System</h3>
           <p>Comprehensive IoT-based home automation solution with voice control, security monitoring, energy management, and smart device integration for modern living spaces.</p>
         </div>
       </div>
     </section>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 D.Nijan. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="resume.pdf" download>Resume</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

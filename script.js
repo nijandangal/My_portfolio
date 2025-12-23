@@ -1,106 +1,183 @@
 // Contact form handler
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const confirmation = document.createElement("p");
-  confirmation.textContent = "✅ Thank you for your message!";
-  confirmation.style.color = "green";
-  confirmation.style.fontWeight = "bold";
-  confirmation.style.marginTop = "8px";
-  this.appendChild(confirmation);
-  this.reset();
-});
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
 
-// Smooth scroll for navigation links
-document.querySelectorAll("nav a").forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+      // Remove any existing confirmation messages
+      const existingConfirmation = contactForm.querySelector('.confirmation-message');
+      if (existingConfirmation) {
+        existingConfirmation.remove();
+      }
+
+      // Create and display confirmation
+      const confirmation = document.createElement('p');
+      confirmation.textContent = '✅ Thank you for your message!';
+      confirmation.className = 'confirmation-message';
+      confirmation.style.color = 'var(--brand)';
+      confirmation.style.fontWeight = 'bold';
+      confirmation.style.marginTop = '8px';
+      confirmation.style.textAlign = 'center';
+
+      this.appendChild(confirmation);
+
+      // Reset form
+      this.reset();
+
+      // Remove confirmation after 5 seconds
+      setTimeout(() => {
+        if (confirmation.parentNode) {
+          confirmation.remove();
+        }
+      }, 5000);
+    });
+  }
+
+  // Smooth scroll for navigation links
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  navLinks.forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Slideshow logic with error handling
+  let slideIndex = 1;
+  const slides = document.getElementsByClassName('slide');
+  const dots = document.getElementsByClassName('dot');
+
+  if (slides.length > 0) {
+    showSlides(slideIndex);
+  }
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    if (slides.length === 0) return;
+
+    if (n > slides.length) { slideIndex = 1; }
+    if (n < 1) { slideIndex = slides.length; }
+
+    // Hide all slides
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+
+    // Remove active class from all dots
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(' active', '');
+    }
+
+    // Show current slide and activate corresponding dot
+    slides[slideIndex - 1].style.display = 'block';
+    if (dots.length >= slideIndex) {
+      dots[slideIndex - 1].className += ' active';
+    }
+  }
+
+  // Attach slideshow controls
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+  const dotElements = document.querySelectorAll('.dot');
+
+  if (prevButton) {
+    prevButton.addEventListener('click', () => plusSlides(-1));
+  }
+  if (nextButton) {
+    nextButton.addEventListener('click', () => plusSlides(1));
+  }
+
+  dotElements.forEach((dot, index) => {
+    dot.addEventListener('click', () => currentSlide(index + 1));
+  });
+
+  // Autoplay every 5 seconds if slides exist
+  if (slides.length > 0) {
+    setInterval(() => {
+      plusSlides(1);
+    }, 5000);
+  }
+
+  // Stats counters animation with error handling
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    if (counter) {
+      counter.innerText = '0';
+      const updateCounter = () => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
+        const current = parseInt(counter.innerText, 10);
+        const increment = target / 200;
+
+        if (current < target) {
+          counter.innerText = Math.ceil(current + increment);
+          setTimeout(updateCounter, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter();
     }
   });
-});
 
-// Slideshow logic
-let slideIndex = 1;
-showSlides(slideIndex);
+  // Theme switcher with improved button text
+  const themes = ['blue-theme', 'purple-theme', 'green-theme', 'cyber-theme', 'sunset-theme', 'dark-mode'];
+  let themeIndex = 0;
 
-function plusSlides(n) { showSlides(slideIndex += n); }
-function currentSlide(n) { showSlides(slideIndex = n); }
+  const themeBtn = document.createElement('button');
+  themeBtn.className = 'theme-switcher-btn';
+  themeBtn.setAttribute('aria-label', 'Switch website theme');
+  themeBtn.setAttribute('title', 'Click to change theme');
 
-function showSlides(n) {
-  const slides = document.getElementsByClassName("slide");
-  const dots = document.getElementsByClassName("dot");
-  if (!slides.length) return;
-
-  if (n > slides.length) { slideIndex = 1; }
-  if (n < 1) { slideIndex = slides.length; }
-
-  for (let j = 0; j < slides.length; j++) {
-    slides[j].style.display = "none";
-  }
-  for (let j = 0; j < dots.length; j++) {
-    dots[j].className = dots[j].className.replace(" active", "");
-  }
-
-  slides[slideIndex - 1].style.display = "block";
-  if (dots.length) dots[slideIndex - 1].className += " active";
-}
-
-// Attach slideshow controls
-window.addEventListener("DOMContentLoaded", () => {
-  const prev = document.querySelector(".prev");
-  const next = document.querySelector(".next");
-  const dots = document.querySelectorAll(".dot");
-
-  if (prev) prev.addEventListener("click", () => plusSlides(-1));
-  if (next) next.addEventListener("click", () => plusSlides(1));
-  dots.forEach((dot, index) => dot.addEventListener("click", () => currentSlide(index + 1)));
-
-  // Autoplay every 5s
-  setInterval(() => { plusSlides(1); }, 5000);
-});
-
-// Stats counters animation
-const counters = document.querySelectorAll('.counter');
-counters.forEach(counter => {
-  counter.innerText = '0';
-  const update = () => {
-    const target = +counter.getAttribute('data-target');
-    const count = +counter.innerText;
-    const increment = target / 200;
-    if(count < target) {
-      counter.innerText = Math.ceil(count + increment);
-      setTimeout(update, 20);
-    } else {
-      counter.innerText = target;
-    }
+  // Theme display names
+  const themeNames = {
+    'dark-mode': 'Dark',
+    'blue-theme': 'Blue',
+    'purple-theme': 'Purple',
+    'green-theme': 'Green',
+    'cyber-theme': 'Cyber',
+    'sunset-theme': 'Sunset'
   };
-  update();
-});
 
-// Theme switcher
-const themes = ['light', 'dark-mode', 'blue-theme'];
-let themeIndex = 0;
-const themeBtn = document.createElement('button');
-themeBtn.textContent = "🎨 Switch Theme";
-Object.assign(themeBtn.style, {
-  position: "fixed",
-  bottom: "60px",
-  right: "20px",
-  padding: "10px 12px",
-  border: "none",
-  borderRadius: "6px",
-  background: "#8b5cf6",
-  color: "white",
-  cursor: "pointer",
-  boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-  zIndex: "1000"
-});
-document.body.appendChild(themeBtn);
+  // Function to update button text
+  function updateButtonText() {
+    const currentTheme = themeNames[themes[themeIndex]];
+    const nextTheme = themeNames[themes[(themeIndex + 1) % themes.length]];
+    themeBtn.textContent = `🎨 ${currentTheme} → ${nextTheme}`;
+  }
 
-themeBtn.addEventListener("click", () => {
-  document.body.classList.remove(...themes);
-  themeIndex = (themeIndex + 1) % themes.length;
-  document.body.classList.add(themes[themeIndex]);
+  document.body.appendChild(themeBtn);
+
+  themeBtn.addEventListener('click', function() {
+    // Remove current theme classes
+    themes.forEach(theme => {
+      document.body.classList.remove(theme);
+    });
+
+    // Apply next theme
+    themeIndex = (themeIndex + 1) % themes.length;
+    document.body.classList.add(themes[themeIndex]);
+
+    // Update button text
+    updateButtonText();
+  });
+
+  // Initialize with first theme and button text
+  document.body.classList.add(themes[0]);
+  updateButtonText();
 });
