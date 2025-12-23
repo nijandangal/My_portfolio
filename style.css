@@ -421,9 +421,17 @@ nav a:hover { text-decoration: underline; }
 }
 .gallery .card img { width: 100%; height: auto; }
 .gallery .card h3 {
-  padding: 12px;
+  padding: 12px 12px 6px;
   font-size: 1.1em;
   color: var(--brand);
+  margin: 0;
+}
+.gallery .card p {
+  padding: 0 12px 12px;
+  font-size: 0.9em;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.4;
 }
 .gallery .card:hover {
   transform: scale(1.05);
