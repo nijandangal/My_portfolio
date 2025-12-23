@@ -91,7 +91,7 @@ Object.assign(themeBtn.style, {
   padding: "10px 12px",
   border: "none",
   borderRadius: "6px",
-  background: "#004080",
+  background: "#8b5cf6",
   color: "white",
   cursor: "pointer",
   boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
