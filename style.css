@@ -627,7 +627,7 @@ nav a:hover {
 /* Gallery Grid */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(15px, 3vw, 20px);
   margin-top: 30px;
   justify-items: center;
@@ -659,6 +659,7 @@ nav a:hover {
   color: var(--text);
   margin: 0;
   line-height: 1.4;
+  text-align: justify;
 }
 
 /* Animated Project Demos */
@@ -805,6 +806,331 @@ nav a:hover {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+
+/* Weather Monitoring Demo */
+.weather-demo {
+  background: linear-gradient(135deg, var(--card), rgba(76, 175, 80, 0.1));
+}
+.weather-demo .weather-station {
+  position: absolute;
+  font-size: 2.5em;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: stationRotate 4s infinite;
+}
+.weather-demo .sensors {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.weather-demo .sensor {
+  font-size: 1.3em;
+  animation: sensorFlash 4s infinite;
+}
+.weather-demo .sensor:nth-child(2) { animation-delay: 1s; }
+.weather-demo .sensor:nth-child(3) { animation-delay: 2s; }
+.weather-demo .data-display {
+  position: absolute;
+  font-size: 1.5em;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  animation: dataUpdate 4s infinite;
+}
+
+@keyframes stationRotate {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(90deg); }
+  50% { transform: translateX(-50%) rotate(180deg); }
+  75% { transform: translateX(-50%) rotate(270deg); }
+  100% { transform: translateX(-50%) rotate(360deg); }
+}
+@keyframes sensorFlash {
+  0% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.5; transform: scale(1); }
+}
+@keyframes dataUpdate {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+  100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
+}
+
+/* Agriculture Demo */
+.agriculture-demo {
+  background: linear-gradient(135deg, var(--card), rgba(255, 193, 7, 0.1));
+}
+.agriculture-demo .field {
+  position: absolute;
+  font-size: 2em;
+  bottom: 20px;
+  left: 20px;
+  animation: grow 5s infinite;
+}
+.agriculture-demo .irrigation {
+  position: absolute;
+  font-size: 1.5em;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: water 5s infinite;
+}
+.agriculture-demo .drone {
+  position: absolute;
+  font-size: 1.3em;
+  top: 20px;
+  right: 20px;
+  animation: fly 5s infinite;
+}
+.agriculture-demo .sensors {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  bottom: 50px;
+  right: 20px;
+}
+.agriculture-demo .sensor {
+  font-size: 1.2em;
+  animation: monitor 5s infinite;
+}
+.agriculture-demo .sensor:nth-child(2) { animation-delay: 1.5s; }
+
+@keyframes grow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+@keyframes water {
+  0% { opacity: 0.5; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@keyframes fly {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-20px) translateY(-10px); }
+  50% { transform: translateX(-40px) translateY(0); }
+  75% { transform: translateX(-20px) translateY(10px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+@keyframes monitor {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
+/* Parking Demo */
+.parking-demo {
+  background: linear-gradient(135deg, var(--card), rgba(244, 67, 54, 0.1));
+}
+.parking-demo .parking-lot {
+  position: absolute;
+  font-size: 2.5em;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.parking-demo .car-entering {
+  position: absolute;
+  font-size: 1.8em;
+  left: -40px;
+  bottom: 30px;
+  animation: enter 4s infinite;
+}
+.parking-demo .barrier {
+  position: absolute;
+  font-size: 1.5em;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  animation: barrier 4s infinite;
+}
+.parking-demo .display {
+  position: absolute;
+  font-size: 1.3em;
+  right: 20px;
+  top: 30px;
+  animation: display 4s infinite;
+}
+
+@keyframes enter {
+  0% { left: -40px; }
+  30% { left: 50px; }
+  70% { left: 50px; }
+  100% { left: 150px; }
+}
+@keyframes barrier {
+  0% { transform: translateY(-50%) rotate(90deg); }
+  25% { transform: translateY(-50%) rotate(0deg); }
+  75% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(90deg); }
+}
+@keyframes display {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+/* Industrial Automation Demo */
+.industrial-demo {
+  background: linear-gradient(135deg, var(--card), rgba(96, 125, 139, 0.1));
+}
+.industrial-demo .factory {
+  position: absolute;
+  font-size: 2em;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.industrial-demo .robot-arm {
+  position: absolute;
+  font-size: 1.5em;
+  bottom: 30px;
+  left: 20px;
+  animation: robotMove 4s infinite;
+}
+.industrial-demo .conveyor {
+  position: absolute;
+  font-size: 1.3em;
+  bottom: 50px;
+  right: 20px;
+  animation: conveyorSpin 3s infinite linear;
+}
+.industrial-demo .control-panel {
+  position: absolute;
+  font-size: 1.4em;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  animation: panelFlash 4s infinite;
+}
+
+@keyframes robotMove {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(45deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-45deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes conveyorSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes panelFlash {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+  100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
+}
+
+/* Security Demo */
+.security-demo {
+  background: linear-gradient(135deg, var(--card), rgba(76, 175, 80, 0.1));
+}
+.security-demo .building {
+  position: absolute;
+  font-size: 2.5em;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.security-demo .cameras {
+  position: absolute;
+  font-size: 1.2em;
+  top: 30px;
+  left: 20px;
+  animation: cameraScan 5s infinite;
+}
+.security-demo .alarm {
+  position: absolute;
+  font-size: 1.4em;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: alarmPulse 3s infinite;
+}
+.security-demo .access-control {
+  position: absolute;
+  font-size: 1.3em;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  animation: accessBlink 4s infinite;
+}
+
+@keyframes cameraScan {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes alarmPulse {
+  0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+  100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+}
+@keyframes accessBlink {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+  100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
+}
+
+/* Energy Demo */
+.energy-demo {
+  background: linear-gradient(135deg, var(--card), rgba(255, 152, 0, 0.1));
+}
+.energy-demo .solar-panel {
+  position: absolute;
+  font-size: 1.8em;
+  top: 20px;
+  left: 20px;
+  animation: solarRotate 6s infinite;
+}
+.energy-demo .wind-turbine {
+  position: absolute;
+  font-size: 1.6em;
+  top: 30px;
+  right: 20px;
+  animation: windSpin 4s infinite linear;
+}
+.energy-demo .battery {
+  position: absolute;
+  font-size: 1.4em;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: batteryCharge 5s infinite;
+}
+.energy-demo .grid {
+  position: absolute;
+  font-size: 1.5em;
+  bottom: 50px;
+  right: 20px;
+  animation: gridPulse 3s infinite;
+}
+
+@keyframes solarRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes windSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes batteryCharge {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+  100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+}
+@keyframes gridPulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
 .gallery .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
@@ -813,6 +1139,7 @@ nav a:hover {
 @media (max-width: 768px) {
   .gallery {
     gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
   }
   .gallery .card {
     width: calc(50% - 15px);
@@ -822,6 +1149,7 @@ nav a:hover {
 @media (max-width: 480px) {
   .gallery {
     gap: 10px;
+    grid-template-columns: 1fr;
   }
   .gallery .card {
     width: 100%;
