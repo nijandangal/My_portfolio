@@ -195,13 +195,13 @@ nav a:hover {
 }
 @media (max-width: 480px) {
   nav {
-    padding: 12px 0;
+    padding: 10px 5px;
   }
   nav a {
-    display: block;
-    margin: 5px 0;
-    font-size: 1rem;
-    text-align: center;
+    margin: 0 4px;
+    font-size: 0.9rem;
+    padding: 6px 8px;
+    min-height: 36px;
   }
 }
 
@@ -699,6 +699,13 @@ nav a:hover {
   max-width: 900px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
 .contact-image {
   display: flex;
   justify-content: center;
@@ -919,6 +926,18 @@ nav a:hover {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
 }
 .gallery .card {
   background: rgba(255, 255, 255, 0.1);
