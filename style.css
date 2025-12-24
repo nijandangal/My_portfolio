@@ -153,7 +153,6 @@ nav {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 18px 10px;
-  text-align: center;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -161,10 +160,13 @@ nav {
   border-bottom: 1px solid rgba(255,255,255,0.1);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 nav a {
   color: #fff;
-  margin: 0 24px;
   text-decoration: none;
   font-weight: 700;
   font-size: clamp(1rem, 2.5vw, 1.3rem);
@@ -185,10 +187,10 @@ nav a:hover {
 
 @media (max-width: 768px) {
   nav {
-    padding: 15px 0;
+    padding: 15px 10px;
+    gap: 8px;
   }
   nav a {
-    margin: 0 8px;
     font-size: 1.1rem;
     padding: 10px 15px;
   }
@@ -196,9 +198,9 @@ nav a:hover {
 @media (max-width: 480px) {
   nav {
     padding: 10px 5px;
+    gap: 4px;
   }
   nav a {
-    margin: 0 4px;
     font-size: 0.9rem;
     padding: 6px 8px;
     min-height: 36px;
