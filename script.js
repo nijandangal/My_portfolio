@@ -1,5 +1,27 @@
 // Contact form handler
 document.addEventListener('DOMContentLoaded', function() {
+  // Navigation scroll behavior for index.html
+  const nav = document.querySelector('nav');
+  const pageWrapper = document.querySelector('.page-wrapper');
+  const hero = document.querySelector('.hero');
+
+  if (nav && pageWrapper && hero && !nav.classList.contains('sidebar')) {
+    // Only apply to index.html (nav without sidebar class)
+    window.addEventListener('scroll', function() {
+      const heroBottom = hero.offsetTop + hero.offsetHeight;
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > heroBottom - 100) {
+        // Transform to sidebar
+        nav.classList.add('sidebar', 'active');
+        pageWrapper.classList.add('sidebar-active');
+      } else {
+        // Back to top nav
+        nav.classList.remove('sidebar', 'active');
+        pageWrapper.classList.remove('sidebar-active');
+      }
+    });
+  }
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(event) {

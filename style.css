@@ -207,6 +207,62 @@ nav a:hover {
   }
 }
 
+/* Left Sidebar Navigation (for other pages or on scroll) */
+nav.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 200px;
+  background: linear-gradient(180deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000;
+  box-shadow: 4px 0 32px rgba(0,0,0,0.3);
+  border-right: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+nav.sidebar.active {
+  transform: translateX(0);
+}
+
+nav.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  display: block;
+  width: 100%;
+  text-align: center;
+  min-height: 48px;
+  line-height: 1.2;
+}
+
+nav.sidebar a:hover {
+  text-decoration: none;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Adjust content when sidebar is active */
+.page-wrapper.sidebar-active {
+  margin-left: 200px;
+  transition: margin-left 0.5s ease;
+}
+
 /* Hero with wallpaper background */
 .hero {
   position: relative;
