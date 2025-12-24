@@ -1,27 +1,32 @@
 // Contact form handler
 document.addEventListener('DOMContentLoaded', function() {
-  // Navigation scroll behavior for index.html
+  // Navigation behavior
   const nav = document.querySelector('nav');
   const pageWrapper = document.querySelector('.page-wrapper');
-  const hero = document.querySelector('.hero');
 
-  if (nav && pageWrapper && hero && !nav.classList.contains('sidebar')) {
-    // Only apply to index.html (nav without sidebar class)
-    window.addEventListener('scroll', function() {
-      const heroBottom = hero.offsetTop + hero.offsetHeight;
-      const scrollPosition = window.scrollY;
-
-      if (scrollPosition > heroBottom - 100) {
-        // Transform to sidebar
-        nav.classList.add('sidebar', 'active');
-        pageWrapper.classList.add('sidebar-active');
-      } else {
-        // Back to top nav
-        nav.classList.remove('sidebar', 'active');
-        pageWrapper.classList.remove('sidebar-active');
-      }
-    });
+  function updateNav() {
+    if (window.innerWidth > 768) {
+      // Desktop: always sidebar
+      nav.classList.add('sidebar', 'active');
+      pageWrapper.classList.add('sidebar-active');
+    } else {
+      // Mobile: top nav
+      nav.classList.remove('sidebar', 'active');
+      pageWrapper.classList.remove('sidebar-active');
+    }
   }
+
+  updateNav();
+  window.addEventListener('resize', updateNav);
+
+  // Set active nav link
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach(a => {
+    if (a.getAttribute('href') === currentPath) {
+      a.classList.add('active');
+    }
+  });
+
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(event) {

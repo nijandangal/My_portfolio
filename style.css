@@ -158,6 +158,8 @@ nav {
   z-index: 1000;
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-left: 1px solid rgba(255,255,255,0.1);
+  border-right: 1px solid rgba(255,255,255,0.1);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   display: flex;
@@ -184,15 +186,26 @@ nav a:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+nav a.active {
+  background: rgba(255,255,255,0.3);
+  font-weight: bold;
+}
 
 @media (max-width: 768px) {
   nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 15px 10px;
     gap: 8px;
   }
   nav a {
     font-size: 1.1rem;
     padding: 10px 15px;
+  }
+  .page-wrapper {
+    padding-top: 80px;
   }
 }
 @media (max-width: 480px) {
@@ -220,6 +233,8 @@ nav.sidebar {
   z-index: 1000;
   box-shadow: 4px 0 32px rgba(0,0,0,0.3);
   border-right: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -256,6 +271,10 @@ nav.sidebar a:hover {
   transform: translateX(5px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+nav.sidebar a.active {
+  background: rgba(255,255,255,0.3);
+  font-weight: bold;
+}
 
 /* Adjust content when sidebar is active */
 .page-wrapper.sidebar-active {
@@ -275,6 +294,7 @@ nav.sidebar a:hover {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .hero-background {
   position: absolute;
@@ -375,6 +395,7 @@ nav.sidebar a:hover {
   padding: clamp(40px, 8vh, 60px) 0;
   box-sizing: border-box;
   box-shadow: inset 0 0 50px rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .window h2 {
   color: var(--brand);
