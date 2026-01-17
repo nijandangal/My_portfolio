@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="D.Nijan - Contact information and form for getting in touch.">
+  <meta name="keywords" content="contact, email, phone, location, form">
+  <meta name="author" content="D.Nijan">
+  <title>D.Nijan — Contact</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Minimal inline styles for status; keep your main styling in style.css */
+    .form-status {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      min-height: 1.25rem;
+    }
+    .form-status.ok { color: #16a34a; }
+    .form-status.err { color: #ef4444; }
+    .sr-only { position: absolute; left: -9999px; }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper sidebar-active">
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main navigation" class="sidebar active">
+      <a href="index.html" aria-label="Navigate to Home">Home</a>
+      <a href="newsletter.html" aria-label="Navigate to Newsletter section">Newsletter</a>
+      <a href="portfolio.html" aria-label="Navigate to Portfolio section">Portfolio</a>
+      <a href="stats.html" aria-label="Navigate to Achievements section">Achievements</a>
+      <a href="contact.html" aria-label="Navigate to Contact section">Contact</a>
+    </nav>
+
+    <!-- Contact Window -->
+    <section id="contact" class="window">
+      <h2>Contact</h2>
+      <blockquote>"Every message is a bridge between minds."</blockquote>
+      <div class="contact-info-section">
+        <div class="contact-details">
+          <h3>Get In Touch</h3>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>nijandangal1993@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+977 98********</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Kathmandu, Nepal</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-globe"></i>
+            <a href="https://nijandangal.com.np" target="_blank">nijandangal.com.np</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-content">
+        <div class="contact-image">
+          <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=300&fit=crop" alt="Communication Technology" class="contact-tech-image"/>
+        </div>
+
+        <!-- Contact Form -->
+        <form id="contactForm" role="form" aria-label="Contact form" novalidate>
+          <div class="form-group">
+            <label for="name" class="sr-only">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true"/>
+          </div>
+          <div class="form-group">
+            <label for="email" class="sr-only">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true"/>
+          </div>
+          <div class="form-group">
+            <label for="message" class="sr-only">Your Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" rows="4" required aria-required="true"></textarea>
+          </div>
+
+          <!-- Optional metadata -->
+          <input type="hidden" id="source" name="source" value="portfolio-contact">
+
+          <button type="submit" aria-label="Send message" id="contactSubmit">Send</button>
+          <div id="formStatus" class="form-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 D.Nijan. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="resume.pdf" download>Resume</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Existing site script -->
+  <script src="script.js"></script>
+
+  <!-- Contact form script (safe to move into script.js if you prefer) -->
+  <script>
+    // TODO: Replace with your deployed Web App URL from Apps Script
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT14_YqX_qXv7NCDSxUghhDK8-uXTzWrhu57rKBJibWL36pKY53Jy0HWy4qkkUdp5Z/exec";
+
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+    const submitBtn = document.getElementById("contactSubmit");
+
+    function setStatus(message, type = "") {
+      statusEl.textContent = message;
+      statusEl.className = "form-status" + (type ? " " + type : "");
+    }
+
+    function validate() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (!name || !email || !message) {
+        return { ok: false, error: "Please fill out name, email, and message." };
+      }
+      // Simple email sanity check
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return { ok: false, error: "Please enter a valid email address." };
+      }
+      return { ok: true };
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const check = validate();
+      if (!check.ok) {
+        setStatus(check.error, "err");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      setStatus("Sending...");
+
+      const payload = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim(),
+        source: document.getElementById("source").value,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      };
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) {
+          const msg = data.error || `Submission failed (${res.status}).`;
+          throw new Error(msg);
+        }
+
+        setStatus("Message sent. Thank you!", "ok");
+        form.reset();
+      } catch (err) {
+        setStatus(`Could not send: ${err.message}`, "err");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
