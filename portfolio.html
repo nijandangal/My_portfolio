@@ -3,265 +3,332 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="D.Nijan - Portfolio showcasing engineering projects including RFID systems, smart street lighting, and home automation.">
-  <meta name="keywords" content="portfolio, engineering, RFID, IoT, smart systems, home automation">
-  <meta name="author" content="D.Nijan">
-  <title>D.Nijan — Portfolio</title>
+  <meta name="description" content="Nijan Dangal - Portfolio of engineering projects including RFID systems, smart lighting, and automation">
+  <meta name="keywords" content="portfolio, projects, engineering, RFID, automation">
+  <meta name="author" content="Nijan Dangal">
+  <title>Nijan Dangal — Portfolio</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="page-wrapper sidebar-active">
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation" class="sidebar active">
-      <a href="index.html" aria-label="Navigate to Home">Home</a>
-      <a href="newsletter.html" aria-label="Navigate to Newsletter section">Newsletter</a>
-      <a href="portfolio.html" aria-label="Navigate to Portfolio section">Portfolio</a>
-      <a href="stats.html" aria-label="Navigate to Achievements section">Achievements</a>
-      <a href="contact.html" aria-label="Navigate to Contact section">Contact</a>
-    </nav>
-
-    <!-- Portfolio (About) Window -->
-    <section id="about" class="window">
-      <h2>Portfolio</h2>
-      <blockquote>"Curiosity opens the path; clarity keeps us on it."</blockquote>
-
-      <!-- Resume Section -->
-      <div class="resume-section">
-        <div class="resume-header">
-          <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=100&h=100&fit=crop" alt="Resume Icon" class="resume-icon"/>
-          <div class="resume-info">
-            <h3>Professional Resume</h3>
-            <p>Detailed overview of my experience in Electronics & Communication Engineering, telecom infrastructure, project management, and STEAM education.</p>
-          </div>
-        </div>
-        <div class="resume-highlights">
-          <div class="highlight-item">
-            <i class="fas fa-graduation-cap"></i>
-            <span>B.E. in Electronics & Communication</span>
-          </div>
-          <div class="highlight-item">
-            <i class="fas fa-project-diagram"></i>
-            <span>25+ Telecom Projects</span>
-          </div>
-          <div class="highlight-item">
-            <i class="fas fa-users"></i>
-            <span>STEAM Education Leadership</span>
-          </div>
-          <div class="highlight-item">
-            <i class="fas fa-certificate"></i>
-            <span>8+ Years Industry Experience</span>
-          </div>
-        </div>
-        <div class="resume-actions">
-          <a href="resume.pdf" class="resume-btn primary" download>
-            <i class="fas fa-download"></i> Download PDF Resume
-          </a>
-          <a href="resume.pdf" class="resume-btn secondary" target="_blank">
-            <i class="fas fa-eye"></i> Preview Resume
-          </a>
-        </div>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-microchip"></i> Nijan
       </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+        <li><a href="workshop.html" class="nav-link">Workshop</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
-      <!-- Skills Section -->
-      <div class="skills-section">
-        <h3>Core Skills</h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=300&h=200&fit=crop" alt="Telecom Engineering" class="skill-image"/>
-            <h4>Telecom Engineering</h4>
-            <p>Expertise in telecom infrastructure, network deployment, site surveys, equipment installation, and maintenance of cellular transmission systems.</p>
-          </div>
-          <div class="skill-item">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop" alt="Project Management" class="skill-image"/>
-            <h4>Project Management</h4>
-            <p>Leading telecom rollout projects, managing teams, coordinating stakeholders, and ensuring timely delivery of complex engineering solutions.</p>
-          </div>
-          <div class="skill-item">
-            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop" alt="STEAM Education" class="skill-image"/>
-            <h4>STEAM Education</h4>
-            <p>Developing curriculum, teaching robotics, integrating technology tools, and inspiring students to pursue careers in science and technology.</p>
-          </div>
-          <div class="skill-item">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=300&h=200&fit=crop" alt="Technical Documentation" class="skill-image"/>
-            <h4>Technical Documentation</h4>
-            <p>Managing comprehensive documentation, creating technical manuals, process flowcharts, and ensuring compliance with industry standards.</p>
-          </div>
-          <div class="skill-item">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop" alt="Network Deployment" class="skill-image"/>
-            <h4>Network Deployment</h4>
-            <p>Hands-on experience in telecom equipment installation, antenna alignment, troubleshooting, and ensuring optimal network performance.</p>
-          </div>
-          <div class="skill-item">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop" alt="Business Development" class="skill-image"/>
-            <h4>Business Development</h4>
-            <p>Strategic leadership, client relationship management, identifying opportunities, and driving company growth in telecom and construction sectors.</p>
+  <!-- Header -->
+  <section class="page-header">
+    <h1>My Portfolio</h1>
+    <p>Explore my diverse engineering projects and solutions</p>
+  </section>
+
+  <!-- Projects Section with Filters -->
+  <section class="projects-section">
+    <div class="filter-section">
+      <h3>Filter Projects</h3>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="iot">IoT Systems</button>
+        <button class="filter-btn" data-filter="automation">Automation</button>
+        <button class="filter-btn" data-filter="wireless">Wireless</button>
+      </div>
+    </div>
+
+    <!-- Spacious Projects Grid for Future Expansion -->
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Project 1 -->
+      <div class="project-item" data-category="iot">
+        <div class="project-image">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <div class="project-info">
+          <h3>Smart IoT Hub</h3>
+          <p class="project-description">Complete IoT ecosystem with multiple sensor nodes, cloud integration, and real-time data visualization.</p>
+          <div class="project-tags">
+            <span class="tag">ESP32</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Cloud</span>
           </div>
         </div>
       </div>
 
-      <!-- Slideshow -->
-      <div class="slideshow-container">
-        <div class="slide fade">
-          <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop" alt="Circuit Board Design"/>
-          <div class="caption">Electronics Design — Precision in every connection.</div>
+      <!-- Project 2 -->
+      <div class="project-item" data-category="automation">
+        <div class="project-image">
+          <i class="fas fa-home"></i>
         </div>
-        <div class="slide fade">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop" alt="IoT Devices"/>
-          <div class="caption">IoT Innovation — Connecting the physical and digital worlds.</div>
-        </div>
-        <div class="slide fade">
-          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Communication Systems"/>
-          <div class="caption">Communication Systems — Bridging distances with technology.</div>
-        </div>
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
-      </div>
-      <div class="dots">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </div>
-
-      <!-- Gallery -->
-      <div class="gallery">
-        <div class="card">
-          <div class="animated-demo rfid-demo">
-            <div class="vehicle">🚗</div>
-            <div class="rfid-reader">📡</div>
-            <div class="rfid-card">💳</div>
-            <div class="payment-success">✅</div>
-          </div>
-          <h3>RFID-Based Vehicle Fare Management</h3>
-          <p><strong>Advanced Transportation Technology</strong></p>
-          <p>A sophisticated centralized server system revolutionizing public transportation fare collection. This RFID-powered solution enables seamless, contactless payment processing with real-time transaction validation.</p>
-          <p>Key features include encrypted data transmission, multi-modal transport integration, automated fare calculation based on distance and zones, comprehensive audit trails, and integration with existing transit infrastructure.</p>
-          <p>The system supports multiple RFID card types, mobile payment integration, and provides detailed analytics for transportation authorities to optimize route planning and revenue management.</p>
-        </div>
-        <div class="card">
-          <div class="animated-demo streetlight-demo">
-            <div class="street-light light-off">💡</div>
-            <div class="sensor">👁️</div>
-            <div class="pedestrian">🚶</div>
-          </div>
-          <h3>Smart Street Light Control System</h3>
-          <p><strong>Energy-Efficient Urban Infrastructure</strong></p>
-          <p>An intelligent lighting management system that transforms traditional street lighting into a smart, adaptive network. Utilizing advanced motion sensors, ambient light detectors, and weather monitoring, the system dynamically adjusts illumination levels based on real-time conditions.</p>
-          <p>Features include programmable lighting schedules, remote monitoring and control via web interface, predictive maintenance alerts, energy consumption analytics, and integration with smart city infrastructure.</p>
-          <p>The solution achieves up to 70% energy savings while improving safety and reducing light pollution through precise, need-based illumination.</p>
-        </div>
-        <div class="card">
-          <div class="animated-demo home-demo">
-            <div class="smart-devices">
-              <div class="device light">💡</div>
-              <div class="device thermostat">🌡️</div>
-              <div class="device camera">📹</div>
-              <div class="device lock">🔒</div>
-            </div>
-            <div class="control-panel">📱</div>
-          </div>
+        <div class="project-info">
           <h3>Home Automation System</h3>
-          <p><strong>Comprehensive IoT Smart Home Platform</strong></p>
-          <p>A full-featured Internet of Things ecosystem designed for modern residential automation. The system integrates voice-activated controls, security monitoring, energy management, and environmental optimization through a unified platform.</p>
-          <p>Advanced features include machine learning-based behavioral prediction, multi-protocol device support (Zigbee, Z-Wave, Wi-Fi), cloud-based remote access, automated scene creation, energy usage analytics, and seamless integration with popular smart assistants.</p>
-          <p>The platform ensures data privacy, provides real-time notifications, and supports custom automation rules for personalized home experiences.</p>
-        </div>
-        <div class="card">
-          <div class="animated-demo weather-demo">
-            <div class="weather-station">🌤️</div>
-            <div class="sensors">
-              <div class="sensor temp">🌡️</div>
-              <div class="sensor wind">💨</div>
-              <div class="sensor rain">🌧️</div>
-            </div>
-            <div class="data-display">📊</div>
+          <p class="project-description">Fully automated home control system with voice integration, scheduling, and mobile app interface.</p>
+          <div class="project-tags">
+            <span class="tag">Arduino</span>
+            <span class="tag">Mobile App</span>
+            <span class="tag">Voice Control</span>
           </div>
-          <h3>IoT Weather Monitoring System</h3>
-          <p><strong>Environmental Data Intelligence Platform</strong></p>
-          <p>A comprehensive weather monitoring network that collects and analyzes meteorological data for agricultural, industrial, and research applications. The system deploys multiple sensor nodes measuring temperature, humidity, wind speed/direction, rainfall, atmospheric pressure, and solar radiation.</p>
-          <p>Advanced features include real-time data transmission via cellular/LoRa networks, cloud-based data storage and analytics, predictive weather modeling, automated alert systems for extreme conditions, and integration with irrigation and climate control systems.</p>
-          <p>The platform provides historical trend analysis, data visualization dashboards, and API access for third-party applications.</p>
         </div>
-        <div class="card">
-          <div class="animated-demo agriculture-demo">
-            <div class="field">🌾</div>
-            <div class="irrigation">💧</div>
-            <div class="drone">🚁</div>
-            <div class="sensors">
-              <div class="sensor soil">🌱</div>
-              <div class="sensor moisture">💧</div>
-            </div>
-          </div>
-          <h3>Smart Agriculture Solution</h3>
-          <p><strong>Precision Farming Technology Suite</strong></p>
-          <p>An integrated agricultural management system combining IoT sensors, drone technology, and AI-driven analytics for optimized crop production. The platform monitors soil moisture, nutrient levels, crop health, and environmental conditions in real-time.</p>
-          <p>Key capabilities include automated irrigation scheduling, precision pesticide application, yield prediction models, disease detection algorithms, and integration with farm equipment.</p>
-          <p>Features include mobile app control, weather-based decision support, resource optimization algorithms, and comprehensive farm management dashboards. The system supports sustainable farming practices and maximizes resource efficiency while improving crop quality and yield.</p>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-item" data-category="wireless">
+        <div class="project-image">
+          <i class="fas fa-wifi"></i>
         </div>
-        <div class="card">
-          <div class="animated-demo parking-demo">
-            <div class="parking-lot">🅿️</div>
-            <div class="car-entering">🚗</div>
-            <div class="barrier">🚧</div>
-            <div class="display">📺</div>
+        <div class="project-info">
+          <h3>Wireless Sensor Network</h3>
+          <p class="project-description">Multi-node wireless network for environmental monitoring with mesh topology and fault tolerance.</p>
+          <div class="project-tags">
+            <span class="tag">RF Communication</span>
+            <span class="tag">Mesh Network</span>
+            <span class="tag">Sensors</span>
           </div>
-          <h3>Smart Parking Management System</h3>
-          <p><strong>Automated Parking Infrastructure</strong></p>
-          <p>An intelligent parking management solution that optimizes urban parking utilization through automated entry/exit systems and real-time availability monitoring. The system employs RFID/NFC technology for seamless access control, license plate recognition for unauthorized vehicle detection, and mobile app integration for reservation and payment.</p>
-          <p>Advanced features include dynamic pricing based on demand, predictive availability forecasting, integration with navigation apps, automated payment processing, and comprehensive reporting for facility management.</p>
-          <p>The platform reduces traffic congestion, minimizes search time, and provides valuable data for urban planning and traffic management.</p>
         </div>
-        <div class="card">
-          <div class="animated-demo industrial-demo">
-            <div class="factory">🏭</div>
-            <div class="robot-arm">🤖</div>
-            <div class="conveyor">⚙️</div>
-            <div class="control-panel">📊</div>
-          </div>
-          <h3>Industrial Automation System</h3>
-          <p><strong>Advanced Manufacturing Control Platform</strong></p>
-          <p>A comprehensive industrial automation solution that integrates robotics, PLC systems, and SCADA software for optimized manufacturing processes. The platform enables real-time monitoring and control of production lines, inventory management, and quality assurance systems.</p>
-          <p>Key features include predictive maintenance algorithms, automated defect detection, energy consumption optimization, production scheduling, and integration with enterprise resource planning (ERP) systems.</p>
-          <p>The system supports Industry 4.0 standards, provides detailed analytics dashboards, and ensures maximum operational efficiency while maintaining safety standards.</p>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-item" data-category="automation">
+        <div class="project-image">
+          <i class="fas fa-lightbulb"></i>
         </div>
-        <div class="card">
-          <div class="animated-demo security-demo">
-            <div class="building">🏢</div>
-            <div class="cameras">📹</div>
-            <div class="alarm">🚨</div>
-            <div class="access-control">🔐</div>
+        <div class="project-info">
+          <h3>Smart Street Lighting</h3>
+          <p class="project-description">Energy-efficient street lighting system with adaptive brightness, motion detection, and remote control.</p>
+          <div class="project-tags">
+            <span class="tag">LED Control</span>
+            <span class="tag">Energy Efficient</span>
+            <span class="tag">IoT</span>
           </div>
-          <h3>Smart Building Security System</h3>
-          <p><strong>Integrated Security Management Platform</strong></p>
-          <p>A comprehensive building security solution combining surveillance, access control, and environmental monitoring systems. The platform integrates CCTV cameras, biometric scanners, smart locks, and motion sensors for complete facility protection.</p>
-          <p>Advanced features include AI-powered facial recognition, automated incident response, real-time threat detection, visitor management systems, and integration with emergency services.</p>
-          <p>The system provides centralized monitoring, detailed security logs, and ensures compliance with safety regulations while maintaining user privacy and data protection standards.</p>
         </div>
-        <div class="card">
-          <div class="animated-demo energy-demo">
-            <div class="solar-panel">☀️</div>
-            <div class="wind-turbine">🌪️</div>
-            <div class="battery">🔋</div>
-            <div class="grid">⚡</div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-item" data-category="iot">
+        <div class="project-image">
+          <i class="fas fa-barcode"></i>
+        </div>
+        <div class="project-info">
+          <h3>RFID Tracking System</h3>
+          <p class="project-description">Industrial asset tracking system using RFID technology with inventory management and real-time localization.</p>
+          <div class="project-tags">
+            <span class="tag">RFID</span>
+            <span class="tag">Inventory</span>
+            <span class="tag">Tracking</span>
           </div>
-          <h3>Renewable Energy Management</h3>
-          <p><strong>Smart Grid Energy Optimization System</strong></p>
-          <p>An intelligent energy management platform that optimizes renewable energy generation and consumption. The system integrates solar panels, wind turbines, and battery storage systems with smart grid technology for maximum efficiency.</p>
-          <p>Key capabilities include real-time energy forecasting, automated load balancing, demand response management, and integration with utility company systems.</p>
-          <p>Features include mobile app monitoring, predictive maintenance alerts, carbon footprint tracking, and financial optimization through energy trading. The platform supports sustainable energy practices and reduces operational costs.</p>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-item" data-category="wireless">
+        <div class="project-image">
+          <i class="fas fa-broadcast-tower"></i>
+        </div>
+        <div class="project-info">
+          <h3>Telecom Infrastructure</h3>
+          <p class="project-description">Designed and implemented telecom networks with optimization for signal strength and coverage.</p>
+          <div class="project-tags">
+            <span class="tag">Telecom</span>
+            <span class="tag">Network</span>
+            <span class="tag">Optimization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+      <h2>Projects & Experience</h2>
+      
+      <!-- Professional Overview -->
+      <div class="professional-overview">
+        <h3>Professional Background</h3>
+        <div class="overview-grid">
+          <div class="overview-card">
+            <h4>Education</h4>
+            <p>B.E. in Electronics & Communication Engineering with expertise in telecom infrastructure and embedded systems.</p>
+          </div>
+          <div class="overview-card">
+            <h4>Experience</h4>
+            <p>8+ years in telecom infrastructure, network deployment, project management, and STEAM education leadership.</p>
+          </div>
+          <div class="overview-card">
+            <h4>Expertise</h4>
+            <p>Telecom engineering, IoT solutions, project management, technical documentation, and educational innovation.</p>
+          </div>
+          <div class="overview-card">
+            <h4>Projects</h4>
+            <p>25+ telecom projects, smart city solutions, IoT systems, and educational technology implementations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Projects -->
+      <div class="featured-projects">
+        <h3>Featured Projects</h3>
+        <div class="projects-container">
+          <div class="project-card">
+            <h4>RFID-Based Vehicle Fare Management</h4>
+            <p class="project-category">Transportation Technology</p>
+            <p>Centralized server system for public transportation fare collection with seamless contactless payment processing and real-time transaction validation.</p>
+            <ul class="project-features">
+              <li>Encrypted data transmission</li>
+              <li>Multi-modal transport integration</li>
+              <li>Automated fare calculation</li>
+              <li>Comprehensive audit trails</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h4>Smart Street Light Control System</h4>
+            <p class="project-category">Urban Infrastructure</p>
+            <p>Intelligent lighting management system with motion sensors and ambient light detection for adaptive illumination control.</p>
+            <ul class="project-features">
+              <li>Programmable lighting schedules</li>
+              <li>Remote monitoring and control</li>
+              <li>Predictive maintenance alerts</li>
+              <li>Up to 70% energy savings</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h4>Home Automation System</h4>
+            <p class="project-category">IoT Smart Home</p>
+            <p>Complete IoT ecosystem for residential automation integrating voice-activated controls, security monitoring, and energy management.</p>
+            <ul class="project-features">
+              <li>Multi-protocol device support</li>
+              <li>Cloud-based remote access</li>
+              <li>Automated scene creation</li>
+              <li>Energy usage analytics</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h4>IoT Weather Monitoring System</h4>
+            <p class="project-category">Environmental Data</p>
+            <p>Comprehensive weather monitoring network for agricultural and industrial applications with real-time data transmission.</p>
+            <ul class="project-features">
+              <li>Multiple sensor node deployment</li>
+              <li>Cloud-based analytics</li>
+              <li>Automated alert systems</li>
+              <li>Historical trend analysis</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h4>Smart Agriculture Solution</h4>
+            <p class="project-category">Precision Farming</p>
+            <p>Integrated agricultural management system combining IoT sensors and AI analytics for optimized crop production.</p>
+            <ul class="project-features">
+              <li>Soil moisture monitoring</li>
+              <li>Automated irrigation scheduling</li>
+              <li>Yield prediction models</li>
+              <li>Disease detection algorithms</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h4>Smart Parking Management System</h4>
+            <p class="project-category">Urban Mobility</p>
+            <p>Intelligent parking solution with automated entry/exit systems and real-time availability monitoring.</p>
+            <ul class="project-features">
+              <li>RFID/NFC access control</li>
+              <li>License plate recognition</li>
+              <li>Dynamic pricing system</li>
+              <li>Mobile app integration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Skills -->
+      <div class="core-skills">
+        <h3>Core Technical Skills</h3>
+        <div class="skills-matrix">
+          <div class="skill-group">
+            <h5>Telecom & Networking</h5>
+            <ul>
+              <li>Telecom Infrastructure</li>
+              <li>Network Deployment</li>
+              <li>Site Surveys</li>
+              <li>Equipment Installation</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h5>IoT & Embedded Systems</h5>
+            <ul>
+              <li>IoT Architecture</li>
+              <li>Sensor Integration</li>
+              <li>Edge Computing</li>
+              <li>Device Management</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h5>Project Management</h5>
+            <ul>
+              <li>Team Leadership</li>
+              <li>Stakeholder Management</li>
+              <li>Timely Delivery</li>
+              <li>Resource Planning</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h5>Technical Documentation</h5>
+            <ul>
+              <li>Technical Manuals</li>
+              <li>Process Flowcharts</li>
+              <li>Compliance Reporting</li>
+              <li>Knowledge Management</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
-  </div>
+  </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2025 D.Nijan. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="contact.html">Contact</a>
-        <a href="resume.pdf" download>Resume</a>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: nijandangal1993@gmail.com</p>
+        <p>Phone: +977 98xxxxxxxx</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nijan Dangal. All rights reserved.</p>
     </div>
   </footer>
 

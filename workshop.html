@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IoT Workshop - ESP32 LED Control Project. Learn hands-on IoT development with microcontrollers">
+  <meta name="keywords" content="ESP32, IoT, LED, microcontroller, workshop, tutorial">
+  <meta name="author" content="Nijan Dangal">
+  <title>Nijan Dangal — IoT Workshop</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-microchip"></i> Nijan
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="workshop.html" class="nav-link active">Workshop</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <h1>IoT Workshop</h1>
+    <p>Learn to build smart IoT projects with ESP32</p>
+  </section>
+
+  <!-- Project Overview -->
+  <section class="workshop-section">
+    <div class="workshop-intro">
+      <h2>ESP32 LED Control System</h2>
+      <p class="intro-text">In this workshop, you'll learn how to build a complete LED control system using the ESP32 microcontroller. This project covers hardware setup, firmware development, and web-based control interface.</p>
+      
+      <div class="project-highlights">
+        <div class="highlight">
+          <i class="fas fa-laptop"></i>
+          <h4>Web Dashboard</h4>
+          <p>Control LEDs from your browser</p>
+        </div>
+        <div class="highlight">
+          <i class="fas fa-mobile-alt"></i>
+          <h4>Mobile Friendly</h4>
+          <p>Responsive UI for all devices</p>
+        </div>
+        <div class="highlight">
+          <i class="fas fa-wifi"></i>
+          <h4>WiFi Enabled</h4>
+          <p>Remote access and control</p>
+        </div>
+        <div class="highlight">
+          <i class="fas fa-gauge-high"></i>
+          <h4>Real-time Feedback</h4>
+          <p>Live status and analytics</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements Section -->
+  <section class="workshop-section workshop-content">
+    <h2>What You'll Need</h2>
+    
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="hardware">Hardware</button>
+      <button class="tab-btn" data-tab="software">Software</button>
+      <button class="tab-btn" data-tab="tools">Tools</button>
+    </div>
+
+    <div class="tab-content">
+      <div id="hardware" class="tab-pane active">
+        <div class="requirements-grid">
+          <div class="requirement-card">
+            <i class="fas fa-microchip"></i>
+            <h4>ESP32 Development Board</h4>
+            <p>The main microcontroller unit. Features WiFi, Bluetooth, and multiple GPIO pins.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-lightbulb"></i>
+            <h4>LED (x3)</h4>
+            <p>Standard 5mm or 3mm LEDs. Use different colors (Red, Green, Blue) for visual feedback.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-circle"></i>
+            <h4>Resistors (220Ω)</h4>
+            <p>Current-limiting resistors for LED protection. Prevents LED burnout.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-plug"></i>
+            <h4>Breadboard & Jumper Wires</h4>
+            <p>For prototyping and making electrical connections without soldering.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-battery-half"></i>
+            <h4>USB Cable</h4>
+            <p>For programming and powering the ESP32 board.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-power-off"></i>
+            <h4>Power Supply</h4>
+            <p>5V USB power adapter or computer USB port for testing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="software" class="tab-pane">
+        <div class="requirements-grid">
+          <div class="requirement-card">
+            <i class="fab fa-windows"></i>
+            <h4>Arduino IDE / VS Code</h4>
+            <p>Development environment for programming the ESP32. Free and open-source.</p>
+            <a href="https://www.arduino.cc/en/software" target="_blank" class="requirement-link">Download →</a>
+          </div>
+          <div class="requirement-card">
+            <i class="fab fa-github"></i>
+            <h4>ESP32 Board Support</h4>
+            <p>Install via Arduino Board Manager or PlatformIO extension.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fab fa-html5"></i>
+            <h4>HTML/CSS/JavaScript</h4>
+            <p>For creating the web-based control dashboard.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fab fa-git"></i>
+            <h4>Serial Monitor</h4>
+            <p>Built into Arduino IDE for debugging and monitoring output.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="tools" class="tab-pane">
+        <div class="requirements-grid">
+          <div class="requirement-card">
+            <i class="fas fa-wrench"></i>
+            <h4>Multimeter</h4>
+            <p>For testing circuits and verifying voltage levels (optional but recommended).</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-cut"></i>
+            <h4>Wire Stripper</h4>
+            <p>For stripping insulation from jumper wires.</p>
+          </div>
+          <div class="requirement-card">
+            <i class="fas fa-book"></i>
+            <h4>Documentation</h4>
+            <p>ESP32 datasheet and pinout diagrams for reference.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Circuit Diagram -->
+  <section class="workshop-section">
+    <h2>Circuit Wiring Diagram</h2>
+    <div class="circuit-diagram">
+      <div class="diagram-container">
+        <div class="diagram-box">
+          <h4>Pin Configuration</h4>
+          <table class="pin-table">
+            <tr>
+              <th>Component</th>
+              <th>ESP32 Pin</th>
+              <th>Function</th>
+            </tr>
+            <tr>
+              <td>Red LED</td>
+              <td>GPIO 13</td>
+              <td>Digital Output (ON/OFF Control)</td>
+            </tr>
+            <tr>
+              <td>Green LED</td>
+              <td>GPIO 12</td>
+              <td>Digital Output (ON/OFF Control)</td>
+            </tr>
+            <tr>
+              <td>Blue LED</td>
+              <td>GPIO 14</td>
+              <td>Digital Output (ON/OFF Control)</td>
+            </tr>
+            <tr>
+              <td>LED Ground</td>
+              <td>GND</td>
+              <td>Common Ground</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="wiring-info">
+        <h4>Connection Steps</h4>
+        <ol>
+          <li>Connect the positive leg of each LED through a 220Ω resistor to the respective GPIO pin</li>
+          <li>Connect the negative leg of each LED to the GND pin on ESP32</li>
+          <li>Use breadboard for clean connections</li>
+          <li>Verify all connections before powering up</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Section -->
+  <section class="workshop-section">
+    <h2>Firmware Code</h2>
+    <div class="code-container">
+      <div class="code-tabs">
+        <button class="code-tab-btn active" data-code="setup">Main Sketch</button>
+        <button class="code-tab-btn" data-code="web">Web Interface</button>
+      </div>
+
+      <div class="code-content">
+        <div id="setup" class="code-pane active">
+          <pre><code class="language-cpp">#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+// WiFi credentials
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
+
+// Pin definitions
+const int RED_LED = 13;
+const int GREEN_LED = 12;
+const int BLUE_LED = 14;
+
+WebServer server(80);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Initialize LED pins
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+  pinMode(BLUE_LED, OUTPUT);
+  
+  // Turn off all LEDs initially
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, LOW);
+  digitalWrite(BLUE_LED, LOW);
+  
+  // Connect to WiFi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  
+  Serial.println("WiFi connected!");
+  Serial.println(WiFi.localIP());
+  
+  // Setup web server routes
+  server.on("/", handleRoot);
+  server.on("/led", handleLED);
+  server.on("/status", handleStatus);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+}
+
+void handleRoot() {
+  String html = R"(
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;ESP32 LED Control&lt;/title&gt;
+      &lt;style&gt;
+        body { font-family: Arial; max-width: 500px; margin: 50px auto; }
+        .led-control { margin: 20px 0; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+      &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;ESP32 LED Control&lt;/h1&gt;
+      &lt;div class="led-control"&gt;
+        &lt;button onclick="toggleLED('red')"&gt;Toggle Red&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="led-control"&gt;
+        &lt;button onclick="toggleLED('green')"&gt;Toggle Green&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="led-control"&gt;
+        &lt;button onclick="toggleLED('blue')"&gt;Toggle Blue&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;script&gt;
+        function toggleLED(color) {
+          fetch('/led?color=' + color);
+        }
+      &lt;/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+  )";
+  server.send(200, "text/html", html);
+}
+
+void handleLED() {
+  if (server.hasArg("color")) {
+    String color = server.arg("color");
+    
+    if (color == "red") {
+      digitalWrite(RED_LED, !digitalRead(RED_LED));
+    } else if (color == "green") {
+      digitalWrite(GREEN_LED, !digitalRead(GREEN_LED));
+    } else if (color == "blue") {
+      digitalWrite(BLUE_LED, !digitalRead(BLUE_LED));
+    }
+  }
+  server.send(200, "application/json", "{\"status\":\"ok\"}");
+}
+
+void handleStatus() {
+  String status = "{";
+  status += "\"red\":" + String(digitalRead(RED_LED)) + ",";
+  status += "\"green\":" + String(digitalRead(GREEN_LED)) + ",";
+  status += "\"blue\":" + String(digitalRead(BLUE_LED));
+  status += "}";
+  server.send(200, "application/json", status);
+}</code></pre>
+        </div>
+
+        <div id="web" class="code-pane">
+          <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;ESP32 LED Controller&lt;/title&gt;
+  &lt;style&gt;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    .led-btn {
+      width: 100%;
+      margin: 15px 0;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+    }
+    .led-btn.red {
+      background: #ff6b6b;
+    }
+    .led-btn.green {
+      background: #51cf66;
+    }
+    .led-btn.blue {
+      background: #4c6ef5;
+    }
+    .led-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .led-btn.active {
+      opacity: 0.7;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;LED Controller&lt;/h1&gt;
+    &lt;button class="led-btn red" onclick="toggleLED('red')"&gt;🔴 Red LED&lt;/button&gt;
+    &lt;button class="led-btn green" onclick="toggleLED('green')"&gt;🟢 Green LED&lt;/button&gt;
+    &lt;button class="led-btn blue" onclick="toggleLED('blue')"&gt;🔵 Blue LED&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    async function toggleLED(color) {
+      try {
+        const response = await fetch(`/led?color=${color}`);
+        const data = await response.json();
+        console.log(`${color} LED toggled:`, data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="workshop-section">
+    <h2>Getting Started - Step by Step</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Setup Hardware</h3>
+        <p>Connect the LEDs and resistors to the ESP32 following the pin configuration table above. Use breadboard for clean connections.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Install Tools</h3>
+        <p>Download Arduino IDE and install ESP32 board support package. This enables you to program the ESP32 board.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Upload Code</h3>
+        <p>Copy the firmware code provided above into Arduino IDE. Update WiFi credentials and upload to your ESP32.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Configure WiFi</h3>
+        <p>Replace YOUR_SSID and YOUR_PASSWORD with your actual WiFi credentials. Check Serial Monitor for connection status.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">5</div>
+        <h3>Access Dashboard</h3>
+        <p>Open the IP address shown in Serial Monitor in your browser to see the LED control dashboard.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">6</div>
+        <h3>Control LEDs</h3>
+        <p>Click buttons to turn LEDs on/off. Control from your phone or any device on the same WiFi network!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section class="workshop-section workshop-content">
+    <h2>Troubleshooting Tips</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h4>LEDs Not Turning On</h4>
+        <p>Check if positive and negative legs are connected correctly. LEDs are polarity-sensitive. Use a multimeter to verify connections.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-wifi-slash"></i>
+        <h4>WiFi Connection Issues</h4>
+        <p>Verify SSID and password are correct. Check Serial Monitor output. Ensure your WiFi is on 2.4GHz (ESP32 doesn't support 5GHz).</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-code"></i>
+        <h4>Upload Errors</h4>
+        <p>Select correct COM port and board "ESP32 Dev Module". Install drivers if port is not detected.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h4>Can't Access Dashboard</h4>
+        <p>Copy the IP address from Serial Monitor. Make sure your phone is on same WiFi network. Use http:// (not https://)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo -->
+  <section class="workshop-section">
+    <h2>Interactive LED Simulator</h2>
+    <p style="text-align: center; margin-bottom: 20px; color: #666;">Try controlling simulated LEDs (click the circles to toggle)</p>
+    <div class="led-simulator">
+      <div class="led-circle red" id="simRed" onclick="toggleSimLED('red')">
+        <div class="led-glow"></div>
+      </div>
+      <div class="led-circle green" id="simGreen" onclick="toggleSimLED('green')">
+        <div class="led-glow"></div>
+      </div>
+      <div class="led-circle blue" id="simBlue" onclick="toggleSimLED('blue')">
+        <div class="led-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: nijandangal1993@gmail.com</p>
+        <p>Phone: +977 98xxxxxxxx</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nijan Dangal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
