@@ -21,6 +21,7 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
         <li><a href="workshop.html" class="nav-link">Workshop</a></li>
+        <li><a href="newsletter.html" class="nav-link active">Newsletter</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="hamburger" id="hamburger">
@@ -31,72 +32,241 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <section class="page-header">
-    <h1>Tech Newsletter</h1>
-    <p>Stay updated with the latest IoT and engineering insights</p>
+  <!-- Magazine Header -->
+  <section class="magazine-header">
+    <div class="magazine-masthead">
+      <h1>TECH<span class="masthead-highlight">PULSE</span></h1>
+      <p class="masthead-subtitle">Technology News & Innovation Digest</p>
+      <div class="magazine-meta">
+        <span>Vol. 2026 • Issue 02 • February 2026</span>
+      </div>
+    </div>
   </section>
 
-  <!-- Newsletter Section -->
-  <section class="newsletter-archive-section">
-    <div class="newsletter-container">
-      <h2>Latest Articles</h2>
+  <!-- Newsletter Magazine Section -->
+  <section class="magazine-section">
+    <div class="magazine-container">
       
-      <div class="newsletter-grid">
-        <article class="newsletter-card">
-          <div class="newsletter-icon">
-            <i class="fas fa-microchip"></i>
+      <!-- Featured Article (Lead Story) -->
+      <article class="featured-story">
+        <div class="featured-story-content">
+          <div class="featured-badge">FEATURED STORY</div>
+          <h1>AI Breakthroughs in Natural Language Processing Transform Digital Communication</h1>
+          <p class="featured-excerpt">Major advancements in AI models are enabling more accurate and context-aware language understanding, revolutionizing chatbots and assistant technologies worldwide.</p>
+          <div class="featured-meta">
+            <span class="author-date"><i class="fas fa-calendar"></i> February 14, 2026</span>
+            <span class="category-tag"><i class="fas fa-folder"></i> Artificial Intelligence</span>
           </div>
-          <h3>ESP32: The Future of IoT Development</h3>
-          <p>Discover why the ESP32 microcontroller is revolutionizing IoT projects with its powerful capabilities, WiFi connectivity, and affordable price point.</p>
-          <span class="newsletter-date">February 15, 2026</span>
-        </article>
+        </div>
+        <div class="featured-story-visual">
+          <i class="fas fa-robot"></i>
+        </div>
+      </article>
 
-        <article class="newsletter-card">
-          <div class="newsletter-icon">
-            <i class="fas fa-lightbulb"></i>
-          </div>
-          <h3>Smart Lighting Systems Architecture</h3>
-          <p>Explore the design patterns and best practices for building energy-efficient smart lighting systems with real-time control and monitoring.</p>
-          <span class="newsletter-date">February 10, 2026</span>
-        </article>
+      <div class="magazine-divider"></div>
 
-        <article class="newsletter-card">
-          <div class="newsletter-icon">
-            <i class="fas fa-cloud"></i>
-          </div>
-          <h3>Cloud Integration for IoT Devices</h3>
-          <p>Learn how to securely connect your IoT devices to cloud platforms for real-time data processing, analytics, and remote management.</p>
-          <span class="newsletter-date">February 5, 2026</span>
-        </article>
+      <!-- Global Tech News Section -->
+      <section class="news-section">
+        <div class="section-title-wrapper">
+          <h2 class="section-title"><i class="fas fa-globe"></i> GLOBAL TECHNOLOGY NEWS</h2>
+          <p class="section-subtitle">Latest breakthroughs and announcements from around the world</p>
+        </div>
 
-        <article class="newsletter-card">
-          <div class="newsletter-icon">
-            <i class="fas fa-wifi"></i>
-          </div>
-          <h3>Wireless Communication Protocols Explained</h3>
-          <p>A comprehensive guide to choosing the right wireless protocol for your project: WiFi, Bluetooth, Zigbee, and LoRaWAN compared.</p>
-          <span class="newsletter-date">February 1, 2026</span>
-        </article>
+        <div class="articles-grid-3">
+          <article class="news-article">
+            <div class="article-header">
+              <div class="article-icon tech-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <div class="article-category">Quantum Computing</div>
+            </div>
+            <h3>Quantum Computing Milestone Achieved</h3>
+            <p>Tech giants announce breakthrough in quantum error correction, bringing practical quantum computers closer to reality and solving complex optimization problems.</p>
+            <div class="article-footer">
+              <span class="article-date">February 13, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
 
-        <article class="newsletter-card">
-          <div class="newsletter-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3>Embedded Systems Programming Best Practices</h3>
-          <p>Master the fundamentals of writing efficient, reliable embedded code with memory constraints and real-time requirements.</p>
-          <span class="newsletter-date">January 28, 2026</span>
-        </article>
+          <article class="news-article">
+            <div class="article-header">
+              <div class="article-icon tech-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <div class="article-category">Telecommunications</div>
+            </div>
+            <h3>5G Network Expansion Accelerates Globally</h3>
+            <p>Carriers worldwide report faster rollout of 5G infrastructure, enabling new applications in autonomous vehicles, industrial IoT, and real-time gaming.</p>
+            <div class="article-footer">
+              <span class="article-date">February 12, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
 
-        <article class="newsletter-card">
-          <div class="newsletter-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3>Home Automation Trends 2026</h3>
-          <p>Explore emerging trends in home automation, from AI-powered assistants to energy management and predictive maintenance systems.</p>
-          <span class="newsletter-date">January 22, 2026</span>
-        </article>
-      </div>
+          <article class="news-article">
+            <div class="article-header">
+              <div class="article-icon tech-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <div class="article-category">Sustainability</div>
+            </div>
+            <h3>Green Computing Standards Implemented</h3>
+            <p>New international standards for eco-friendly electronics manufacturing and e-waste management are being implemented across major tech companies.</p>
+            <div class="article-footer">
+              <span class="article-date">February 11, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article">
+            <div class="article-header">
+              <div class="article-icon tech-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <div class="article-category">Cybersecurity</div>
+            </div>
+            <h3>Zero-Trust Architecture Adoption Surges</h3>
+            <p>Enterprises increasingly adopt zero-trust security models to protect against evolving threats and insider attacks in cloud-native environments.</p>
+            <div class="article-footer">
+              <span class="article-date">February 10, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article">
+            <div class="article-header">
+              <div class="article-icon tech-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="article-category">Space Technology</div>
+            </div>
+            <h3>Private Space Companies Break Barriers</h3>
+            <p>Commercial space companies continue to innovate with reusable rockets and satellite internet constellations providing global connectivity.</p>
+            <div class="article-footer">
+              <span class="article-date">February 9, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article">
+            <div class="article-header">
+              <div class="article-icon tech-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="article-category">Machine Learning</div>
+            </div>
+            <h3>Edge AI Computing Revolution Begins</h3>
+            <p>New chipsets enable powerful AI processing on edge devices, reducing latency and improving privacy in real-time applications.</p>
+            <div class="article-footer">
+              <span class="article-date">February 8, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="magazine-divider"></div>
+
+      <!-- IoT & Embedded Systems Section -->
+      <section class="news-section interest-news-section">
+        <div class="section-title-wrapper">
+          <h2 class="section-title"><i class="fas fa-lightbulb"></i> IOT & EMBEDDED SYSTEMS</h2>
+          <p class="section-subtitle">Professional insights and technical deep dives in my specialization areas</p>
+        </div>
+
+        <div class="articles-grid-3">
+          <article class="news-article interest-article">
+            <div class="article-header">
+              <div class="article-icon interest-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <div class="article-category interest-cat">Microcontrollers</div>
+            </div>
+            <h3>ESP32: The Future of IoT Development</h3>
+            <p>Discover why the ESP32 microcontroller is revolutionizing IoT projects with its powerful capabilities, WiFi connectivity, and affordable price point.</p>
+            <div class="article-footer">
+              <span class="article-date">February 15, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article interest-article">
+            <div class="article-header">
+              <div class="article-icon interest-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <div class="article-category interest-cat">Smart Systems</div>
+            </div>
+            <h3>Smart Lighting Systems Architecture</h3>
+            <p>Explore the design patterns and best practices for building energy-efficient smart lighting systems with real-time control and monitoring.</p>
+            <div class="article-footer">
+              <span class="article-date">February 12, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article interest-article">
+            <div class="article-header">
+              <div class="article-icon interest-icon">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <div class="article-category interest-cat">Cloud Platforms</div>
+            </div>
+            <h3>Cloud Integration for IoT Devices</h3>
+            <p>Learn how to securely connect your IoT devices to cloud platforms for real-time data processing, analytics, and remote management.</p>
+            <div class="article-footer">
+              <span class="article-date">February 8, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article interest-article">
+            <div class="article-header">
+              <div class="article-icon interest-icon">
+                <i class="fas fa-wifi"></i>
+              </div>
+              <div class="article-category interest-cat">Wireless</div>
+            </div>
+            <h3>Wireless Communication Protocols</h3>
+            <p>Comprehensive guide to choosing the right wireless protocol: WiFi, Bluetooth, Zigbee, and LoRaWAN compared side-by-side.</p>
+            <div class="article-footer">
+              <span class="article-date">February 5, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article interest-article">
+            <div class="article-header">
+              <div class="article-icon interest-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="article-category interest-cat">Programming</div>
+            </div>
+            <h3>Embedded Systems Best Practices</h3>
+            <p>Master the fundamentals of writing efficient, reliable embedded code with memory constraints and real-time requirements.</p>
+            <div class="article-footer">
+              <span class="article-date">February 3, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-article interest-article">
+            <div class="article-header">
+              <div class="article-icon interest-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <div class="article-category interest-cat">Home Automation</div>
+            </div>
+            <h3>Home Automation Trends 2026</h3>
+            <p>Emerging trends in home automation, from AI-powered assistants to energy management and predictive maintenance systems.</p>
+            <div class="article-footer">
+              <span class="article-date">January 28, 2026</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
     </div>
   </section>
 
@@ -122,6 +292,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="workshop.html">Workshop</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>

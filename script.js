@@ -1,31 +1,31 @@
 /* Modern Dynamic Portfolio Website JavaScript */
 
-// ============= THEME MANAGEMENT =============
+// ============= PROFESSIONAL THEME SYSTEM (8 STANDARD THEMES) =============
 const THEMES = {
-  light: { name: 'Light', color: '#6366f1' },
-  dark: { name: 'Dark', color: '#818cf8' },
   ocean: { name: 'Ocean', color: '#0369a1' },
-  forest: { name: 'Forest', color: '#059669' },
   sunset: { name: 'Sunset', color: '#ea580c' },
-  purple: { name: 'Purple', color: '#a855f7' }
+  city: { name: 'City', color: '#475569' },
+  forest: { name: 'Forest', color: '#059669' },
+  animation: { name: 'Animation', color: '#a855f7' },
+  arts: { name: 'Arts', color: '#e11d48' },
+  mountain: { name: 'Mountain', color: '#0f766e' },
+  desert: { name: 'Desert', color: '#b45309' }
 };
 
+// Load theme immediately before page renders (prevent flickering)
+(function() {
+  const savedTheme = localStorage.getItem('preferredTheme') || 'ocean';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+})();
+
 function initializeTheme() {
-  const savedTheme = localStorage.getItem('preferredTheme') || 'light';
-  applyTheme(savedTheme);
   createThemeSelector();
+  setupThemeListeners();
 }
 
 function applyTheme(themeName) {
-  // Remove all theme classes
-  Object.keys(THEMES).forEach(theme => {
-    document.body.classList.remove(`theme-${theme}`);
-  });
-  
-  // Apply selected theme
-  if (themeName !== 'light') {
-    document.body.classList.add(`theme-${themeName}`);
-  }
+  // Apply theme using data attribute (no flicker)
+  document.documentElement.setAttribute('data-theme', themeName);
   
   // Save preference
   localStorage.setItem('preferredTheme', themeName);
@@ -39,22 +39,17 @@ function createThemeSelector() {
   const container = document.createElement('div');
   container.className = 'theme-selector';
   
-  // Create toggle button
-  const toggleBtn = document.createElement('button');
-  toggleBtn.className = 'theme-toggle-btn';
-  toggleBtn.innerHTML = '<i class="fas fa-palette"></i>';
-  toggleBtn.title = 'Change Theme';
-  toggleBtn.setAttribute('aria-label', 'Toggle theme menu');
-  
   // Create theme menu
   const menu = document.createElement('div');
-  menu.className = 'theme-menu';
+  menu.className = 'theme-toggle-menu';
   
   // Add theme options
   Object.entries(THEMES).forEach(([themeKey, themeData]) => {
     const option = document.createElement('button');
     option.className = 'theme-option';
     option.setAttribute('data-theme', themeKey);
+    option.setAttribute('title', themeData.name);
+    option.setAttribute('aria-label', `Apply ${themeData.name} theme`);
     option.innerHTML = `
       <span class="theme-color-dot" style="background-color: ${themeData.color}"></span>
       <span>${themeData.name}</span>
@@ -63,26 +58,18 @@ function createThemeSelector() {
     option.addEventListener('click', (e) => {
       e.stopPropagation();
       applyTheme(themeKey);
-      toggleBtn.click(); // Close menu
     });
     
     menu.appendChild(option);
   });
   
-  // Toggle menu
-  toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    menu.classList.toggle('active');
-  });
-  
-  // Close menu when clicking outside
-  document.addEventListener('click', () => {
-    menu.classList.remove('active');
-  });
-  
-  container.appendChild(toggleBtn);
   container.appendChild(menu);
   document.body.appendChild(container);
+}
+
+function setupThemeListeners() {
+  const savedTheme = localStorage.getItem('preferredTheme') || 'ocean';
+  updateThemeMenuActive(savedTheme);
 }
 
 function updateThemeMenuActive(themeName) {
