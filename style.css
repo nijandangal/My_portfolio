@@ -164,6 +164,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* offset for the fixed navbar to prevent overlap */
+  padding-top: 70px;
 }
 
 /* ============= NAVBAR ============= */
@@ -186,6 +188,13 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 70px;
+}
+
+/* On narrow screens the navbar may grow (wrapped items); add extra top padding */
+@media (max-width: 600px) {
+  body {
+    padding-top: 90px;
+  }
 }
 
 .nav-logo {
@@ -385,10 +394,10 @@ body {
 }
 
 .news-article.media-side {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 24px;
-  align-items: start;
+  /* Default to stacked layout so text flows naturally and no empty
+     reserved column remains when images are small or absent. On very
+     wide screens we'll switch to a two-column media-side layout. */
+  display: block;
 }
 
 .article-body {
@@ -2051,7 +2060,7 @@ section {
 /* ============= MAGAZINE NEWSLETTER STYLES ============= */
 .magazine-header {
   background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-  padding: 60px 20px;
+  padding: 40px 20px;
   text-align: center;
   border-bottom: 4px solid var(--primary);
 }
@@ -2095,7 +2104,7 @@ section {
 
 .magazine-section {
   background: var(--light);
-  padding: 40px 12px;
+  padding: 32px 12px;
 }
 
 .magazine-container {
@@ -2219,7 +2228,45 @@ section {
 .articles-grid-3 {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* tighter gap between boxed articles */
+  gap: 18px; /* larger gap so each article reads as its own card */
+}
+
+/* Section heading card */
+.section-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.04);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+/* Accent bar to the left of the section title */
+.section-title::before {
+  content: '';
+  width: 8px;
+  height: 36px;
+  background: var(--primary);
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.interest-news-section .section-title::before {
+  background: var(--secondary);
 }
 
 .news-article {
@@ -2309,20 +2356,23 @@ section {
 
 /* Ensure media-side articles adapt and let text grow when images are small */
 @media (min-width: 1000px) {
-  .news-article.media-side {
-    display: grid;
-    grid-template-columns: 320px 1fr; /* fixed image column for laptop widths */
-    gap: 18px;
-    align-items: start;
-  }
-
   .news-article.media-side .article-media img {
-    aspect-ratio: 1 / 1; /* square */
     width: 100%;
-    max-height: 380px;
+    height: auto;
     object-fit: cover;
     border-radius: 6px;
     display: block;
+    margin-bottom: 10px;
+  }
+}
+
+/* Two-column media-side (image left, body right) only on very wide screens */
+@media (min-width: 1400px) {
+  .news-article.media-side {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    align-items: start;
   }
 }
 
@@ -2371,6 +2421,35 @@ section {
   padding-top: 12px;
   border-top: 1px solid var(--border);
   margin-top: 12px;
+}
+
+/* Global card styling: consistent borders and subtle shadows */
+.card-style,
+.featured-story,
+.news-article,
+.newsletter-card,
+.newsletter-signup-section {
+  border: 1px solid var(--border);
+  background: var(--lighter);
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+}
+
+/* Slight darker footer panel */
+.footer {
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+}
+
+/* Tighter container cards to remove extra white space */
+.magazine-container > * {
+  padding: 6px 0; /* reduced vertical padding between container children */
+}
+
+@media (min-width: 1000px) {
+  .magazine-header { padding: 36px 20px; }
+  .magazine-section { padding: 28px 12px; }
+  .magazine-container > * { padding: 4px 0; }
+  .magazine-masthead h1 { font-size: 56px; }
 }
 
 .article-date {
