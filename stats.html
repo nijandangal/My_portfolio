@@ -3,81 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="D.Nijan - Achievements showcasing stats and testimonials.">
-  <meta name="keywords" content="achievements, stats, testimonials, experience, projects, students, engineering">
-  <meta name="author" content="D.Nijan">
-  <title>D.Nijan — Achievements</title>
+  <meta name="description" content="Nijan Dangal - Statistics and achievements showcasing professional accomplishments">
+  <meta name="keywords" content="achievements, stats, experience, projects, testimonials">
+  <meta name="author" content="Nijan Dangal">
+  <title>Nijan Dangal — Statistics</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="page-wrapper sidebar-active">
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation" class="sidebar active">
-      <a href="index.html" aria-label="Navigate to Home">Home</a>
-      <a href="newsletter.html" aria-label="Navigate to Newsletter section">Newsletter</a>
-      <a href="portfolio.html" aria-label="Navigate to Portfolio section">Portfolio</a>
-      <a href="stats.html" aria-label="Navigate to Achievements section">Achievements</a>
-      <a href="contact.html" aria-label="Navigate to Contact section">Contact</a>
-    </nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-microchip"></i> Nijan
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="workshop.html" class="nav-link">Workshop</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Stats Window -->
-    <section id="stats" class="window">
-      <h2>Achievements</h2>
-      <blockquote>"Numbers are not achievements, but echoes of effort."</blockquote>
-      <div class="stats-container">
-        <div class="stat">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Experience" class="stat-icon"/>
-          <span class="counter" data-target="8">0</span>
-          <p>Years Experience</p>
+  <!-- Header -->
+  <section class="page-header">
+    <h1>My Achievements</h1>
+    <p>Milestones and accomplishments in my professional journey</p>
+  </section>
+
+  <!-- Stats Display -->
+  <section class="stats-display-section">
+    <div class="stats-display-container">
+      <h2>Professional Milestones</h2>
+      
+      <div class="stats-showcase">
+        <div class="stat-showcase-card">
+          <div class="stat-showcase-number">25+</div>
+          <h3>Projects Completed</h3>
+          <p>From IoT systems to smart automation solutions</p>
         </div>
-        <div class="stat">
-          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=100&h=100&fit=crop" alt="Projects" class="stat-icon"/>
-          <span class="counter" data-target="25">0</span>
-          <p>Projects Completed</p>
+
+        <div class="stat-showcase-card">
+          <div class="stat-showcase-number">10+</div>
+          <h3>Years Experience</h3>
+          <p>In telecommunication and engineering</p>
         </div>
-        <div class="stat">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=100&h=100&fit=crop" alt="Students" class="stat-icon"/>
-          <span class="counter" data-target="150">0</span>
-          <p>Students Taught</p>
+
+        <div class="stat-showcase-card">
+          <div class="stat-showcase-number">50+</div>
+          <h3>Happy Clients</h3>
+          <p>Delivering quality solutions consistently</p>
+        </div>
+
+        <div class="stat-showcase-card">
+          <div class="stat-showcase-number">100+</div>
+          <h3>Skills Mastered</h3>
+          <p>Across multiple technologies and domains</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="window">
-      <h2>Testimonials</h2>
-      <blockquote>"The voices of others remind us why we build."</blockquote>
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="testimonials-container">
+      <h2>What Others Say</h2>
+      
       <div class="testimonials-grid">
-        <div class="testimonial">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Collaborator" class="testimonial-avatar"/>
-          <p>"Working with Nijan on telecom projects was exceptional. His technical expertise in network deployment and project management delivered outstanding results."</p>
-          <span>- Engineering Collaborator</span>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Nijan's expertise in IoT development is exceptional. His solutions are innovative, reliable, and delivered on time."</p>
+          <div class="testimonial-author">
+            <h4>John Smith</h4>
+            <span>Tech Company Director</span>
+          </div>
         </div>
-        <div class="testimonial">
-          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Student" class="testimonial-avatar"/>
-          <p>"Nijan's teaching in robotics and electronics inspired me to pursue engineering. His practical approach made complex concepts accessible and exciting."</p>
-          <span>- Former Student</span>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Working with Nijan on our smart lighting project was a game-changer. His technical knowledge and professionalism are outstanding."</p>
+          <div class="testimonial-author">
+            <h4>Sarah Johnson</h4>
+            <span>Project Manager</span>
+          </div>
         </div>
-        <div class="testimonial">
-          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Client" class="testimonial-avatar"/>
-          <p>"The telecom infrastructure projects led by Nijan exceeded our expectations. His attention to detail and commitment to quality standards was remarkable."</p>
-          <span>- Industry Client</span>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Nijan's teaching in our engineering program transformed students' understanding of embedded systems. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <h4>Dr. Michael Chen</h4>
+            <span>Engineering Professor</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"The home automation system Nijan built exceeded our expectations. Perfect integration and user-friendly interface!"</p>
+          <div class="testimonial-author">
+            <h4>Emma Wilson</h4>
+            <span>Client</span>
+          </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2025 D.Nijan. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="contact.html">Contact</a>
-        <a href="resume.pdf" download>Resume</a>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: nijandangal1993@gmail.com</p>
+        <p>Phone: +977 98xxxxxxxx</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nijan Dangal. All rights reserved.</p>
     </div>
   </footer>
 

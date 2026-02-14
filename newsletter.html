@@ -3,73 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Latest news in electronics engineering from D.Nijan's newsletter.">
-  <meta name="keywords" content="electronics, engineering, news, newsletter, technology">
-  <meta name="author" content="D.Nijan">
-  <title>D.Nijan — Newsletter</title>
+  <meta name="description" content="Latest IoT and engineering news from Nijan Dangal's newsletter">
+  <meta name="keywords" content="newsletter, IoT, engineering, technology, news">
+  <meta name="author" content="Nijan Dangal">
+  <title>Nijan Dangal — Newsletter</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="page-wrapper sidebar-active">
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation" class="sidebar active">
-      <a href="index.html" aria-label="Navigate to Home">Home</a>
-      <a href="newsletter.html" aria-label="Navigate to Newsletter section">Newsletter</a>
-      <a href="portfolio.html" aria-label="Navigate to Portfolio section">Portfolio</a>
-      <a href="stats.html" aria-label="Navigate to Achievements section">Achievements</a>
-      <a href="contact.html" aria-label="Navigate to Contact section">Contact</a>
-    </nav>
-
-    <!-- Newsletter Window -->
-    <section id="newsletter" class="window">
-      <h2>Newsletter</h2>
-      <blockquote>"Stay updated with the latest advancements in electronics engineering."</blockquote>
-      <div class="news-grid">
-        <div class="news-item">
-          <h3>Quantum Computing Breakthrough: New Chip Architecture</h3>
-          <p>Researchers at IBM have developed a new quantum chip that could revolutionize computing. This advancement brings us closer to practical quantum computers.</p>
-          <a href="https://www.ibm.com/quantum" target="_blank" rel="noopener">Read More</a>
-        </div>
-        <div class="news-item">
-          <h3>AI Edge Computing Chip Unveiled</h3>
-          <p>Apple's latest M3 chip incorporates advanced AI capabilities for edge computing, enabling faster and more efficient machine learning on devices.</p>
-          <a href="https://www.apple.com/newsroom/" target="_blank" rel="noopener">Read More</a>
-        </div>
-        <div class="news-item">
-          <h3>5G Technology Expands to IoT</h3>
-          <p>The integration of 5G with IoT devices is accelerating smart city initiatives worldwide, with new standards for low-power connectivity.</p>
-          <a href="https://www.gsma.com/" target="_blank" rel="noopener">Read More</a>
-        </div>
-        <div class="news-item">
-          <h3>Sustainable Electronics: Biodegradable Circuits</h3>
-          <p>Scientists create biodegradable electronic circuits using natural materials, paving the way for eco-friendly electronics.</p>
-          <a href="https://www.nature.com/" target="_blank" rel="noopener">Read More</a>
-        </div>
-        <div class="news-item">
-          <h3>Neuromorphic Chips Mimic Brain Function</h3>
-          <p>New neuromorphic chips designed to mimic human brain neurons could lead to more efficient AI systems and brain-computer interfaces.</p>
-          <a href="https://www.intel.com/" target="_blank" rel="noopener">Read More</a>
-        </div>
-        <div class="news-item">
-          <h3>Graphene-Based Flexible Displays</h3>
-          <p>Breakthrough in graphene technology enables ultra-flexible, high-resolution displays for next-generation wearable devices.</p>
-          <a href="https://www.graphene-flagship.eu/" target="_blank" rel="noopener">Read More</a>
-        </div>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-microchip"></i> Nijan
       </div>
-    </section>
-  </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="workshop.html" class="nav-link">Workshop</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <h1>Tech Newsletter</h1>
+    <p>Stay updated with the latest IoT and engineering insights</p>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-archive-section">
+    <div class="newsletter-container">
+      <h2>Latest Articles</h2>
+      
+      <div class="newsletter-grid">
+        <article class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3>ESP32: The Future of IoT Development</h3>
+          <p>Discover why the ESP32 microcontroller is revolutionizing IoT projects with its powerful capabilities, WiFi connectivity, and affordable price point.</p>
+          <span class="newsletter-date">February 15, 2026</span>
+        </article>
+
+        <article class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Smart Lighting Systems Architecture</h3>
+          <p>Explore the design patterns and best practices for building energy-efficient smart lighting systems with real-time control and monitoring.</p>
+          <span class="newsletter-date">February 10, 2026</span>
+        </article>
+
+        <article class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3>Cloud Integration for IoT Devices</h3>
+          <p>Learn how to securely connect your IoT devices to cloud platforms for real-time data processing, analytics, and remote management.</p>
+          <span class="newsletter-date">February 5, 2026</span>
+        </article>
+
+        <article class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-wifi"></i>
+          </div>
+          <h3>Wireless Communication Protocols Explained</h3>
+          <p>A comprehensive guide to choosing the right wireless protocol for your project: WiFi, Bluetooth, Zigbee, and LoRaWAN compared.</p>
+          <span class="newsletter-date">February 1, 2026</span>
+        </article>
+
+        <article class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Embedded Systems Programming Best Practices</h3>
+          <p>Master the fundamentals of writing efficient, reliable embedded code with memory constraints and real-time requirements.</p>
+          <span class="newsletter-date">January 28, 2026</span>
+        </article>
+
+        <article class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>Home Automation Trends 2026</h3>
+          <p>Explore emerging trends in home automation, from AI-powered assistants to energy management and predictive maintenance systems.</p>
+          <span class="newsletter-date">January 22, 2026</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="newsletter-signup-section">
+    <div class="newsletter-signup-content">
+      <h2>Subscribe to Updates</h2>
+      <p>Get the latest IoT projects, tutorials, and engineering insights delivered to your inbox</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div id="newsletterMessage"></div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2025 D.Nijan. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="contact.html">Contact</a>
-        <a href="resume.pdf" download>Resume</a>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: nijandangal1993@gmail.com</p>
+        <p>Phone: +977 98xxxxxxxx</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nijan Dangal. All rights reserved.</p>
     </div>
   </footer>
 
