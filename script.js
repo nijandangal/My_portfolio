@@ -38,11 +38,22 @@ function createThemeSelector() {
   // Create container
   const container = document.createElement('div');
   container.className = 'theme-selector';
-  
-  // Create theme menu
+
+  // Toggle button (compact)
+  const toggleBtn = document.createElement('button');
+  toggleBtn.className = 'theme-toggle-btn';
+  toggleBtn.setAttribute('aria-label', 'Open theme selector');
+
+  const currentTheme = localStorage.getItem('preferredTheme') || 'ocean';
+  const dot = document.createElement('span');
+  dot.className = 'theme-color-dot';
+  dot.style.backgroundColor = THEMES[currentTheme].color;
+  toggleBtn.appendChild(dot);
+
+  // Create theme menu (hidden by default)
   const menu = document.createElement('div');
   menu.className = 'theme-toggle-menu';
-  
+
   // Add theme options
   Object.entries(THEMES).forEach(([themeKey, themeData]) => {
     const option = document.createElement('button');
@@ -54,15 +65,28 @@ function createThemeSelector() {
       <span class="theme-color-dot" style="background-color: ${themeData.color}"></span>
       <span>${themeData.name}</span>
     `;
-    
+
     option.addEventListener('click', (e) => {
       e.stopPropagation();
       applyTheme(themeKey);
+      // update toggle dot to reflect selection
+      dot.style.backgroundColor = THEMES[themeKey].color;
+      container.classList.remove('open');
     });
-    
+
     menu.appendChild(option);
   });
-  
+
+  // Toggle behaviour
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    container.classList.toggle('open');
+  });
+
+  // Close on outside click
+  document.addEventListener('click', () => container.classList.remove('open'));
+
+  container.appendChild(toggleBtn);
   container.appendChild(menu);
   document.body.appendChild(container);
 }
@@ -80,6 +104,12 @@ function updateThemeMenuActive(themeName) {
       option.classList.add('active');
     }
   });
+
+  // update compact toggle dot if present
+  const toggleDot = document.querySelector('.theme-toggle-btn .theme-color-dot');
+  if (toggleDot && THEMES[themeName]) {
+    toggleDot.style.backgroundColor = THEMES[themeName].color;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
