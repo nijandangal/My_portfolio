@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeFormHandlers();
   initializeFilters();
   initializeTabs();
+  initializeWorkshopProjects();
   initializeFAQ();
   initializeLEDSimulator();
 });
@@ -338,6 +339,140 @@ function initializeTabs() {
   });
 }
 
+/* ============= WORKSHOP SIDEBAR & PROJECT SWITCHING ============= */
+function initializeWorkshopProjects() {
+  const projectLinks = document.querySelectorAll('.project-link');
+  
+  projectLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const projectId = link.getAttribute('data-project');
+      if (!projectId) return;
+
+      // Deactivate all projects and links
+      document.querySelectorAll('.project-link').forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.project-content').forEach(p => p.classList.remove('active'));
+      
+      // Activate clicked project and link
+      link.classList.add('active');
+      const projectContent = document.getElementById(projectId);
+      if (projectContent) {
+        projectContent.classList.add('active');
+        
+        // Scroll to the top of the main content
+        const workshopMain = document.querySelector('.workshop-main');
+        if (workshopMain) {
+          workshopMain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+  
+  // Add copy buttons to all code panes
+  initializeCodeCopyButtons();
+}
+
+/* ============= CODE COPY FUNCTIONALITY ============= */
+function initializeCodeCopyButtons() {
+  const codePanes = document.querySelectorAll('.code-pane');
+  
+  codePanes.forEach(pane => {
+    const preElement = pane.querySelector('pre');
+    if (preElement && !pane.querySelector('.code-copy-btn')) {
+      // Create copy button
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'code-copy-btn';
+      copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+      copyBtn.setAttribute('title', 'Copy code to clipboard');
+      
+      // Add to code pane
+      pane.style.position = 'relative';
+      preElement.parentElement.insertBefore(copyBtn, preElement);
+      
+      // Copy functionality
+      copyBtn.addEventListener('click', async () => {
+        const code = preElement.textContent;
+        try {
+          await navigator.clipboard.writeText(code);
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          copyBtn.classList.add('copied');
+          
+          setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      });
+    }
+  });
+}
+
+/* ============= PROJECT 1: ESP32 TESTING ============= */
+function testESP32Dashboard() {
+  const ip = document.getElementById('esp32-ip-input').value.trim();
+  if (!ip) {
+    showTestStatus('Please enter ESP32 IP address', 'error');
+    return;
+  }
+
+  const url = `http://${ip}`;
+  window.open(url, '_blank');
+  showTestStatus(`Opened dashboard at ${url}`, 'success');
+}
+
+async function testLEDOn() {
+  const ip = document.getElementById('esp32-ip-input').value.trim();
+  if (!ip) {
+    showTestStatus('Please enter ESP32 IP address', 'error');
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://${ip}/on`, { mode: 'no-cors' });
+    showTestStatus('LED turned ON! Check your ESP32.', 'success');
+  } catch (err) {
+    showTestStatus('Could not connect to ESP32. Check IP and WiFi connection.', 'error');
+  }
+}
+
+async function testLEDOff() {
+  const ip = document.getElementById('esp32-ip-input').value.trim();
+  if (!ip) {
+    showTestStatus('Please enter ESP32 IP address', 'error');
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://${ip}/off`, { mode: 'no-cors' });
+    showTestStatus('LED turned OFF! Check your ESP32.', 'success');
+  } catch (err) {
+    showTestStatus('Could not connect to ESP32. Check IP and WiFi connection.', 'error');
+  }
+}
+
+function showTestStatus(message, type) {
+  const statusDiv = document.getElementById('test-status');
+  const messageSpan = document.getElementById('test-message');
+  
+  if (statusDiv) {
+    messageSpan.textContent = message;
+    statusDiv.style.display = 'block';
+    
+    if (type === 'error') {
+      statusDiv.style.background = '#fef2f2';
+      statusDiv.style.color = '#991b1b';
+    } else {
+      statusDiv.style.background = '#ecfef5';
+      statusDiv.style.color = '#047857';
+    }
+    
+    setTimeout(() => {
+      statusDiv.style.display = 'none';
+    }, 5000);
+  }
+}
+
 /* ============= FAQ ============= */
 function initializeFAQ() {
   const faqItems = document.querySelectorAll('.faq-item');
@@ -539,6 +674,88 @@ function improveAccessibility() {
 }
 
 improveAccessibility();
+
+/* ============= PROJECT 2: ESP32 WEB CLIENT CONTROLLER ============= */
+let device = null;
+let updateTimer = null;
+
+// Connect to ESP32 device
+async function connect() {
+  const ip = document.getElementById('ip').value.trim();
+  if (!ip) {
+    alert('Please enter ESP32 IP address');
+    return;
+  }
+
+  device = {
+    ip: ip,
+    url: `http://${ip}`
+  };
+
+  const isOnline = await checkStatus();
+  if (isOnline) {
+    document.getElementById('status').innerHTML = '● Online';
+    document.getElementById('status').style.color = '#10b981';
+    updateStatus();
+    // Update status every 2 seconds
+    clearInterval(updateTimer);
+    updateTimer = setInterval(updateStatus, 2000);
+  } else {
+    alert('Cannot connect to ESP32. Check IP address.');
+    document.getElementById('status').innerHTML = '● Offline';
+    document.getElementById('status').style.color = '#ef4444';
+    device = null;
+  }
+}
+
+// Check if device is online
+async function checkStatus() {
+  try {
+    const response = await fetch(`${device.url}/status`);
+    const data = await response.json();
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+// Update current status display
+async function updateStatus() {
+  if (!device) return;
+  
+  try {
+    const response = await fetch(`${device.url}/status`);
+    const data = await response.json();
+    
+    document.getElementById('ledSwitch').checked = data.state ? true : false;
+    document.getElementById('ledLabel').textContent = data.state ? 'ON' : 'OFF';
+    document.getElementById('infoIP').textContent = data.ip || document.getElementById('ip').value;
+  } catch (err) {
+    console.error('Status update failed:', err);
+  }
+}
+
+// Toggle LED
+async function toggleLED() {
+  if (!device) {
+    alert('Connect to ESP32 first');
+    document.getElementById('ledSwitch').checked = false;
+    return;
+  }
+
+  const isChecked = document.getElementById('ledSwitch').checked;
+  const url = isChecked ? '/on' : '/off';
+
+  try {
+    const response = await fetch(`${device.url}${url}`);
+    const data = await response.json();
+    updateStatus();
+  } catch (err) {
+    console.error('Toggle failed:', err);
+    alert('Failed to control LED');
+    document.getElementById('ledSwitch').checked = !isChecked;
+  }
+}
 
 /* ============= CONSOLE GREETING ============= */
 console.log('%c🚀 Welcome to Nijan\'s Portfolio!', 'font-size: 16px; color: #6366f1; font-weight: bold;');

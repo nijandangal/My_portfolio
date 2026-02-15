@@ -2004,31 +2004,43 @@ section {
   border-radius: 12px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  margin: 20px 0;
 }
 
 .code-tabs {
   display: flex;
-  background: var(--light);
-  border-bottom: 1px solid var(--border);
+  background: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+  flex-wrap: wrap;
 }
 
 .code-tab-btn {
-  padding: 15px 25px;
+  padding: 12px 20px;
   background: none;
   border: none;
   cursor: pointer;
   font-weight: 600;
-  color: var(--text-light);
+  color: #6b7280;
   transition: all 0.3s ease;
   border-bottom: 3px solid transparent;
-  margin-bottom: -1px;
+  margin-bottom: -2px;
+  font-size: 13px;
 }
 
-.code-tab-btn:hover,
+.code-tab-btn:hover {
+  background: #ffffff;
+  color: var(--primary);
+}
+
 .code-tab-btn.active {
   background: white;
   color: var(--primary);
   border-bottom-color: var(--primary);
+}
+
+.code-content {
+  position: relative;
+  background: white;
 }
 
 .code-pane {
@@ -2041,20 +2053,132 @@ section {
 
 .code-pane pre {
   padding: 20px;
+  margin: 0;
   overflow-x: auto;
+  max-height: 500px;
+  overflow-y: auto;
   background: #1f2937;
   color: #e5e7eb;
   font-family: 'Courier Prime', monospace;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
+  border: none;
+  border-radius: 0;
 }
 
 .code-pane code {
   color: #e5e7eb;
 }
 
+/* Copy Button for Code */
+.code-pane {
+  position: relative;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.code-copy-btn.copied {
+  background: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+/* Setup Steps Color Contrast Fix */
+.code-pane h4 {
+  color: #1f2937;
+}
+
+.code-pane > div > div {
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.code-pane code {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.code-pane strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+/* LED Control Buttons */
+.led-control-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 8px 8px 0;
+}
+
+.led-control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.led-control-btn:active {
+  transform: translateY(0);
+}
+
+/* Project 1 Button Style (Web Server) */
+.led-control-btn.project-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.led-control-btn.project-1:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Project 2 Button Style (Web Client) */
+.led-control-btn.project-2 {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.led-control-btn.project-2:hover {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.led-control-section {
+  background: #f3f4f6;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid var(--primary);
+}
+
 /* ============= STEPS CONTAINER ============= */
-.steps-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
@@ -2507,6 +2631,402 @@ section {
 .workshop-content {
   background: var(--light);
   border-radius: 20px;
+}
+
+/* ============= WORKSHOP SIDEBAR ============= */
+.workshop-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.workshop-sidebar {
+  width: 230px;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  height: calc(100vh - 120px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 25px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.project-list {
+  list-style: none;
+}
+
+.project-list li {
+  margin-bottom: 10px;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: var(--light);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+}
+
+.project-link:hover {
+  background: #e5e7eb;
+  color: var(--primary);
+}
+
+.project-link.active {
+  background: var(--primary);
+  color: white;
+  border-left-color: var(--primary);
+}
+
+.project-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.project-link.active .project-number {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.workshop-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 270px;
+}
+
+.project-content {
+  display: none;
+}
+
+.project-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ============= ESP32 WIDGET STYLING ============= */
+.esp32-widget {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin: 20px 0;
+  max-width: 600px;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+  padding: 20px 25px;
+}
+
+.widget-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.status-indicator {
+  font-size: 14px;
+  animation: blink 1s infinite;
+}
+
+.status-indicator.online {
+  color: #10b981;
+}
+
+.status-indicator.offline {
+  color: #ef4444;
+}
+
+@keyframes blink {
+  0%, 49%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.widget-content {
+  padding: 25px;
+}
+
+.device-input {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 10px;
+  height: fit-content;
+}
+
+.device-input label {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.device-input input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.device-input input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.device-input button {
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+
+.device-input button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.control-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.control-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.control-section h4 {
+  font-size: 15px;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-control {
+  padding: 10px;
+  border: 2px solid var(--border);
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  color: var(--primary);
+}
+
+.btn-control:hover {
+  border-color: var(--primary);
+  background: var(--light);
+  transform: translateY(-2px);
+}
+
+.btn-toggle {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  grid-column: 1 / -1;
+}
+
+.btn-toggle:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.status-text {
+  font-size: 12px;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* ============= ESP32 DASHBOARD STYLING ============= */
+.esp32-dashboard {
+  max-width: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.dashboard-header .status {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dashboard-body {
+  padding: 25px;
+}
+
+.dashboard-body .section {
+  margin-bottom: 25px;
+}
+
+.dashboard-body .section h3 {
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.dashboard-body .section input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-body .section input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.dashboard-body .section button {
+  width: 100%;
+  padding: 10px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dashboard-body .section button:hover {
+  background: #764ba2;
+  transform: translateY(-2px);
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Toggle Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #10b981;
+}
+
+input:checked + .slider:before {
+  transform: translateX(21px);
+}
+
+#ledLabel {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--dark);
+}
+
+.info {
+  background: #f0f0f0;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
 }
 
 /* ============= RESPONSIVE ============= */
@@ -3213,6 +3733,45 @@ section {
 
   .tabs {
     overflow-x: auto;
+  }
+
+  /* Workshop Sidebar Responsive */
+  .workshop-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .workshop-sidebar {
+    width: 100%;
+    position: static;
+    max-width: none;
+    height: auto;
+  }
+
+  .workshop-main {
+    margin-left: 0;
+  }
+
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .project-link {
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .project-number {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .project-link span:last-child {
+    font-size: 13px;
   }
 }
 
