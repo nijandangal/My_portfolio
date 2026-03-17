@@ -70,839 +70,123 @@
     <div class="workshop-main">
       <!-- Project 1 -->
       <div id="project-1" class="project-content active">
-        <!-- Project Overview -->
         <section class="workshop-section">
           <div class="workshop-intro">
-            <h2>Project 1: Website Controlled LED (Web Server Mode)</h2>
-            <p class="intro-text">The ESP32 runs its own web server and hosts a control dashboard. Access it locally on your network using the ESP32's IP address. This is the <strong>simplest setup</strong> - perfect for beginners learning IoT. Control the built-in LED directly from your browser.</p>
-            
+            <h2>Project 1: Website Controlled Car (ESP32 Web Server + Web Client)</h2>
+            <p class="intro-text">Build your ESP32 car with L298N motor driver, then control it from a web page. Method 1 runs ESP32 as webserver and method 2 uses your website as webclient sending commands to car endpoints.</p>
             <div class="project-highlights">
-              <div class="highlight">
-                <i class="fas fa-server"></i>
-                <h4>Local Web Server</h4>
-                <p>ESP32 hosts its own dashboard - no external server needed</p>
-              </div>
-              <div class="highlight">
-                <i class="fas fa-code"></i>
-                <h4>Beginner Friendly</h4>
-                <p>Simple code - just copy, change WiFi, and flash</p>
-              </div>
-              <div class="highlight">
-                <i class="fas fa-magic"></i>
-                <h4>One Default LED</h4>
-                <p>Uses GPIO 2 built-in LED - no wiring required</p>
-              </div>
-              <div class="highlight">
-                <i class="fas fa-mobile-alt"></i>
-                <h4>Mobile Friendly</h4>
-                <p>Access from phone/tablet on same WiFi network</p>
-              </div>
+              <div class="highlight"><i class="fas fa-car"></i><h4>ESP32 Robot Car</h4><p>Two-wheel car control with motor PWM and direction mapping.</p></div>
+              <div class="highlight"><i class="fas fa-network-wired"></i><h4>Webserver Mode</h4><p>ESP32 hosts control dashboard and accepts /F /B /L /R /S /speed commands.</p></div>
+              <div class="highlight"><i class="fas fa-globe"></i><h4>Webclient Mode</h4><p>Website sends HTTP commands to ESP32 for remote control from your portfolio page.</p></div>
+              <div class="highlight"><i class="fas fa-check-circle"></i><h4>Failsafe</h4><p>Automatic stop if no command received for 5 seconds.</p></div>
             </div>
           </div>
         </section>
 
-  <!-- Requirements Section -->
-  <section class="workshop-section workshop-content">
-    <h2>What You'll Need</h2>
-    
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="hardware">Hardware</button>
-      <button class="tab-btn" data-tab="software">Software</button>
-      <button class="tab-btn" data-tab="optional">Optional</button>
-    </div>
+        <section class="workshop-section workshop-content">
+          <h2>Hardware & Software Requirements</h2>
+          <div class="requirements-grid">
+            <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32 Dev Board</h4><p>ESP32 DevKit or similar (must support LEDC PWM pins).</p></div>
+            <div class="requirement-card"><i class="fas fa-cogs"></i><h4>L298N Motor Driver</h4><p>Dual H-bridge driver for two DC motors, with ENA/ENB PWM inputs.</p></div>
+            <div class="requirement-card"><i class="fas fa-battery-half"></i><h4>Motor Power</h4><p>7.4V–12V battery pack for motors; common ground with ESP32.</p></div>
+            <div class="requirement-card"><i class="fas fa-wifi"></i><h4>WiFi Network</h4><p>2.4GHz router. ESP32 must be on same network as your browser for control.</p></div>
+            <div class="requirement-card"><i class="fab fa-windows"></i><h4>Arduino IDE</h4><p>Install Arduino IDE 2.x and ESP32 board support (https://dl.espressif.com/dl/package_esp32_index.json).</p></div>
+          </div>
+        </section>
 
-    <div class="tab-content">
-      <div id="hardware" class="tab-pane active">
-        <div class="requirements-grid">
-          <div class="requirement-card">
-            <i class="fas fa-microchip"></i>
-            <h4>ESP32 Development Board</h4>
-            <p><strong>Required.</strong> ESP32 Dev Kit C or Wemos D1 R32. Has built-in LED on GPIO 2 and boot button on GPIO 0.</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-cable"></i>
-            <h4>USB Cable (Micro/Type-C)</h4>
-            <p><strong>Required.</strong> For programming and powering the ESP32. Most modern ESP32 boards use Micro-USB or USB Type-C.</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-circle"></i>
-            <h4>Resistor 220Ω (Optional)</h4>
-            <p>Only needed if connecting external LED. Protects the LED from excessive current. Common value: 220Ω or 330Ω.</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-lightbulb"></i>
-            <h4>External LED (Optional)</h4>
-            <p>Standard 5mm LED for additional testing. Built-in LED on GPIO 2 works perfectly for the initial setup.</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-plug"></i>
-            <h4>Breadboard & Jumper Wires (Optional)</h4>
-            <p>For connecting external LED. Not needed for built-in LED testing - straight from USB power!</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-wifi"></i>
-            <h4>WiFi Network</h4>
-            <p><strong>Required.</strong> 2.4GHz WiFi for the ESP32 to connect. (ESP32 does not support 5GHz)</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="software" class="tab-pane">
-        <div class="requirements-grid">
-          <div class="requirement-card">
-            <i class="fab fa-windows"></i>
-            <h4>Arduino IDE 2.0+</h4>
-            <p><strong>Required.</strong> Free IDE for programming ESP32. Download from arduino.cc. Works on Windows/Mac/Linux.</p>
-            <a href="https://www.arduino.cc/en/software" target="_blank" class="requirement-link">Download →</a>
-          </div>
-          <div class="requirement-card">
-            <i class="fab fa-github"></i>
-            <h4>ESP32 Board Support</h4>
-            <p><strong>Required.</strong> Install via Arduino Board Manager. Easiest way to get started (see Configuration Guide in Firmware Code section).</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fab fa-html5"></i>
-            <h4>JSON Library (ArduinoJson)</h4>
-            <p><strong>Recommended.</strong> For handling JSON responses. Install via Arduino Library Manager (search "ArduinoJson").</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fab fa-chrome"></i>
-            <h4>Web Browser</h4>
-            <p><strong>Required.</strong> Any modern browser (Chrome, Firefox, Edge, Safari) to access the control dashboard.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="optional" class="tab-pane">
-        <div class="requirements-grid">
-          <div class="requirement-card">
-            <i class="fas fa-wrench"></i>
-            <h4>USB Driver (CH340)</h4>
-            <p>If your ESP32 board uses CH340 chip and is not recognized on Windows, install the driver manually.</p>
-            <a href="http://www.wch.cn/product/ch340.html" target="_blank" class="requirement-link">Download Driver →</a>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-cut"></i>
-            <h4>Wire Stripper / Multimeter</h4>
-            <p>Optional: For testing external LED connections and measuring voltage. Makes debugging easier.</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-book"></i>
-            <h4>ESP32 Datasheet</h4>
-            <p>Reference documentation. ESP32 pinouts and specifications for advanced projects. Download from Espressif.</p>
-          </div>
-          <div class="requirement-card">
-            <i class="fas fa-mobile-alt"></i>
-            <h4>Smartphone (Optional)</h4>
-            <p>Access the LED control dashboard from your phone. Works on same WiFi network as ESP32.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pin Configuration Section -->
-  <section class="workshop-section">
-    <h2>Pin Configuration (Default - No Modifications Needed)</h2>
-    <div class="circuit-diagram">
-      <div class="diagram-container">
-        <div class="diagram-box">
-          <h4>Default ESP32 Pin Assignment</h4>
+        <section class="workshop-section workshop-content">
+          <h2>Pin Mapping (From ESP32 Webserver Car Code)</h2>
           <table class="pin-table">
-            <tr>
-              <th>Component</th>
-              <th>ESP32 GPIO Pin</th>
-              <th>Hardware Type</th>
-              <th>Function</th>
-            </tr>
-            <tr>
-              <td><strong>Built-in LED</strong></td>
-              <td><strong>GPIO 2</strong> (Blue LED)</td>
-              <td>ESP32 Dev Kit C / Wemos D1</td>
-              <td>Digital Output - Control via Website</td>
-            </tr>
-            <tr>
-              <td><strong>Boot Button</strong></td>
-              <td><strong>GPIO 0</strong></td>
-              <td>ESP32 Dev Kit C / Wemos D1</td>
-              <td>Manual Control - Physical Button</td>
-            </tr>
-            <tr>
-              <td>External LED (Red)</td>
-              <td>GPIO 4</td>
-              <td>Optional External</td>
-              <td>Additional Control</td>
-            </tr>
-            <tr>
-              <td>Ground</td>
-              <td>GND</td>
-              <td>All Models</td>
-              <td>Common Ground</td>
-            </tr>
-            <tr>
-              <td>Power</td>
-              <td>5V / 3.3V</td>
-              <td>All Models</td>
-              <td>Power Supply</td>
-            </tr>
+            <tr><th>Component</th><th>ESP32 GPIO</th><th>Function</th></tr>
+            <tr><td>ENA (Motor A PWM)</td><td>25</td><td>Speed control Motor A</td></tr>
+            <tr><td>IN1 / IN2</td><td>16 / 17</td><td>Motor A direction</td></tr>
+            <tr><td>ENB (Motor B PWM)</td><td>26</td><td>Speed control Motor B</td></tr>
+            <tr><td>IN3 / IN4</td><td>18 / 19</td><td>Motor B direction</td></tr>
+            <tr><td>Motor driver VCC</td><td>Battery 7–12V</td><td>Motor power</td></tr>
+            <tr><td>Motor driver GND</td><td>GND</td><td>Common ground</td></tr>
           </table>
-          <div style="margin-top: 15px; padding: 12px; background: rgba(255, 193, 7, 0.1); border-radius: 8px; font-size: 13px; color: #666;">
-            <strong>✓ Quick Setup:</strong> This code uses the ESP32's built-in LED on GPIO 2 and boot button on GPIO 0. No external components needed for basic testing!
-          </div>
-        </div>
-      </div>
-      <div class="wiring-info">
-        <h4>Wiring for External LED (Optional)</h4>
-        <ol>
-          <li><strong>GPIO 4</strong> → <strong>220Ω Resistor</strong> → <strong>LED Positive (Long Leg)</strong></li>
-          <li><strong>LED Negative (Short Leg)</strong> → <strong>GND</strong></li>
-          <li>Verify connections before powering (LEDs are polarity-sensitive)</li>
-          <li>The code works with or without external LEDs connected</li>
-        </ol>
-        <h4 style="margin-top: 25px;">Supported ESP32 Models</h4>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li><strong>ESP32 Dev Kit C/V4</strong> (Official)</li>
-          <li><strong>Wemos D1 R32</strong></li>
-          <li><strong>ESP32-WROVER</strong></li>
-          <li>Any ESP32 with GPIO 2 and GPIO 0 pins</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+          <div style="margin-top:12px; padding:10px; background:#f3f4f6; border-radius:8px; font-size:13px;">File reference: <code>Robo-Cars/Esp32_Webserver-Wifi-Car-L298N/Esp32_Webserver-Wifi-Car-L298N.ino</code></div>
+        </section>
 
-  <!-- ESP32 Firmware Code Section -->
-  <section class="workshop-section">
-    <h2>Project 1: ESP32 Firmware (Simple Start)</h2>
-    <p style="color: #666; margin-bottom: 20px;"><strong>✓ Simple Code:</strong> Only ~100 lines. Controls built-in LED (GPIO 2). Just update WiFi and flash!</p>
-    <div class="code-container">
-      <div class="code-tabs">
-        <button class="code-tab-btn active" data-code="esp-simple">Simple ESP32 Code</button>
-        <button class="code-tab-btn" data-code="esp-setup">Setup in 5 Steps</button>
-      </div>
-
-      <div class="code-content">
-        <div id="esp-simple" class="code-pane active">
-          <pre><code class="language-cpp">#include &lt;WiFi.h&gt;
-#include &lt;WebServer.h&gt;
-
-// ===== CHANGE THESE =====
+        <section class="workshop-section workshop-content">
+          <h2>Method 1: Web Server Code (ESP32 hosts dashboard)</h2>
+          <p style="font-size:14px; color:#333;">This firmware listens on port 80 and accepts requests like <code>/F</code>, <code>/B</code>, <code>/L</code>, <code>/R</code>, <code>/S</code>, and <code>/speed=200</code>. It also shows a responsive HTML dashboard.</p>
+          <div class="code-container">
+            <div class="code-tabs"><button class="code-tab-btn active" data-code="car-code">Car Webserver Code</button><button class="code-tab-btn" data-code="car-web">Webserver UI</button></div>
+            <div class="code-content">
+              <div id="car-code" class="code-pane active"><pre><code class="language-cpp">#include &lt;WiFi.h&gt;
 const char* ssid = "YOUR_SSID";
 const char* password = "YOUR_PASSWORD";
-// ========================
-
-#define LED_PIN 2  // Built-in LED on GPIO 2
-
-WebServer server(80);
-bool ledState = false;
-bool blinkEnabled = false;
-unsigned long blinkInterval = 500; // milliseconds
-unsigned long lastToggle = 0;
-
-void setup() {
-  Serial.begin(115200);
-  delay(1000);
-
-  pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, LOW);
-
-  Serial.println("Connecting to WiFi: " + String(ssid));
-  WiFi.begin(ssid, password);
-
-  int attempts = 0;
-  while (WiFi.status() != WL_CONNECTED && attempts < 40) {
-    delay(500);
-    Serial.print(".");
-    attempts++;
-  }
-
-  if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("\nWiFi Connected!");
-    Serial.println("IP: http://" + WiFi.localIP().toString());
-
-    // Setup web routes
-    server.on("/", handleRoot);
-    server.on("/on", handleOn);
-    server.on("/off", handleOff);
-    server.on("/toggle", handleToggle);
-    server.on("/blink", handleBlink);
-    server.on("/status", handleStatus);
-    server.begin();
-  } else {
-    Serial.println("\nWiFi failed to connect");
-  }
-}
-
-void loop() {
-  server.handleClient();
-
-  // Non-blocking blinking controlled by millis()
-  if (blinkEnabled) {
-    unsigned long now = millis();
-    if (now - lastToggle >= blinkInterval) {
-      ledState = !ledState;
-      digitalWrite(LED_PIN, ledState ? HIGH : LOW);
-      lastToggle = now;
-    }
-  }
-}
-
-// Handle root page - portfolio-themed HTML dashboard
-void handleRoot() {
-  const char* html = R"RAWHTML(<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Portfolio — ESP32 LED Control</title>
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;margin:0;padding:20px}
-    .card{max-width:640px;margin:20px auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 8px 30px rgba(2,6,23,0.06)}
-    .header{display:flex;justify-content:space-between;align-items:center}
-    h1{font-size:20px;margin:0;color:#111}
-    p.lead{color:#555;margin:8px 0}
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    button{padding:10px 14px;border:0;border-radius:8px;background:#667eea;color:#fff;cursor:pointer}
-    .muted{background:#e5e7eb;color:#111}
-    .section{margin-top:16px}
-    label{display:block;margin-bottom:6px;color:#333}
-    input[type=range]{width:100%}
-    .status-box{margin-top:12px;padding:10px;background:#f8fafc;border-radius:6px;color:#111}
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="header">
-      <h1>ESP32 — LED Control (Portfolio)</h1>
-      <small>Project 1</small>
-    </div>
-    <p class="lead">Control the built-in LED (GPIO 2). Use steady ON/OFF or enable blinking with adjustable speed. This lightweight dashboard is served directly from your ESP32 and is optimized for low CPU usage.</p>
-
-    <div class="section">
-      <div class="controls">
-        <button onclick="fetch('/on')">ON</button>
-        <button onclick="fetch('/off')">OFF</button>
-        <button onclick="fetch('/toggle')">Toggle</button>
-      </div>
-    </div>
-
-    <div class="section">
-      <label for="speed">Blink speed (ms): <span id="speedVal">500</span></label>
-      <input id="speed" type="range" min="100" max="2000" step="10" value="500" oninput="document.getElementById('speedVal').textContent=this.value">
-      <div class="controls" style="margin-top:10px">
-        <button onclick="startBlink()">Start Blink</button>
-        <button class="muted" onclick="stopBlink()">Stop Blink</button>
-      </div>
-    </div>
-
-    <div class="section status-box" id="status">Loading status...</div>
-  </div>
-
-  <script>
-    async function updateStatus(){
-      try{
-        const r = await fetch('/status');
-        const d = await r.json();
-        document.getElementById('status').textContent = 'LED: ' + (d.state? 'ON':'OFF') + ' — Blink: ' + (d.blink? 'ON':'OFF') + ' — Speed: ' + (d.speed || '-') + ' ms';
-      }catch(e){ document.getElementById('status').textContent = 'Status unavailable'; }
-    }
-    function startBlink(){
-      const speed = document.getElementById('speed').value;
-      fetch('/blink?action=start&speed='+speed).then(()=>updateStatus());
-    }
-    function stopBlink(){
-      fetch('/blink?action=stop').then(()=>updateStatus());
-    }
-    updateStatus();
-    // Poll less frequently to reduce load on ESP32
-    setInterval(updateStatus,5000);
-  </script>
-</body>
-</html>)RAWHTML";
-
-  server.send(200, "text/html", html);
-}
-
-void handleOn() {
-  blinkEnabled = false;
-  digitalWrite(LED_PIN, HIGH);
-  ledState = true;
-  server.send(200, "application/json", "{\"success\":true,\"state\":1}");
-}
-
-void handleOff() {
-  blinkEnabled = false;
-  digitalWrite(LED_PIN, LOW);
-  ledState = false;
-  server.send(200, "application/json", "{\"success\":true,\"state\":0}");
-}
-
-void handleToggle() {
-  blinkEnabled = false;
-  ledState = !ledState;
-  digitalWrite(LED_PIN, ledState ? HIGH : LOW);
-  server.send(200, "application/json", String("{\"success\":true,\"state\":") + (ledState?"1":"0") + "}");
-}
-
-void handleBlink() {
-  String action = server.arg("action");
-  String speedStr = server.arg("speed");
-  if (action == "start") {
-    if (speedStr.length() > 0) {
-      long s = speedStr.toInt();
-      blinkInterval = (s < 100) ? 100UL : (unsigned long)s;
-    }
-    blinkEnabled = true;
-    server.send(200, "application/json", String("{\"success\":true,\"blink\":true,\"speed\":") + String(blinkInterval) + "}");
-  } else if (action == "stop") {
-    blinkEnabled = false;
-    server.send(200, "application/json", "{\"success\":true,\"blink\":false}");
-  } else if (action == "set") {
-    if (speedStr.length() > 0) {
-      long s = speedStr.toInt();
-      blinkInterval = (s < 100) ? 100UL : (unsigned long)s;
-    }
-    server.send(200, "application/json", String("{\"success\":true,\"speed\":") + String(blinkInterval) + "}");
-  } else {
-    server.send(400, "application/json", "{\"success\":false,\"error\":\"invalid action\"}");
-  }
-}
-
-void handleStatus() {
-  int state = digitalRead(LED_PIN);
-  String json = String("{\"state\":") + String(state?1:0) + String(",\"ip\":\"") + WiFi.localIP().toString() + String("\",\"blink\":") + String(blinkEnabled?1:0) + String(",\"speed\":") + String(blinkInterval) + String("}");
-  server.send(200, "application/json", json);
-}</code></pre>
-        </div>
-
-        <div id="esp-setup" class="code-pane">
-          <h4 style="color: #333; margin-bottom: 15px;">📋 Setup in 5 Simple Steps</h4>
-          <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; font-size: 14px; line-height: 1.8; color: #333;">
-            
-            <div style="background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #667eea;">
-              <strong>Step 1: Install Arduino IDE</strong><br/>
-              Download from arduino.cc and install on your computer.
-            </div>
-            
-            <div style="background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #667eea;">
-              <strong>Step 2: Add ESP32 Support</strong><br/>
-              • File → Preferences<br/>
-              • Add this URL in "Additional Boards Manager URLs":<br/>
-              <code style="background: #eee; padding: 5px;">https://dl.espressif.com/dl/package_esp32_index.json</code><br/>
-              • Tools → Board → Boards Manager → Search "ESP32" → Install
-            </div>
-            
-            <div style="background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #667eea;">
-              <strong>Step 3: Copy This Code</strong><br/>
-              Copy the code from left tab. Create new sketch (Ctrl+N) and paste it.
-            </div>
-            
-            <div style="background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #667eea;">
-              <strong>Step 4: Update WiFi</strong><br/>
-              Find line 4-5 and change:<br/>
-              <code style="background: #eee; padding: 5px; display: block; margin-top: 5px;">const char* ssid = "YOUR_SSID";<br/>const char* password = "YOUR_PASSWORD";</code><br/>
-              Replace with your actual WiFi name and password.
-            </div>
-            
-            <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #667eea;">
-              <strong>Step 5: Upload & Open</strong><br/>
-              • Connect ESP32 with USB cable<br/>
-              • Tools → Board → "ESP32 Dev Module"<br/>
-              • Tools → Port → Select COM port<br/>
-              • Click Upload button<br/>
-              • Check Serial Monitor (Baud 115200) for IP address<br/>
-              • Open IP in browser (e.g., http://192.168.1.100)
+WiFiServer server(80);
+#define ENA 25
+#define IN1 16
+#define IN2 17
+#define IN3 18
+#define IN4 19
+#define ENB 26
+const int speedThreshold = 160;
+int motorSpeed = 200;
+String currentStatus = "Stopped";
+unsigned long lastCommandTime = 0;
+void setup(){ Serial.begin(115200); pinMode(IN1,OUTPUT);pinMode(IN2,OUTPUT);pinMode(IN3,OUTPUT);pinMode(IN4,OUTPUT); ledcSetup(0,20000,8); ledcSetup(1,20000,8); ledcAttachPin(ENA,0); ledcAttachPin(ENB,1); stopCar(); WiFi.begin(ssid,password); while(WiFi.status()!=WL_CONNECTED){delay(100);} server.begin(); }
+void applyPwm(){ if(motorSpeed>=speedThreshold){ ledcWrite(0,motorSpeed); ledcWrite(1,motorSpeed);} else { ledcWrite(0,0); ledcWrite(1,0);} }
+void setSpeed(int s){ motorSpeed = constrain(s,speedThreshold,242); applyPwm(); currentStatus="Speed "+String(motorSpeed); lastCommandTime=millis(); }
+void stopCar(){ digitalWrite(IN1,LOW);digitalWrite(IN2,LOW);digitalWrite(IN3,LOW);digitalWrite(IN4,LOW); ledcWrite(0,0); ledcWrite(1,0); currentStatus="Stopped";}
+void forward(){ applyPwm(); digitalWrite(IN1,LOW);digitalWrite(IN2,HIGH);digitalWrite(IN3,LOW);digitalWrite(IN4,HIGH); currentStatus="Forward"; lastCommandTime=millis(); }
+void backward(){ applyPwm(); digitalWrite(IN1,HIGH);digitalWrite(IN2,LOW);digitalWrite(IN3,HIGH);digitalWrite(IN4,LOW); currentStatus="Backward"; lastCommandTime=millis(); }
+void left(){ applyPwm(); digitalWrite(IN1,HIGH);digitalWrite(IN2,LOW);digitalWrite(IN3,LOW);digitalWrite(IN4,HIGH); currentStatus="Left"; lastCommandTime=millis(); }
+void right(){ applyPwm(); digitalWrite(IN1,LOW);digitalWrite(IN2,HIGH);digitalWrite(IN3,HIGH);digitalWrite(IN4,LOW); currentStatus="Right"; lastCommandTime=millis(); }
+void handleClient(){ WiFiClient client = server.available(); if(!client)return; String req=client.readStringUntil('\r'); client.flush(); if(req.indexOf("/F")!=-1) forward(); else if(req.indexOf("/B")!=-1) backward(); else if(req.indexOf("/L")!=-1) left(); else if(req.indexOf("/R")!=-1) right(); else if(req.indexOf("/S")!=-1) stopCar(); else if(req.indexOf("/speed=")!=-1){ int v=req.substring(req.indexOf("/speed=")+7).toInt(); setSpeed(v);} client.print("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n"); client.print("<h3>ESP32 Car - "+currentStatus+"</h3>"); client.stop(); }
+void loop(){ handleClient(); if(millis()-lastCommandTime>5000) stopCar(); }</code></pre></div>
+              <div id="car-web" class="code-pane"><pre><code class="language-html">&lt;div&gt;
+  &lt;button onclick="fetch('http://192.168.x.x/F')"&gt;Forward&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.x.x/B')"&gt;Backward&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.x.x/L')"&gt;Left&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.x.x/R')"&gt;Right&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.x.x/S')"&gt;Stop&lt;/button&gt;
+  &lt;input id="speed" type="range" min="160" max="242" oninput="fetch('http://192.168.x.x/speed='+this.value)"/&gt;
+&lt;/div&gt;</code></pre></div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <!-- Project 2: Web Client Mode -->
-  <section class="workshop-section">
-    <h2>Project 2: Website Controlled LED (Web Client Mode)</h2>
-    <p style="color: #666; margin-bottom: 20px;"><strong>Control your ESP32 from anywhere!</strong> Enter the ESP32's IP address and use the toggle switch to control the LED. See live status updates. Simple and effective.</p>
-    <div class="code-container">
-      <div class="code-tabs">
-        <button class="code-tab-btn active" data-code="web-dashboard">Website Dashboard HTML</button>
-        <button class="code-tab-btn" data-code="web-controller">JavaScript Controller</button>
-        <button class="code-tab-btn" data-code="web-usage">How to Use</button>
-      </div>
-
-      <div class="code-content">
-        <div id="web-dashboard" class="code-pane active">
-          <pre><code class="language-html">&lt;!-- Remote ESP32 Control Dashboard --&gt;
-&lt;!-- Add this to your website to control ESP32 from anywhere --&gt;
-
-&lt;div class="esp32-dashboard"&gt;
-  &lt;div class="dashboard-header"&gt;
-    &lt;h2&gt;🔌 ESP32 Control Panel&lt;/h2&gt;
-    &lt;span class="status" id="status"&gt;● Offline&lt;/span&gt;
-  &lt;/div&gt;
-
-  &lt;div class="dashboard-body"&gt;
-    &lt;!-- Connect to ESP32 --&gt;
-    &lt;div class="section"&gt;
-      &lt;h3&gt;Connect Your ESP32&lt;/h3&gt;
-      &lt;input 
-        type="text" 
-        id="ip" 
-        placeholder="192.168.1.100"
-      &gt;
-      &lt;button onclick="connect()"&gt;Connect&lt;/button&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Toggle Switch for LED --&gt;
-    &lt;div class="section"&gt;
-      &lt;h3&gt;Built-in LED&lt;/h3&gt;
-      &lt;div class="toggle-container"&gt;
-        &lt;label class="switch"&gt;
-          &lt;input type="checkbox" id="ledSwitch" onchange="toggleLED()"&gt;
-          &lt;span class="slider"&gt;&lt;/span&gt;
-        &lt;/label&gt;
-        &lt;span id="ledLabel"&gt;OFF&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Info Display --&gt;
-    &lt;div class="info"&gt;
-      IP: &lt;span id="infoIP"&gt;---&lt;/span&gt;&lt;br/&gt;
-      Signal: &lt;span id="infoSignal"&gt;---&lt;/span&gt; dBm
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <div id="web-controller" class="code-pane">
-          <pre><code class="language-javascript">// Simple ESP32 Controller for Website
-let device = null;
-let updateTimer = null;
-
-// Initialize device connection
-async function connect() {
-  const ip = document.getElementById('ip').value.trim();
-  if (!ip) {
-    alert('Please enter ESP32 IP address');
-    return;
-  }
-
-  device = {
-    ip: ip,
-    url: `http://${ip}`
-  };
-
-  const isOnline = await checkStatus();
-  if (isOnline) {
-    document.getElementById('status').innerHTML = '● Online';
-    document.getElementById('status').style.color = '#10b981';
-    updateStatus();
-    // Update status every 2 seconds
-    clearInterval(updateTimer);
-    updateTimer = setInterval(updateStatus, 2000);
-  } else {
-    alert('Cannot connect to ESP32. Check IP address.');
-    document.getElementById('status').innerHTML = '● Offline';
-    document.getElementById('status').style.color = '#ef4444';
-  }
-}
-
-// Get current LED status
-async function checkStatus() {
-  try {
-    const response = await fetch(`${device.url}/status`);
-    const data = await response.json();
-    return true;
-  } catch (err) {
-    return false;
-  }
-}
-
-// Update display with current status
-async function updateStatus() {
-  if (!device) return;
-  
-  try {
-    const response = await fetch(`${device.url}/status`);
-    const data = await response.json();
-    
-    document.getElementById('ledSwitch').checked = data.state ? true : false;
-    document.getElementById('ledLabel').textContent = data.state ? 'ON' : 'OFF';
-    document.getElementById('infoIP').textContent = data.ip;
-  } catch (err) {
-    console.error('Status update failed:', err);
-  }
-}
-
-// Toggle LED on/off
-async function toggleLED() {
-  if (!device) {
-    alert('Connect to ESP32 first');
-    return;
-  }
-
-  const isChecked = document.getElementById('ledSwitch').checked;
-  const url = isChecked ? '/on' : '/off';
-
-  try {
-    const response = await fetch(`${device.url}${url}`);
-    const data = await response.json();
-    updateStatus();
-  } catch (err) {
-    console.error('Toggle failed:', err);
-    alert('Failed to control LED');
-  }
-}</code></pre>
-        </div>
-
-        <div id="web-usage" class="code-pane">
-          <h4 style="color: #333; margin-bottom: 15px;">📖 How to Add to Your Website</h4>
-          <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; font-size: 14px; line-height: 1.8; color: #333;">
-            
-            <h5 style="color: #667eea; margin: 15px 0 10px 0;">Step 1: Add HTML</h5>
-            <p>Copy the HTML code from "Website Dashboard HTML" tab and add to your page where you want the dashboard to appear.</p>
-            
-            <h5 style="color: #667eea; margin: 15px 0 10px 0;">Step 2: Add CSS Styling</h5>
-            <p>Add this CSS to style the dashboard:</p>
-            <pre style="background: white; padding: 10px; border-radius: 5px; overflow-x: auto; font-size: 12px; margin: 10px 0;"><code>.esp32-dashboard {
-  max-width: 400px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-.dashboard-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.dashboard-header h2 { margin: 0; }
-.status { font-weight: bold; }
-.dashboard-body { padding: 25px; }
-.section { margin-bottom: 25px; }
-.section h3 { color: #333; margin-bottom: 12px; }
-.section input {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-.section button {
-  width: 100%;
-  padding: 10px;
-  background: #667eea;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-.section button:hover { background: #764ba2; }
-.toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 28px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .3s;
-  border-radius: 28px;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 22px;
-  width: 22px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .3s;
-  border-radius: 50%;
-}
-input:checked + .slider {
-  background-color: #10b981;
-}
-input:checked + .slider:before {
-  transform: translateX(21px);
-}
-#ledLabel { font-weight: 700; font-size: 16px; }
-.info {
-  background: #f0f0f0;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  color: #666;
-}</code></pre>
-            
-            <h5 style="color: #667eea; margin: 15px 0 10px 0;">Step 3: Add JavaScript</h5>
-            <p>Copy the code from "JavaScript Controller" tab and add to your page's &lt;script&gt; section.</p>
-            
-            <h5 style="color: #667eea; margin: 15px 0 10px 0;">Step 4: Test It!</h5>
-            <p>1. Reload the page<br/>
-            2. Enter your ESP32's IP address (from Serial Monitor)<br/>
-            3. Click Connect<br/>
-            4. Use the toggle switch to control the LED!</p>
+        <section class="workshop-section workshop-content">
+          <h2>Method 2: Web Client from Website to Control Motors</h2>
+          <p style="font-size:14px;">Use your website JavaScript to send direct HTTP commands to ESP32's webserver endpoints. This is the exact method to control motors from your portfolio app.</p>
+          <div class="code-container">
+            <div class="code-tabs"><button class="code-tab-btn active" data-code="client-html">Client HTML</button><button class="code-tab-btn" data-code="client-js">Client JS</button></div>
+            <div class="code-content">
+              <div id="client-html" class="code-pane active"><pre><code class="language-html">&lt;div class="car-client"&gt;
+  &lt;input id="carIp" placeholder="ESP32 IP"/&gt;
+  &lt;button onclick="connectCar()"&gt;Connect&lt;/button&gt;
+  &lt;button onclick="cmd('F')"&gt;Forward&lt;/button&gt;
+  &lt;button onclick="cmd('B')"&gt;Backward&lt;/button&gt;
+  &lt;button onclick="cmd('L')"&gt;Left&lt;/button&gt;
+  &lt;button onclick="cmd('R')"&gt;Right&lt;/button&gt;
+  &lt;button onclick="cmd('S')"&gt;Stop&lt;/button&gt;
+  &lt;input type="range" id="speedSlider" min="160" max="242" value="200" oninput="setSpeed(this.value)"/&gt;
+&lt;/div&gt;</code></pre></div>
+              <div id="client-js" class="code-pane"><pre><code class="language-javascript">let baseUrl='';
+function connectCar(){ baseUrl='http://'+document.getElementById('carIp').value; }
+function cmd(action){ if(!baseUrl){alert('Set IP'); return;} fetch(baseUrl+'/'+action); }
+function setSpeed(v){ if(!baseUrl){return;} fetch(baseUrl+'/speed='+v); }</nsetInterval(()=>{ if(baseUrl)fetch(baseUrl+'/status'); },3000);</code></pre></div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <p style="font-size:13px; margin-top:8px;">Use this method with your own HTML page to avoid duplication. Keep one mode active: either web server control or web client control. This sample uses only webclient commands to the same ESP32 endpoint.</p>
+        </section>
 
-  <!-- Test Your Setup for Project 1 -->
-  <section class="workshop-section led-control-section" id="project1-test">
-    <h2>🧪 Test Your Setup</h2>
-    <p style="color: #555; margin-bottom: 15px;">Your ESP32 is running and serving the dashboard! Use the buttons below to control the LED or open the dashboard directly:</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-      <input 
-        type="text" 
-        id="esp32-ip-input" 
-        placeholder="Enter ESP32 IP (e.g., 192.168.1.100)" 
-        style="padding: 10px 15px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; flex: 1; min-width: 250px;"
-      >
-      <button class="led-control-btn project-1" onclick="testESP32Dashboard()">
-        <i class="fas fa-globe"></i> Open Dashboard
-      </button>
-      <button class="led-control-btn project-1" onclick="testLEDOn()">
-        <i class="fas fa-lightbulb"></i> Test LED ON
-      </button>
-      <button class="led-control-btn project-1" onclick="testLEDOff()">
-        <i class="fas fa-moon"></i> Test LED OFF
-      </button>
-    </div>
-    <div id="test-status" style="margin-top: 15px; padding: 12px; border-radius: 6px; background: #ecfef5; color: #047857; display: none;">
-      <i class="fas fa-check-circle"></i> <span id="test-message"></span>
-    </div>
-  </section>
-  <section class="workshop-section">
-    <h2>Getting Started - Step by Step</h2>
-    <div class="steps-container">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3>Prepare Hardware</h3>
-        <p>Get an ESP32 Dev Kit C, USB cable, and optionally an LED with 220Ω resistor. No soldering needed for the built-in LED test!</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3>Install Arduino IDE</h3>
-        <p>Download Arduino IDE from arduino.cc. This is where you'll write and upload code to the ESP32. Completely free!</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3>Add ESP32 Support</h3>
-        <p>Follow the "Configuration Guide" tab in the Firmware Code section to add ESP32 board support to Arduino IDE (5 minutes).</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h3>Get the Code Ready</h3>
-        <p>Copy the ESP32 firmware code. Only change 2 lines: your WiFi name (SSID) and password. That's it!</p>
-      </div>
-      <div class="step">
-        <div class="step-number">5</div>
-        <h3>Upload to ESP32</h3>
-        <p>Connect ESP32 via USB, select the COM port in Arduino IDE, and click Upload. The code flashes in ~30 seconds.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">6</div>
-        <h3>Access the Dashboard</h3>
-        <p>Check Serial Monitor (Tools → Serial Monitor, Baud 115200) to get the IP address. Open it in your browser to access the LED control panel.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">7</div>
-        <h3>Control from Website</h3>
-        <p>Add the website integration JavaScript code to nijandangal.com.np to control the ESP32 LED from anywhere on the same network.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">8</div>
-        <h3>Test All Features</h3>
-        <p>Try the physical Boot Button (GPIO 0), the web interface, and the website controller. Everything uses default pins - no code changes!</p>
-      </div>
-    </div>
-  </section>
+        <section class="workshop-section workshop-content">
+          <h2>Dos &amp; Don'ts</h2>
+          <div class="tips-grid">
+            <div class="tip-card"><i class="fas fa-check"></i><h4>Do</h4><ul><li>Use stable power for motors and ESP32.</li><li>Keep command timeout to stop if no signal received.</li><li>Verify IP from Serial Monitor before hitting controls.</li></ul></div>
+            <div class="tip-card"><i class="fas fa-times"></i><h4>Don't</h4><ul><li>Don't run motors at 255 full speed without testing.</li><li>Don't forget common ground between batteries and ESP32.</li><li>Don't use 5GHz WiFi for ESP32 connection.</li></ul></div>
+          </div>
+        </section>
 
-  <!-- Tips Section -->
-  <section class="workshop-section workshop-content">
-    <h2>Troubleshooting & FAQs</h2>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <i class="fas fa-question-circle"></i>
-        <h4>Built-in LED Not Lighting Up?</h4>
-        <p>The blue LED on GPIO 2 is very dim - check in a dark room. If still not working, verify WiFi is connected via Serial Monitor. The LED pin may be in use if WiFi fails.</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-wifi-slash"></i>
-        <h4>WiFi Connection Fails</h4>
-        <p>Check SSID and password are correct (case-sensitive). Ensure your WiFi is 2.4GHz only (ESP32 doesn't support 5GHz). Try restarting the WiFi router.</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-code"></i>
-        <h4>Upload/Compile Errors?</h4>
-        <p>Make sure you installed ArduinoJson library. Select correct board ("ESP32 Dev Module") and correct COM port. Try clicking RESET button on ESP32 during upload.</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-mobile-alt"></i>
-        <h4>Can't Access IP Address</h4>
-        <p>Get IP from Serial Monitor (Baud 115200). Use http:// not https://. Ensure your computer and ESP32 are on the same WiFi network.</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-button"></i>
-        <h4>Boot Button Not Working?</h4>
-        <p>The Boot button on GPIO 0 is used to toggle the built-in LED. It's not the same as the RESET button. Press and hold briefly (200ms debounce).</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-globe"></i>
-        <h4>Website Widget Not Connecting?</h4>
-        <p>Enter the correct ESP32 IP address. Check browser console for errors (F12). Verify both website and ESP32 are on same network. Enable CORS on ESP32.</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-plug"></i>
-        <h4>USB Cable Issues</h4>
-        <p>Use a quality USB cable (not charge-only). Try different USB ports. Install CH340 driver if board is not recognized on Windows.</p>
-      </div>
-      <div class="tip-card">
-        <i class="fas fa-clock"></i>
-        <h4>Buttons Don't Respond Immediately</h4>
-        <p>2-second refresh rate is normal. Click once and wait. Multiple rapid clicks are ignored by design to prevent flooding the ESP32.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Demo -->
-  <section class="workshop-section">
-    <h2>Interactive LED Simulator</h2>
-    <p style="text-align: center; margin-bottom: 20px; color: #666;">Try controlling simulated LEDs (click the circles to toggle)</p>
-    <div class="led-simulator">
-      <div class="led-circle red" id="simRed" onclick="toggleSimLED('red')">
-        <div class="led-glow"></div>
-      </div>
-      <div class="led-circle green" id="simGreen" onclick="toggleSimLED('green')">
-        <div class="led-glow"></div>
-      </div>
-      <div class="led-circle blue" id="simBlue" onclick="toggleSimLED('blue')">
-        <div class="led-glow"></div>
-      </div>
-    </div>
-  </section>
+        <section class="workshop-section workshop-content">
+          <h2>Final Check</h2>
+          <p style="font-size:14px;">After uploading, open Serial Monitor at 115200. Confirm IP. Then open either the ESP32 dashboard URL for server mode or your website control panel for webclient mode. Test each direction and speed slider.</p>
+        </section>
       </div>
       <!-- End Project 1 -->
 
