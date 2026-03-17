@@ -2675,7 +2675,7 @@ section {
 
 .project-link {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 12px 15px;
   background: var(--light);
   border-radius: 8px;
@@ -2685,6 +2685,13 @@ section {
   transition: all 0.3s ease;
   border-left: 3px solid transparent;
   cursor: pointer;
+  word-break: break-word;
+}
+.project-link span:last-child {
+  display: inline-block;
+  max-width: 160px;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .project-link:hover {
