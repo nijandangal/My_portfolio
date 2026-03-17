@@ -386,7 +386,7 @@ After completing this project, you will understand:
 
 ---
 
-## 📚 Additional Resources
+## 📚 Additional Resource
 
 - **ESP32 Official Documentation**: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
 - **Arduino Board Support**: https://github.com/espressif/arduino-esp32
