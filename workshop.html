@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="IoT Workshop - ESP32 LED Control Project. Learn hands-on IoT development with microcontrollers">
-  <meta name="keywords" content="ESP32, IoT, LED, microcontroller, workshop, tutorial">
+  <meta name="description" content="IoT Workshop - ESP32 Robot Car Projects. Learn webserver, webclient, Bluetooth, and obstacle avoidance with ESP32.">
+  <meta name="keywords" content="ESP32, robot car, webserver, webclient, Bluetooth, obstacle avoidance, L298N, IoT workshop">
   <meta name="author" content="Nijan Dangal">
   <title>Nijan Dangal — IoT Workshop</title>
   <link rel="stylesheet" href="style.css">
@@ -152,27 +152,75 @@ void loop(){ handleClient(); if(millis()-lastCommandTime>5000) stopCar(); }</cod
 
         <section class="workshop-section workshop-content">
           <h2>Method 2: Web Client from Website to Control Motors</h2>
-          <p style="font-size:14px;">Use your website JavaScript to send direct HTTP commands to ESP32's webserver endpoints. This is the exact method to control motors from your portfolio app.</p>
+          <p style="font-size:14px;">Use your website JavaScript to send direct HTTP commands to ESP32 endpoints. Keep the commands standard for <code>/F</code>, <code>/B</code>, <code>/L</code>, <code>/R</code>, <code>/S</code>, and <code>/speed=&lt;value&gt;</code>.</p>
           <div class="code-container">
             <div class="code-tabs"><button class="code-tab-btn active" data-code="client-html">Client HTML</button><button class="code-tab-btn" data-code="client-js">Client JS</button></div>
             <div class="code-content">
-              <div id="client-html" class="code-pane active"><pre><code class="language-html">&lt;div class="car-client"&gt;
-  &lt;input id="carIp" placeholder="ESP32 IP"/&gt;
-  &lt;button onclick="connectCar()"&gt;Connect&lt;/button&gt;
-  &lt;button onclick="cmd('F')"&gt;Forward&lt;/button&gt;
-  &lt;button onclick="cmd('B')"&gt;Backward&lt;/button&gt;
-  &lt;button onclick="cmd('L')"&gt;Left&lt;/button&gt;
-  &lt;button onclick="cmd('R')"&gt;Right&lt;/button&gt;
-  &lt;button onclick="cmd('S')"&gt;Stop&lt;/button&gt;
-  &lt;input type="range" id="speedSlider" min="160" max="242" value="200" oninput="setSpeed(this.value)"/&gt;
+              <div id="client-html" class="code-pane active"><pre><code class="language-html">&lt;div style="max-width:480px; margin:auto; padding:10px; background:#f8fafc; border-radius:10px;"&gt;
+  &lt;input id="carIp" placeholder="ESP32 IP (e.g. 192.168.1.100)" style="width:100%;padding:8px;margin-bottom:8px;"/&gt;
+  &lt;button onclick="connectCar()" style="width:100%;padding:10px;background:#6366f1;color:#fff;border:none;border-radius:6px;"&gt;Connect&lt;/button&gt;
+  &lt;div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;"&gt;
+    &lt;button onclick="cmd('F')"&gt;Forward&lt;/button&gt;
+    &lt;button onclick="cmd('L')"&gt;Left&lt;/button&gt;
+    &lt;button onclick="cmd('R')"&gt;Right&lt;/button&gt;
+    &lt;button onclick="cmd('B')"&gt;Backward&lt;/button&gt;
+    &lt;button onclick="cmd('S')"&gt;Stop&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;input id="speedSlider" type="range" min="160" max="242" value="200" oninput="setSpeed(this.value)" style="width:100%; margin-top:10px;"/&gt;
 &lt;/div&gt;</code></pre></div>
-              <div id="client-js" class="code-pane"><pre><code class="language-javascript">let baseUrl='';
-function connectCar(){ baseUrl='http://'+document.getElementById('carIp').value; }
-function cmd(action){ if(!baseUrl){alert('Set IP'); return;} fetch(baseUrl+'/'+action); }
-function setSpeed(v){ if(!baseUrl){return;} fetch(baseUrl+'/speed='+v); }</nsetInterval(()=>{ if(baseUrl)fetch(baseUrl+'/status'); },3000);</code></pre></div>
+              <div id="client-js" class="code-pane"><pre><code class="language-javascript">let baseUrl = '';
+function connectCar() {
+  const ip = document.getElementById('carIp').value.trim();
+  if (!ip) return alert('Enter ESP32 IP');
+  baseUrl = 'http://' + ip;
+  fetch(baseUrl + '/status').then(r => r.json()).then(d => alert('Connected: ' + d.status)).catch(() => alert('Connection failed'));
+}
+function cmd(action) {
+  if (!baseUrl) return alert('Set IP first');
+  fetch(`${baseUrl}/${action}`).catch(() => alert('Command failed'));
+}
+function setSpeed(v) {
+  if (!baseUrl) return;
+  fetch(`${baseUrl}/speed=${v}`).catch(() => {});
+}
+</code></pre></div>
             </div>
           </div>
-          <p style="font-size:13px; margin-top:8px;">Use this method with your own HTML page to avoid duplication. Keep one mode active: either web server control or web client control. This sample uses only webclient commands to the same ESP32 endpoint.</p>
+          <p style="font-size:13px; margin-top:8px;">Use this method with your website. Keep your car endpoint stable and CORS enabled on ESP32 if needed.</p>
+        </section>
+
+        <section class="workshop-section workshop-content">
+          <h2>Advanced Multimode (Bluetooth + WiFi + OLED)</h2>
+          <p style="font-size:14px;">Use the multimode code for ESP32 with mode switch (GPIO 33). This code can run Bluetooth manual mode or WiFi webserver mode with OLED status display.</p>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px; margin-bottom:10px;">
+            <strong>File Reference:</strong> <code>Robo-Cars/Multi-Mode/Esp32_Multimode_Bluetooth_WebServer_L298N_OLED_MIT_APP_VoiceCMD/Esp32_Multimode_Bluetooth_WebServer_L298N_OLED_MIT_APP_VoiceCMD.ino</code>
+          </div>
+          <div class="code-container">
+            <div class="code-tabs"><button class="code-tab-btn active" data-code="multimode-main">Multimode Core</button><button class="code-tab-btn" data-code="multimode-handler">HTTP Handler</button></div>
+            <div class="code-content">
+              <div id="multimode-main" class="code-pane active"><pre><code class="language-cpp">#include &lt;WiFi.h&gt;
+#include "BluetoothSerial.h"
+#include &lt;U8g2lib.h&gt;
+
+BluetoothSerial SerialBT;
+#define ENA 25
+#define IN1 16
+#define IN2 17
+#define IN3 18
+#define IN4 19
+#define ENB 26
+#define MODE_PIN 33
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
+WiFiServer server(80);
+U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
+int mode = 0; // 0=BT, 1=WiFi
+void setup(){ Serial.begin(115200); SerialBT.begin("ESP32_RobotCar"); pinMode(MODE_PIN, INPUT_PULLUP); ... WiFi.begin(ssid,password); server.begin(); }
+void loop(){ if(digitalRead(MODE_PIN)==LOW){mode = 1-mode; delay(300);} if(mode==0) handleBluetooth(); else handleHttp(); if(millis()-lastCommandTime>5000) stopCar(); }</code></pre></div>
+              <div id="multimode-handler" class="code-pane"><pre><code class="language-cpp">void handleHttp(){ WiFiClient client = server.available(); if(!client) return; String request = client.readStringUntil('\r'); client.flush(); if(request.indexOf("/F")!=-1) forward(); ... else if(request.indexOf("/speed=")!=-1){ int val = request.substring(request.indexOf("/speed=")+7).toInt(); setSpeed(val); } client.println("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>...\n"); client.stop(); }</code></pre></div>
+            </div>
+          </div>
+          <p style="font-size:13px; margin-top:8px;">This multimode approach provides a single firmware with both manual BT and WiFi controls, plus OLED status display. Great for project 1 advanced mode.</p>
         </section>
 
         <section class="workshop-section workshop-content">
