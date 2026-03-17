@@ -326,65 +326,79 @@ Use app to send characters and values 100-230 for smooth control.</code></pre></
       <div id="project-3" class="project-content">
         <section class="workshop-section">
           <div class="workshop-intro">
-            <h2>Project 3: Obstacle Avoidance Car</h2>
-            <p class="intro-text">Single-mode obstacle avoidance: choose IR or Ultrasonic method as per your sensor set. Includes Bluetooth manual fallback in the IR file. Uses UNO/ESP32 architecture from repository.</p>
+            <h2>Project 3: Multimode Obstacle Avoidance Car</h2>
+            <p class="intro-text">This project mirrors Project 1 style with hardware + software + steps + guides. It combines IR obstacle avoidance, ultrasonic detection, and fallback Bluetooth/manual modes using repo source code.</p>
+            <div class="project-highlights">
+              <div class="highlight"><i class="fas fa-satellite-dish"></i><h4>IR + Ultrasonic</h4><p>Choose IR or HC-SR04 obstacle detection.</p></div>
+              <div class="highlight"><i class="fas fa-robot"></i><h4>Multimode Control</h4><p>Web + Bluetooth + IR modes in one firmware.</p></div>
+              <div class="highlight"><i class="fas fa-laptop-code"></i><h4>Repo Code Source</h4><p>Exact file from repo used for stable logic and mode switching.</p></div>
+              <div class="highlight"><i class="fas fa-shield-alt"></i><h4>Safety</h4><p>Auto-stop and emergency handling in distance mode.</p></div>
+            </div>
           </div>
         </section>
 
         <section class="workshop-section workshop-content">
-          <h3>Method A: IR Obstacle Avoidance (with Bluetooth manual toggle)</h3>
-          <p style="font-size:14px;color:#333;">File: <strong>UNO_Multimode_Bluetooth_HC-06_and_Obstacle_3_IR__L298P_FUNDO/UNO_Multimode_Bluetooth_HC-06_and_Obstacle_3_IR__L298P_FUNDO.ino</strong></p>
-          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;word-break:break-word;">
-            <h4>Hardware</h4>
-            <ul style="margin-left:15px;line-height:1.5;font-size:14px;">
-              <li>Arduino UNO (or ESP32 with similar pin update)</li>
-              <li>3 IR sensors (left, center, right)</li>
-              <li>L298P driver + dual DC motors</li>
-              <li>HC-06 Bluetooth module (for manual mode input)</li>
-              <li>Optional buzzer for beep signals and mode feedback</li>
-            </ul>
-            <h4>How It Works</h4>
-            <ul style="margin-left:15px;line-height:1.5;font-size:14px;">
-              <li>Manual mode reads BT commands F/B/L/R/S and sets motor outputs.</li>
-              <li>Obstacle mode reads IR sensors and chooses forward/back/turn actions by simple rules.</li>
-              <li>Mode toggles with switch (momentary button), single mode at a time.</li>
-            </ul>
+          <h3>Hardware & Software</h3>
+          <div class="requirements-grid">
+            <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32 + L298N</h4><p>For dual motor control and PWM speed.</p></div>
+            <div class="requirement-card"><i class="fas fa-broadcast-tower"></i><h4>Bluetooth</h4><p>Mode commands and manual drive via app.</p></div>
+            <div class="requirement-card"><i class="fas fa-wave-square"></i><h4>HC-SR04</h4><p>Distance measurement and automatic obstacle stop.</p></div>
+            <div class="requirement-card"><i class="fas fa-tv"></i><h4>IR Sensor</h4><p>Manual IR remote commands and turn controls.</p></div>
+            <div class="requirement-card"><i class="fab fa-arduino"></i><h4>Arduino IDE</h4><p>Compile and upload using ESP32 board support and required libraries.</p></div>
           </div>
+        </section>
 
-          <h3 style="margin-top:16px;">Method B: Ultrasonic Obstacle Avoidance</h3>
-          <p style="font-size:14px;color:#333;">File: <strong>UNO_Multimode_Bluetooth_HC-06_Obstacle_3_Ultrasonic__L298P/</strong> (use ultrasonic HC-SR04, update pins as needed). This method checks distance and stops/reverses at threshold.</p>
-          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;word-break:break-word;">
-            <h4>Hardware</h4>
-            <ul style="margin-left:15px;line-height:1.5;font-size:14px;">
-              <li>HC-SR04 ultrasonic sensor (Trig/Echo)</li>
-              <li>Dual motor driver and motors</li>
-              <li>Arduino UNO or ESP32 (with 5V logic compatibility)</li>
-            </ul>
-            <h4>Key Tips</h4>
-            <ul style="margin-left:15px;line-height:1.5;font-size:14px;">
-              <li>Keep sensor at a stable mounting height and angle for reliable detection.</li>
-              <li>Use a 10µF capacitor near motor supply to reduce noise spikes.</li>
-              <li>Tune thresholds carefully (e.g., 10–15 cm for safe emergency stop).</li>
-            </ul>
+        <section class="workshop-section workshop-content">
+          <h3>Pin Mapping</h3>
+          <table class="pin-table">
+            <tr><th>Signal</th><th>ESP32 Pin</th><th>Used for</th></tr>
+            <tr><td>ENA / ENB</td><td>25 / 26</td><td>Motor PWM speed</td></tr>
+            <tr><td>IN1–IN4</td><td>16,17,18,19</td><td>Motor direction inputs</td></tr>
+            <tr><td>Trig / Echo</td><td>13 / 12</td><td>HC-SR04 ultrasonic</td></tr>
+            <tr><td>IR Receiver</td><td>32</td><td>IR remote decode</td></tr>
+            <tr><td>OLED SDA / SCL</td><td>21 / 22</td><td>Status display</td></tr>
+            <tr><td>Bluetooth RX/TX</td><td>27 / 14</td><td>Serial BT commands</td></tr>
+          </table>
+          <div style="margin-top:10px; padding:10px; background:#f3f4f6; border-radius:8px;">Source: <code>Robo-Cars/Esp32_Multimode_Bluetooth_WebServer_L298N_OLED_MIT_APP_VoiceCMD.ino</code></div>
+        </section>
+
+        <section class="workshop-section workshop-content">
+          <h3>Multimode Code Snapshot</h3>
+          <div class="code-container">
+            <div class="code-tabs"><button class="code-tab-btn active" data-code="m3-code">Multimode core</button><button class="code-tab-btn" data-code="m3-modes">Mode control</button></div>
+            <div class="code-content">
+              <div id="m3-code" class="code-pane active"><pre><code class="language-cpp">#include &lt;BluetoothSerial.h&gt;
+#include &lt;ESPAsyncWebServer.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+#include &lt;IRremote.h&gt;
+BluetoothSerial SerialBT;
+AsyncWebServer server(80);
+#define ENA 25 #define IN1 16 #define IN2 17 #define IN3 18 #define IN4 19 #define ENB 26
+#define TRIG 13 #define ECHO 12 #define IRPIN 32
+int mode=1; //1 web, 2 bt, 3 ir, 4 auto
+void setup(){ Serial.begin(115200); SerialBT.begin("ESP32_MultiCar"); pinMode(TRIG,OUTPUT); pinMode(ECHO,INPUT); IrReceiver.begin(IRPIN, ENABLE_LED_FEEDBACK); ... }
+void loop(){ checkBluetooth(); checkIR(); readDistance(); if(mode==4 && distance&lt;25){stopCar(); avoidObstacle();} }
+void forward(){ digitalWrite(IN1,LOW); digitalWrite(IN2,HIGH); digitalWrite(IN3,LOW); digitalWrite(IN4,HIGH); ledcWrite(0,speed); ledcWrite(1,speed); }
+</code></pre></div>
+              <div id="m3-modes" class="code-pane"><pre><code class="language-text">Mode controls:
+- Web buttons: F,B,L,R,S + Speed
+- Bluetooth: F,B,L,R,S + #speed + M1..M4
+- IR: remote numeric keys
+- Auto: ultrasonic threshold and obstacle algorithm
+
+Recommended: Start in manual mode (M2), test then switch auto mode.</code></pre></div>
+            </div>
           </div>
+        </section>
 
-          <h3 style="margin-top:16px;">Software + Steps</h3>
-          <ol style="margin-left:15px;line-height:1.5;font-size:14px;">
-            <li>Open the recommended .ino file in Arduino IDE.</li>
-            <li>Set correct pins for motors and sensors according to your board.</li>
-            <li>Update Bluetooth name and baud if needed (HC-06 default 9600).</li>
-            <li>Upload and verify serial output for mode and sensor readings.</li>
-            <li>Test in a clear area and gradually add obstacles for tuning.</li>
-          </ol>
+        <section class="workshop-section workshop-content">
+          <h3>Step-by-Step</h3>
+          <ol style="margin-left:15px;line-height:1.5;font-size:14px;"><li>Build wiring harness with motor driver, sensors, OLED.</li><li>Install libraries: AsyncWebServer, Adafruit SSD1306, IRremote, BluetoothSerial.</li><li>Upload code and open Serial Monitor for debug logs.</li><li>Open web UI and test manual commands first.</li><li>Switch to auto mode and tune distance threshold (10–25 cm).</li></ol>
+        </section>
 
-          <h3 style="margin-top:16px;">Guidelines & Things to Watch</h3>
-          <ul style="margin-left:15px;line-height:1.5;font-size:14px;">
-            <li>Always use common ground between logic and driver power supplies.</li>
-            <li>Do not run motors at full speed without checking load and battery capacity.</li>
-            <li>Debounce mode switch input and use status LEDs for mode feedback.</li>
-            <li>Check sensor values in Serial Monitor before final deployment.</li>
-            <li>For IR, avoid direct sunlight and reflective floor surfaces that can misread values.</li>
-          </ul>
+        <section class="workshop-section workshop-content">
+          <h3>Do / Don't</h3>
+          <div class="tips-grid"><div class="tip-card"><h4>Do</h4><ul><li>Keep sensor wires short and secure.</li><li>Test each sensor before full driving.</li><li>Use lower speed in auto mode for safe stopping.</li></ul></div><div class="tip-card"><h4>Don't</h4><ul><li>Don't leave mode switch bouncing unchecked.</li><li>Don't drive in low lighting with IR-only mode.</li><li>Don't exceed motor driver current or skip heat dissipation.</li></ul></div></div>
         </section>
       </div>
       <!-- End Project 3 -->
