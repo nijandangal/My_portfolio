@@ -39,82 +39,185 @@
     <p>Learn to build smart IoT projects with ESP32</p>
   </section>
 
+  <!-- Mode Selector -->
+  <div class="mode-selector">
+    <button class="mode-btn active" data-mode="single">Single Mode</button>
+    <button class="mode-btn" data-mode="multi">Multimode</button>
+  </div>
+
   <!-- Workshop Container with Sidebar -->
   <div class="workshop-container">
     <!-- Sidebar -->
     <aside class="workshop-sidebar">
-      <div class="sidebar-title">Project Selector</div>
-      <ul class="project-list">
-        <li>
-          <div class="project-link active" data-project="project-1">
-            <span class="project-number">1</span>
-            <span>Website Controlled Car (Web Server + Web Client)</span>
-          </div>
-        </li>
-        <li>
-          <div class="project-link" data-project="project-2">
-            <span class="project-number">2</span>
-            <span>Bluetooth Controlled Car (HC-05/HC-06)</span>
-          </div>
-        </li>
-        <li>
-          <div class="project-link" data-project="project-3">
-            <span class="project-number">3</span>
-            <span>Obstacle Avoidance Car (IR & Ultrasonic)</span>
-          </div>
-        </li>
-      </ul>
+      <div class="sidebar-title">Projects</div>
+      
+      <!-- Single Mode Projects -->
+      <div class="mode-content" id="single-mode">
+        <ul class="project-list">
+          <!-- Category 1: WiFi Controlled -->
+          <li class="project-category">
+            <div class="category-header">
+              <i class="fas fa-wifi"></i>
+              <span>1. WiFi Controlled Car</span>
+            </div>
+            <ul class="subcategory-list">
+              <li>
+                <div class="project-link active" data-project="project-1-1">
+                  <span class="project-number">1.1</span>
+                  <span>ESP32 WebServer</span>
+                </div>
+              </li>
+              <li>
+                <div class="project-link" data-project="project-1-2">
+                  <span class="project-number">1.2</span>
+                  <span>ESP32 WebClient</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Category 2: Bluetooth Controlled -->
+          <li class="project-category">
+            <div class="category-header">
+              <i class="fas fa-bluetooth"></i>
+              <span>2. Bluetooth Controlled Car</span>
+            </div>
+            <ul class="subcategory-list">
+              <li>
+                <div class="project-link" data-project="project-2-1">
+                  <span class="project-number">2.1</span>
+                  <span>ESP32 + L298N</span>
+                </div>
+              </li>
+              <li>
+                <div class="project-link" data-project="project-2-2">
+                  <span class="project-number">2.2</span>
+                  <span>Arduino + L298P</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Category 3: Obstacle Avoidance -->
+          <li class="project-category">
+            <div class="category-header">
+              <i class="fas fa-robot"></i>
+              <span>3. Obstacle Avoidance Car</span>
+            </div>
+            <ul class="subcategory-list">
+              <li>
+                <div class="project-link" data-project="project-3-1">
+                  <span class="project-number">3.1</span>
+                  <span>With Ultrasonic Sensors</span>
+                </div>
+              </li>
+              <li>
+                <div class="project-link" data-project="project-3-2">
+                  <span class="project-number">3.2</span>
+                  <span>With IR Sensors</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Category 4: Path Following -->
+          <li class="project-category">
+            <div class="category-header">
+              <i class="fas fa-road"></i>
+              <span>4. Path Following Car</span>
+            </div>
+            <ul class="subcategory-list">
+              <li>
+                <div class="project-link" data-project="project-4-1">
+                  <span class="project-number">4.1</span>
+                  <span>With IR Sensors</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Multimode Projects -->
+      <div class="mode-content" id="multi-mode" style="display: none;">
+        <ul class="project-list">
+          <li class="project-category">
+            <div class="category-header">
+              <i class="fas fa-sliders-h"></i>
+              <span>Advanced Multimode Cars</span>
+            </div>
+            <ul class="subcategory-list">
+              <li>
+                <div class="project-link active" data-project="project-mm-1">
+                  <span class="project-number">MM.1</span>
+                  <span>WiFi + Bluetooth + OLED</span>
+                </div>
+              </li>
+              <li>
+                <div class="project-link" data-project="project-mm-2">
+                  <span class="project-number">MM.2</span>
+                  <span>Auto + WiFi + Bluetooth</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </aside>
 
     <!-- Main Workshop Content -->
     <div class="workshop-main">
-      <!-- Project 1 -->
-      <div id="project-1" class="project-content active">
-        <section class="workshop-section">
-          <div class="workshop-intro">
-            <h2>Project 1: Website Controlled Car (ESP32 Web Server + Web Client)</h2>
-            <p class="intro-text">Build your ESP32 car with L298N motor driver, then control it from a web page. Method 1 runs ESP32 as webserver and method 2 uses your website as webclient sending commands to car endpoints.</p>
-            <div class="project-highlights">
-              <div class="highlight"><i class="fas fa-car"></i><h4>ESP32 Robot Car</h4><p>Two-wheel car control with motor PWM and direction mapping.</p></div>
-              <div class="highlight"><i class="fas fa-network-wired"></i><h4>Webserver Mode</h4><p>ESP32 hosts control dashboard and accepts /F /B /L /R /S /speed commands.</p></div>
-              <div class="highlight"><i class="fas fa-globe"></i><h4>Webclient Mode</h4><p>Website sends HTTP commands to ESP32 for remote control from your portfolio page.</p></div>
-              <div class="highlight"><i class="fas fa-check-circle"></i><h4>Failsafe</h4><p>Automatic stop if no command received for 5 seconds.</p></div>
+      <!-- Single Mode Projects -->
+      <div class="mode-section" id="single-section">
+        
+        <!-- Project 1.1: WiFi WebServer -->
+        <div id="project-1-1" class="project-content active">
+          <section class="workshop-section">
+            <div class="workshop-intro">
+              <h2>Project 1.1: WiFi Controlled Car - ESP32 WebServer</h2>
+              <p class="intro-text">Build an ESP32 robot car that hosts its own control dashboard. The ESP32 runs a web server on port 80, accepts movement commands and speed control, with automatic failsafe.</p>
+              <div class="project-highlights">
+                <div class="highlight"><i class="fas fa-car"></i><h4>ESP32 Robot Car</h4><p>Two-wheel car control with L298N motor driver.</p></div>
+                <div class="highlight"><i class="fas fa-network-wired"></i><h4>Web Server Mode</h4><p>Hosts dashboard and accepts /F /B /L /R /S /speed commands.</p></div>
+                <div class="highlight"><i class="fas fa-globe"></i><h4>Local Network</h4><p>Control from any browser on the same WiFi network.</p></div>
+                <div class="highlight"><i class="fas fa-shield-alt"></i><h4>Failsafe</h4><p>Auto-stop after 5 seconds without command.</p></div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h2>Hardware & Software Requirements</h2>
-          <div class="requirements-grid">
-            <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32 Dev Board</h4><p>ESP32 DevKit or similar (must support LEDC PWM pins).</p></div>
-            <div class="requirement-card"><i class="fas fa-cogs"></i><h4>L298N Motor Driver</h4><p>Dual H-bridge driver for two DC motors, with ENA/ENB PWM inputs.</p></div>
-            <div class="requirement-card"><i class="fas fa-battery-half"></i><h4>Motor Power</h4><p>7.4V–12V battery pack for motors; common ground with ESP32.</p></div>
-            <div class="requirement-card"><i class="fas fa-wifi"></i><h4>WiFi Network</h4><p>2.4GHz router. ESP32 must be on same network as your browser for control.</p></div>
-            <div class="requirement-card"><i class="fab fa-windows"></i><h4>Arduino IDE</h4><p>Install Arduino IDE 2.x and ESP32 board support (https://dl.espressif.com/dl/package_esp32_index.json).</p></div>
-          </div>
-        </section>
+          <section class="workshop-section workshop-content">
+            <h3>Hardware Requirements</h3>
+            <div class="requirements-grid">
+              <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32 Dev Board</h4><p>ESP32 DevKit with sufficient GPIO and PWM pins.</p></div>
+              <div class="requirement-card"><i class="fas fa-wind"></i><h4>L298N Motor Driver</h4><p>Dual H-bridge driver for two DC motors with PWM input.</p></div>
+              <div class="requirement-card"><i class="fas fa-battery-half"></i><h4>DC Motors</h4><p>Two motors (3–12V) for wheel control.</p></div>
+              <div class="requirement-card"><i class="fas fa-battery-full"></i><h4>Power</h4><p>7.4V–12V battery pack; common ground with ESP32.</p></div>
+              <div class="requirement-card"><i class="fas fa-wifi"></i><h4>WiFi Network</h4><p>2.4GHz router for ESP32 connection.</p></div>
+              <div class="requirement-card"><i class="fab fa-windows"></i><h4>Arduino IDE</h4><p>Arduino IDE 2.x with ESP32 board support.</p></div>
+            </div>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h2>Pin Mapping (From ESP32 Webserver Car Code)</h2>
-          <table class="pin-table">
-            <tr><th>Component</th><th>ESP32 GPIO</th><th>Function</th></tr>
-            <tr><td>ENA (Motor A PWM)</td><td>25</td><td>Speed control Motor A</td></tr>
-            <tr><td>IN1 / IN2</td><td>16 / 17</td><td>Motor A direction</td></tr>
-            <tr><td>ENB (Motor B PWM)</td><td>26</td><td>Speed control Motor B</td></tr>
-            <tr><td>IN3 / IN4</td><td>18 / 19</td><td>Motor B direction</td></tr>
-            <tr><td>Motor driver VCC</td><td>Battery 7–12V</td><td>Motor power</td></tr>
-            <tr><td>Motor driver GND</td><td>GND</td><td>Common ground</td></tr>
-          </table>
-          <div style="margin-top:12px; padding:10px; background:#f3f4f6; border-radius:8px; font-size:13px;">File reference: <code>Robo-Cars/Esp32_Webserver-Wifi-Car-L298N/Esp32_Webserver-Wifi-Car-L298N.ino</code></div>
-        </section>
+          <section class="workshop-section workshop-content">
+            <h3>Pin Mapping</h3>
+            <table class="pin-table">
+              <tr><th>Component</th><th>ESP32 GPIO</th><th>Function</th></tr>
+              <tr><td>ENA (Motor A PWM)</td><td>25</td><td>Speed control Motor A</td></tr>
+              <tr><td>IN1 / IN2</td><td>16 / 17</td><td>Motor A direction</td></tr>
+              <tr><td>ENB (Motor B PWM)</td><td>26</td><td>Speed control Motor B</td></tr>
+              <tr><td>IN3 / IN4</td><td>18 / 19</td><td>Motor B direction</td></tr>
+              <tr><td>Motor driver VCC</td><td>Battery 7–12V</td><td>Motor power</td></tr>
+              <tr><td>Motor driver GND</td><td>GND</td><td>Common ground</td></tr>
+            </table>
+            <div class="file-reference">File reference: <code>Robo-Cars/Esp32_Webserver-Wifi-Car-L298N/Esp32_Webserver-Wifi-Car-L298N.ino</code></div>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h2>Method 1: Web Server Code (ESP32 hosts dashboard)</h2>
-          <p style="font-size:14px; color:#333;">This firmware listens on port 80 and accepts requests like <code>/F</code>, <code>/B</code>, <code>/L</code>, <code>/R</code>, <code>/S</code>, and <code>/speed=200</code>. It also shows a responsive HTML dashboard.</p>
-          <div class="code-container">
-            <div class="code-tabs"><button class="code-tab-btn active" data-code="car-code">Car Webserver Code</button><button class="code-tab-btn" data-code="car-web">Webserver UI</button></div>
-            <div class="code-content">
-              <div id="car-code" class="code-pane active"><pre><code class="language-cpp">#include &lt;WiFi.h&gt;
+          <section class="workshop-section workshop-content">
+            <h3>Web Server Code</h3>
+            <p class="code-description">ESP32 listens on port 80 and accepts requests like <code>/F</code>, <code>/B</code>, <code>/L</code>, <code>/R</code>, <code>/S</code>, and <code>/speed=200</code>.</p>
+            <div class="code-container">
+              <div class="code-tabs"><button class="code-tab-btn active" data-code="ws-code">Firmware Code</button><button class="code-tab-btn" data-code="ws-ui">Web Dashboard</button></div>
+              <div class="code-content">
+                <div id="ws-code" class="code-pane active"><pre><code class="language-cpp">#include &lt;WiFi.h&gt;
 const char* ssid = "YOUR_SSID";
 const char* password = "YOUR_PASSWORD";
 WiFiServer server(80);
@@ -138,27 +241,71 @@ void left(){ applyPwm(); digitalWrite(IN1,HIGH);digitalWrite(IN2,LOW);digitalWri
 void right(){ applyPwm(); digitalWrite(IN1,LOW);digitalWrite(IN2,HIGH);digitalWrite(IN3,HIGH);digitalWrite(IN4,LOW); currentStatus="Right"; lastCommandTime=millis(); }
 void handleClient(){ WiFiClient client = server.available(); if(!client)return; String req=client.readStringUntil('\r'); client.flush(); if(req.indexOf("/F")!=-1) forward(); else if(req.indexOf("/B")!=-1) backward(); else if(req.indexOf("/L")!=-1) left(); else if(req.indexOf("/R")!=-1) right(); else if(req.indexOf("/S")!=-1) stopCar(); else if(req.indexOf("/speed=")!=-1){ int v=req.substring(req.indexOf("/speed=")+7).toInt(); setSpeed(v);} client.print("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n"); client.print("<h3>ESP32 Car - "+currentStatus+"</h3>"); client.stop(); }
 void loop(){ handleClient(); if(millis()-lastCommandTime>5000) stopCar(); }</code></pre></div>
-              <div id="car-web" class="code-pane"><pre><code class="language-html">&lt;div&gt;
-  &lt;button onclick="fetch('http://192.168.x.x/F')"&gt;Forward&lt;/button&gt;
-  &lt;button onclick="fetch('http://192.168.x.x/B')"&gt;Backward&lt;/button&gt;
-  &lt;button onclick="fetch('http://192.168.x.x/L')"&gt;Left&lt;/button&gt;
-  &lt;button onclick="fetch('http://192.168.x.x/R')"&gt;Right&lt;/button&gt;
-  &lt;button onclick="fetch('http://192.168.x.x/S')"&gt;Stop&lt;/button&gt;
-  &lt;input id="speed" type="range" min="160" max="242" oninput="fetch('http://192.168.x.x/speed='+this.value)"/&gt;
+                <div id="ws-ui" class="code-pane"><pre><code class="language-html">&lt;div style="max-width:400px; margin:auto; padding:15px;"&gt;
+  &lt;h2&gt;ESP32 Robot Control&lt;/h2&gt;
+  &lt;button onclick="fetch('http://192.168.1.100/F')"&gt;Forward&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.1.100/B')"&gt;Backward&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.1.100/L')"&gt;Left&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.1.100/R')"&gt;Right&lt;/button&gt;
+  &lt;button onclick="fetch('http://192.168.1.100/S')"&gt;Stop&lt;/button&gt;
+  &lt;input type="range" min="160" max="242" oninput="fetch('http://192.168.1.100/speed='+this.value)"/&gt;
 &lt;/div&gt;</code></pre></div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h2>Method 2: Web Client from Website to Control Motors</h2>
-          <p style="font-size:14px;">Use your website JavaScript to send direct HTTP commands to ESP32 endpoints. Keep the commands standard for <code>/F</code>, <code>/B</code>, <code>/L</code>, <code>/R</code>, <code>/S</code>, and <code>/speed=&lt;value&gt;</code>.</p>
-          <div class="code-container">
-            <div class="code-tabs"><button class="code-tab-btn active" data-code="client-html">Client HTML</button><button class="code-tab-btn" data-code="client-js">Client JS</button></div>
-            <div class="code-content">
-              <div id="client-html" class="code-pane active"><pre><code class="language-html">&lt;div style="max-width:480px; margin:auto; padding:10px; background:#f8fafc; border-radius:10px;"&gt;
-  &lt;input id="carIp" placeholder="ESP32 IP (e.g. 192.168.1.100)" style="width:100%;padding:8px;margin-bottom:8px;"/&gt;
-  &lt;button onclick="connectCar()" style="width:100%;padding:10px;background:#6366f1;color:#fff;border:none;border-radius:6px;"&gt;Connect&lt;/button&gt;
+          <section class="workshop-section workshop-content">
+            <h3>Setup &amp; Testing</h3>
+            <ol class="setup-list">
+              <li>Wire L298N pins according to the pin mapping table above.</li>
+              <li>Update WiFi credentials (SSID/password) in the code.</li>
+              <li>Upload to ESP32 using Arduino IDE.</li>
+              <li>Open Serial Monitor at 115200 baud to see ESP32's IP address.</li>
+              <li>Open browser and navigate to your ESP32 IP (e.g., http://192.168.1.100).</li>
+              <li>Test each direction button and speed slider.</li>
+            </ol>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Tips</h3>
+            <div class="tips-grid">
+              <div class="tip-card"><i class="fas fa-check"></i><h4>Do</h4><ul><li>Use stable power for motors.</li><li>Keep command timeout mechanism to stop if no signal.</li><li>Verify IP in Serial Monitor before testing.</li></ul></div>
+              <div class="tip-card"><i class="fas fa-times"></i><h4>Don't</h4><ul><li>Don't use 5GHz WiFi for ESP32.</li><li>Don't skip common ground between battery and ESP32.</li><li>Don't run motors at full 255 PWM without testing.</li></ul></div>
+            </div>
+          </section>
+        </div>
+        <!-- End Project 1.1 -->
+
+        <!-- Project 1.2: WiFi WebClient -->
+        <div id="project-1-2" class="project-content">
+          <section class="workshop-section">
+            <div class="workshop-intro">
+              <h2>Project 1.2: WiFi Controlled Car - Website as WebClient</h2>
+              <p class="intro-text">Control your ESP32 car from your portfolio website. Your website sends HTTP commands to the ESP32 to control it remotely.</p>
+              <div class="project-highlights">
+                <div class="highlight"><i class="fas fa-globe"></i><h4>Website Control</h4><p>Send commands from your portfolio page to ESP32.</p></div>
+                <div class="highlight"><i class="fas fa-link"></i><h4>HTTP Endpoints</h4><p>Standard /F /B /L /R /S /speed protocol.</p></div>
+                <div class="highlight"><i class="fas fa-mobile-alt"></i><h4>Remote Access</h4><p>Control from any browser on the same WiFi network.</p></div>
+                <div class="highlight"><i class="fas fa-shield-alt"></i><h4>Fail-Safe</h4><p>Auto-stop mechanism prevents runaway car.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Hardware Setup</h3>
+            <p>Same as Project 1.1 (ESP32 + L298N motor driver). Refer to Project 1.1 for hardware requirements and pin mapping.</p>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Website Control Code</h3>
+            <p class="code-description">Add this to your portfolio page to control the car remotely.</p>
+            <div class="code-container">
+              <div class="code-tabs"><button class="code-tab-btn active" data-code="wc-html">HTML UI</button><button class="code-tab-btn" data-code="wc-js">JavaScript</button></div>
+              <div class="code-content">
+                <div id="wc-html" class="code-pane active"><pre><code class="language-html">&lt;div style="max-width:480px; margin:auto; padding:10px;"&gt;
+  &lt;h3&gt;Robot Car Control Panel&lt;/h3&gt;
+  &lt;input id="carIp" placeholder="ESP32 IP (e.g 192.168.1.100)" style="width:100%;padding:8px;margin-bottom:8px;"/&gt;
+  &lt;button onclick="connectCar()" style="width:100%;padding:10px;background:#6366f1;color:#fff;border:none;"&gt;Connect&lt;/button&gt;
   &lt;div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;"&gt;
     &lt;button onclick="cmd('F')"&gt;Forward&lt;/button&gt;
     &lt;button onclick="cmd('L')"&gt;Left&lt;/button&gt;
@@ -168,241 +315,294 @@ void loop(){ handleClient(); if(millis()-lastCommandTime>5000) stopCar(); }</cod
   &lt;/div&gt;
   &lt;input id="speedSlider" type="range" min="160" max="242" value="200" oninput="setSpeed(this.value)" style="width:100%; margin-top:10px;"/&gt;
 &lt;/div&gt;</code></pre></div>
-              <div id="client-js" class="code-pane"><pre><code class="language-javascript">let baseUrl = '';
+                <div id="wc-js" class="code-pane"><pre><code class="language-javascript">let baseUrl = '';
 function connectCar() {
   const ip = document.getElementById('carIp').value.trim();
   if (!ip) return alert('Enter ESP32 IP');
   baseUrl = 'http://' + ip;
-  fetch(baseUrl + '/status').then(r => r.json()).then(d => alert('Connected: ' + d.status)).catch(() => alert('Connection failed'));
+  fetch(baseUrl + '/status')
+    .then(r => r.text())
+    .then(d => alert('Connected'))
+    .catch(() => alert('Connection failed. Check IP.'));
 }
 function cmd(action) {
-  if (!baseUrl) return alert('Set IP first');
+  if (!baseUrl) return alert('Connect to car first');
   fetch(`${baseUrl}/${action}`).catch(() => alert('Command failed'));
 }
 function setSpeed(v) {
   if (!baseUrl) return;
   fetch(`${baseUrl}/speed=${v}`).catch(() => {});
+}</code></pre></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Integration Steps</h3>
+            <ol class="setup-list">
+              <li>Add HTML control panel to your portfolio page.</li>
+              <li>Include JavaScript functions in your script.js.</li>
+              <li>Ensure ESP32 runs HTTP server firmware (Project 1.1).</li>
+              <li>Find ESP32's IP from Serial Monitor.</li>
+              <li>Enter IP in control panel and click Connect.</li>
+              <li>Use buttons to control your car remotely.</li>
+            </ol>
+          </section>
+        </div>
+        <!-- End Project 1.2 -->
+
+        <!-- Project 2.1: Bluetooth ESP32 -->
+        <div id="project-2-1" class="project-content">
+          <section class="workshop-section">
+            <div class="workshop-intro">
+              <h2>Project 2.1: Bluetooth Controlled Car - ESP32 + L298N</h2>
+              <p class="intro-text">Control your robot car via Bluetooth using a mobile app. Perfect for hand-held control without WiFi dependency.</p>
+              <div class="project-highlights">
+                <div class="highlight"><i class="fas fa-bluetooth"></i><h4>Bluetooth Classic</h4><p>Built-in ESP32 Bluetooth support.</p></div>
+                <div class="highlight"><i class="fas fa-mobile-alt"></i><h4>Mobile Control</h4><p>Send F/B/L/R/S and #speed commands from app.</p></div>
+                <div class="highlight"><i class="fas fa-tachometer-alt"></i><h4>Speed Control</h4><p>Real-time PWM adjustment (100–230).</p></div>
+                <div class="highlight"><i class="fas fa-shield-alt"></i><h4>Auto-Stop</h4><p>Stops after 2–5 seconds without command.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Hardware &amp; Components</h3>
+            <div class="requirements-grid">
+              <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32</h4><p>Built-in Bluetooth classic support.</p></div>
+              <div class="requirement-card"><i class="fas fa-wind"></i><h4>L298N</h4><p>Dual H-bridge motor driver.</p></div>
+              <div class="requirement-card"><i class="fas fa-battery-full"></i><h4>DC Motors</h4><p>Two motors (3–12V) with wheels.</p></div>
+              <div class="requirement-card"><i class="fas fa-battery-half"></i><h4>Power</h4><p>7.4V–12V battery pack.</p></div>
+              <div class="requirement-card"><i class="fas fa-mobile-alt"></i><h4>BT App</h4><p>Android: Serial Bluetooth Terminal app.</p></div>
+            </div>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Pin Configuration</h3>
+            <table class="pin-table">
+              <tr><th>Function</th><th>ESP32 Pin</th><th>Purpose</th></tr>
+              <tr><td>ENA (Motor A)</td><td>25</td><td>PWM speed control</td></tr>
+              <tr><td>IN1 / IN2</td><td>16 / 17</td><td>Motor direction</td></tr>
+              <tr><td>ENB (Motor B)</td><td>26</td><td>PWM speed control</td></tr>
+              <tr><td>IN3 / IN4</td><td>18 / 19</td><td>Motor direction</td></tr>
+              <tr><td>GND</td><td>GND</td><td>Common ground</td></tr>
+            </table>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Firmware Code</h3>
+            <div class="code-container">
+              <div class="code-tabs"><button class="code-tab-btn active" data-code="bt-esp-code">Code</button><button class="code-tab-btn" data-code="bt-esp-commands">Commands</button></div>
+              <div class="code-content">
+                <div id="bt-esp-code" class="code-pane active"><pre><code class="language-cpp">#include "BluetoothSerial.h"
+BluetoothSerial SerialBT;
+#define ENA 25, IN1 16, IN2 17, IN3 18, IN4 19, ENB 26
+int motorSpeed=180, minSpeed=100, maxSpeed=230;
+unsigned long lastCommandTime = 0;
+void setup(){ 
+  Serial.begin(115200); 
+  SerialBT.begin("ESP32_RobotCar"); 
+  pinMode(IN1,OUTPUT); pinMode(IN2,OUTPUT); pinMode(IN3,OUTPUT); pinMode(IN4,OUTPUT); 
+  ledcAttachPin(ENA,0); ledcAttachPin(ENB,1); 
+  ledcSetup(0,5000,8); ledcSetup(1,5000,8); 
+  stopCar(); 
 }
-</code></pre></div>
+void loop(){ 
+  if(SerialBT.available()){ 
+    char cmd = SerialBT.read(); 
+    if(cmd=='#'){ int val=SerialBT.parseInt(); motorSpeed = constrain(val,minSpeed,maxSpeed); }
+    else { switch(cmd){
+      case 'F': case 'B': case 'L': case 'R': case 'S': handleCommand(cmd); break;
+    }} 
+    lastCommandTime = millis();
+  } 
+  if(millis()-lastCommandTime > 2000) stopCar();
+}</code></pre></div>
+                <div id="bt-esp-commands" class="code-pane"><pre><code class="language-text">Send via Bluetooth App:
+F  -> Forward
+B  -> Backward
+L  -> Left Turn
+R  -> Right Turn
+S  -> Stop
+#100 -> Set speed 100
+#180 -> Set speed 180
+#230 -> Set speed 230
+
+Use Serial Bluetooth Terminal or MIT App Inventor.</code></pre></div>
+              </div>
             </div>
-          </div>
-          <p style="font-size:13px; margin-top:8px;">Use this method with your website. Keep your car endpoint stable and CORS enabled on ESP32 if needed.</p>
-        </section>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h2>Advanced Multimode (Bluetooth + WiFi + OLED)</h2>
-          <p style="font-size:14px;">Use the multimode code for ESP32 with mode switch (GPIO 33). This code can run Bluetooth manual mode or WiFi webserver mode with OLED status display.</p>
-          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px; margin-bottom:10px;">
-            <strong>File Reference:</strong> <code>Robo-Cars/Multi-Mode/Esp32_Multimode_Bluetooth_WebServer_L298N_OLED_MIT_APP_VoiceCMD/Esp32_Multimode_Bluetooth_WebServer_L298N_OLED_MIT_APP_VoiceCMD.ino</code>
-          </div>
-          <div class="code-container">
-            <div class="code-tabs"><button class="code-tab-btn active" data-code="multimode-main">Multimode Core</button><button class="code-tab-btn" data-code="multimode-handler">HTTP Handler</button></div>
-            <div class="code-content">
-              <div id="multimode-main" class="code-pane active"><pre><code class="language-cpp">#include &lt;WiFi.h&gt;
-#include "BluetoothSerial.h"
-#include &lt;U8g2lib.h&gt;
+          <section class="workshop-section workshop-content">
+            <h3>Setup Instructions</h3>
+            <ol style="margin-left:15px;line-height:1.8;font-size:14px;">
+              <li>Install Serial Bluetooth Terminal on Android.</li>
+              <li>Upload code to ESP32 with correct board &amp; COM port.</li>
+              <li>Power ESP32 and open Bluetooth settings.</li>
+              <li>Pair with "ESP32_RobotCar".</li>
+              <li>Open Serial Bluetooth Terminal and connect.</li>
+              <li>Send F/B/L/R/S for direction control.</li>
+              <li>Send #XXX to adjust speed.</li>
+            </ol>
+          </section>
+        </div>
+        <!-- End Project 2.1 -->
 
-BluetoothSerial SerialBT;
-#define ENA 25
-#define IN1 16
-#define IN2 17
-#define IN3 18
-#define IN4 19
-#define ENB 26
-#define MODE_PIN 33
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
-WiFiServer server(80);
-U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
-int mode = 0; // 0=BT, 1=WiFi
-void setup(){ Serial.begin(115200); SerialBT.begin("ESP32_RobotCar"); pinMode(MODE_PIN, INPUT_PULLUP); ... WiFi.begin(ssid,password); server.begin(); }
-void loop(){ if(digitalRead(MODE_PIN)==LOW){mode = 1-mode; delay(300);} if(mode==0) handleBluetooth(); else handleHttp(); if(millis()-lastCommandTime>5000) stopCar(); }</code></pre></div>
-              <div id="multimode-handler" class="code-pane"><pre><code class="language-cpp">void handleHttp(){ WiFiClient client = server.available(); if(!client) return; String request = client.readStringUntil('\r'); client.flush(); if(request.indexOf("/F")!=-1) forward(); ... else if(request.indexOf("/speed=")!=-1){ int val = request.substring(request.indexOf("/speed=")+7).toInt(); setSpeed(val); } client.println("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>...\n"); client.stop(); }</code></pre></div>
+        <!-- Project 2.2: Coming Soon -->
+        <div id="project-2-2" class="project-content">
+          <section class="workshop-section coming-soon">
+            <div class="workshop-intro">
+              <h2>Project 2.2: Bluetooth Controlled Car - Arduino + L298P</h2>
+              <div style="text-align:center; padding:60px 20px;">
+                <i class="fas fa-hourglass-end" style="font-size:48px; color:#9ca3af; margin-bottom:20px;"></i>
+                <h3 style="color:#6b7280;">Coming Soon</h3>
+                <p style="color:#9ca3af; font-size:16px;">Arduino-based Bluetooth control with HC-05 module and L298P motor driver.</p>
+                <p style="color:#9ca3af; margin-top:20px;">Available on GitHub soon!</p>
+              </div>
             </div>
-          </div>
-          <p style="font-size:13px; margin-top:8px;">This multimode approach provides a single firmware with both manual BT and WiFi controls, plus OLED status display. Great for project 1 advanced mode.</p>
-        </section>
+          </section>
+        </div>
+        <!-- End Project 2.2 -->
 
-        <section class="workshop-section workshop-content">
-          <h2>Dos &amp; Don'ts</h2>
-          <div class="tips-grid">
-            <div class="tip-card"><i class="fas fa-check"></i><h4>Do</h4><ul><li>Use stable power for motors and ESP32.</li><li>Keep command timeout to stop if no signal received.</li><li>Verify IP from Serial Monitor before hitting controls.</li></ul></div>
-            <div class="tip-card"><i class="fas fa-times"></i><h4>Don't</h4><ul><li>Don't run motors at 255 full speed without testing.</li><li>Don't forget common ground between batteries and ESP32.</li><li>Don't use 5GHz WiFi for ESP32 connection.</li></ul></div>
-          </div>
-        </section>
+        <!-- Project 3.1: Coming Soon -->
+        <div id="project-3-1" class="project-content">
+          <section class="workshop-section coming-soon">
+            <div class="workshop-intro">
+              <h2>Project 3.1: Obstacle Avoidance Car - Ultrasonic Sensors</h2>
+              <div style="text-align:center; padding:60px 20px;">
+                <i class="fas fa-hourglass-end" style="font-size:48px; color:#9ca3af; margin-bottom:20px;"></i>
+                <h3 style="color:#6b7280;">Coming Soon</h3>
+                <p style="color:#9ca3af; font-size:16px;">Arduino with 3 HC-SR04 ultrasonic sensors for autonomous obstacle detection.</p>
+                <p style="color:#9ca3af; margin-top:20px;">Available on GitHub soon!</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- End Project 3.1 -->
 
-        <section class="workshop-section workshop-content">
-          <h2>Final Check</h2>
-          <p style="font-size:14px;">After uploading, open Serial Monitor at 115200. Confirm IP. Then open either the ESP32 dashboard URL for server mode or your website control panel for webclient mode. Test each direction and speed slider.</p>
-        </section>
+        <!-- Project 3.2: Coming Soon -->
+        <div id="project-3-2" class="project-content">
+          <section class="workshop-section coming-soon">
+            <div class="workshop-intro">
+              <h2>Project 3.2: Obstacle Avoidance Car - IR Sensors</h2>
+              <div style="text-align:center; padding:60px 20px;">
+                <i class="fas fa-hourglass-end" style="font-size:48px; color:#9ca3af; margin-bottom:20px;"></i>
+                <h3 style="color:#6b7280;">Coming Soon</h3>
+                <p style="color:#9ca3af; font-size:16px;">Arduino with 3 IR sensors for autonomous obstacle avoidance.</p>
+                <p style="color:#9ca3af; margin-top:20px;">Available on GitHub soon!</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- End Project 3.2 -->
+
+        <!-- Project 4.1: Coming Soon -->
+        <div id="project-4-1" class="project-content">
+          <section class="workshop-section coming-soon">
+            <div class="workshop-intro">
+              <h2>Project 4.1: Path Following Car - IR Sensors</h2>
+              <div style="text-align:center; padding:60px 20px;">
+                <i class="fas fa-hourglass-end" style="font-size:48px; color:#9ca3af; margin-bottom:20px;"></i>
+                <h3 style="color:#6b7280;">Coming Soon</h3>
+                <p style="color:#9ca3af; font-size:16px;">Arduino-based line-following car with 3 IR sensors for automatic path tracking.</p>
+                <p style="color:#9ca3af; margin-top:20px;">Available on GitHub soon!</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- End Project 4.1 -->
+
       </div>
-      <!-- End Project 1 -->
+      <!-- End Single Mode -->
 
-      <!-- Project 2: Bluetooth Controlled Car -->
-      <div id="project-2" class="project-content">
-        <section class="workshop-section">
-          <div class="workshop-intro">
-            <h2>Project 2: Bluetooth Controlled Car (Single Mode)</h2>
-            <p class="intro-text">Control motors from your mobile app via Bluetooth. This is the exact code from the repo, using ESP32 and L298N motor driver with reliable speed control and fail-safe.</p>
-            <div class="project-highlights">
-              <div class="highlight"><i class="fas fa-car"></i><h4>Bluetooth Control</h4><p>Use commands F/B/L/R/S in app to drive motors.</p></div>
-              <div class="highlight"><i class="fas fa-tachometer-alt"></i><h4>Speed Control</h4><p>Slider command #value sets PWM speed for smooth motion.</p></div>
-              <div class="highlight"><i class="fas fa-bolt"></i><h4>PWM Motor Driver</h4><p>Uses LEDC PWM on ESP32 pins for precise motor power.</p></div>
-              <div class="highlight"><i class="fas fa-shield-alt"></i><h4>Failsafe</h4><p>Automatic stop when no command is received.</p></div>
+      <!-- Multimode Projects -->
+      <div class="mode-section" id="multi-section" style="display: none;">
+        
+        <!-- Project MM.1: WiFi + Bluetooth + OLED -->
+        <div id="project-mm-1" class="project-content active">
+          <section class="workshop-section">
+            <div class="workshop-intro">
+              <h2>MM.1: Advanced Multimode Car - WiFi + Bluetooth + OLED</h2>
+              <p class="intro-text">Single firmware with multiple control modes: WiFi webserver, Bluetooth app, and OLED status display. Switch modes seamlessly.</p>
+              <div class="project-highlights">
+                <div class="highlight"><i class="fas fa-wifi"></i><h4>WiFi Mode</h4><p>Host control dashboard on ESP32.</p></div>
+                <div class="highlight"><i class="fas fa-bluetooth"></i><h4>Bluetooth Mode</h4><p>Control via mobile app simultaneously.</p></div>
+                <div class="highlight"><i class="fas fa-tv"></i><h4>OLED Display</h4><p>Real-time status on 128x64 screen.</p></div>
+                <div class="highlight"><i class="fas fa-sliders-h"></i><h4>Mode Switch</h4><p>Toggle between modes via GPIO pin.</p></div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h3>Hardware & Software</h3>
-          <div class="requirements-grid">
-            <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32 Dev Board</h4><p>ESP32 DevKit with sufficient GPIO and PWM pins.</p></div>
-            <div class="requirement-card"><i class="fas fa-cogs"></i><h4>L298N Driver</h4><p>Dual H-bridge for two DC motors.</p></div>
-            <div class="requirement-card"><i class="fas fa-bluetooth"></i><h4>Bluetooth Module</h4><p>HC-05/HC-06 or built-in ESP32 BTSerial.</p></div>
-            <div class="requirement-card"><i class="fas fa-battery-full"></i><h4>Battery</h4><p>7.4–12V motor battery with common ground to ESP32.</p></div>
-            <div class="requirement-card"><i class="fab fa-arduino"></i><h4>Arduino IDE</h4><p>Install ESP32 board support and compile with correct COM port.</p></div>
-          </div>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Pin Mapping</h3>
-          <table class="pin-table">
-            <tr><th>Function</th><th>ESP32 Pin</th><th>Role</th></tr>
-            <tr><td>ENA (Motor A PWM)</td><td>25</td><td>PWM speed</td></tr>
-            <tr><td>IN1</td><td>16</td><td>Motor A direction</td></tr>
-            <tr><td>IN2</td><td>17</td><td>Motor A direction</td></tr>
-            <tr><td>ENB (Motor B PWM)</td><td>26</td><td>PWM speed</td></tr>
-            <tr><td>IN3</td><td>18</td><td>Motor B direction</td></tr>
-            <tr><td>IN4</td><td>19</td><td>Motor B direction</td></tr>
-            <tr><td>BT RX/TX</td><td>RX/TX</td><td>Bluetooth communication</td></tr>
-          </table>
-          <div style="margin-top:10px; padding:10px; background:#f3f4f6; border-radius:8px;">Source file: <code>Robo-Cars/Esp32_Bluetooth_L298N_robot_car_MIT_APP_VoiceControlled/Esp32_Bluetooth_L298N_robot_car_MIT_APP_VoiceControlled.ino</code></div>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Code & Control</h3>
-          <div class="code-container">
-            <div class="code-tabs"><button class="code-tab-btn active" data-code="bt-code">Bluetooth Car Code</button><button class="code-tab-btn" data-code="bt-commands">Command Map</button></div>
-            <div class="code-content">
-              <div id="bt-code" class="code-pane active"><pre><code class="language-cpp">#include &lt;BluetoothSerial.h&gt;
-BluetoothSerial SerialBT;
-#define ENA 25
-#define IN1 16
-#define IN2 17
-#define IN3 18
-#define IN4 19
-#define ENB 26
-const int freq=5000,resolution=8;
-int motorSpeed=180,minSpeed=100,maxSpeed=230;
-void setup(){ Serial.begin(9600); SerialBT.begin("ESP32_RobotCar"); pinMode(IN1,OUTPUT); pinMode(IN2,OUTPUT); pinMode(IN3,OUTPUT); pinMode(IN4,OUTPUT); ledcAttachPin(ENA,0); ledcAttachPin(ENB,1); ledcSetup(0,freq,resolution); ledcSetup(1,freq,resolution); stopCar(); }
-void loop(){ if(SerialBT.available()){ char cmd = SerialBT.read(); if(cmd=='#'){ int val=SerialBT.parseInt(); setSpeed(val);} else {switch(cmd){case 'F':forward();break; case 'B':backward();break; case 'L':left();break; case 'R':right();break; case 'S':stopCar();break;}} } if(millis()-lastCommandTime>2000){stopCar();}}
-void forward(){digitalWrite(IN1,LOW);digitalWrite(IN2,HIGH);digitalWrite(IN3,LOW);digitalWrite(IN4,HIGH);ledcWrite(0,motorSpeed);ledcWrite(1,motorSpeed);} ...</code></pre></div>
-              <div id="bt-commands" class="code-pane"><pre><code class="language-text">Command -> Action
-F -> Forward
-B -> Backward
-L -> Left
-R -> Right
-S -> Stop
-#<value> -> Set speed (#180)
-
-Use app to send characters and values 100-230 for smooth control.</code></pre></div>
+          <section class="workshop-section workshop-content">
+            <h3>Hardware Requirements</h3>
+            <div class="requirements-grid">
+              <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32</h4><p>With WiFi &amp; Bluetooth.</p></div>
+              <div class="requirement-card"><i class="fas fa-wind"></i><h4>L298N</h4><p>Motor driver.</p></div>
+              <div class="requirement-card"><i class="fas fa-tv"></i><h4>SSD1306 OLED</h4><p>128x64 I2C display.</p></div>
+              <div class="requirement-card"><i class="fas fa-battery-full"></i><h4>Motors &amp; Battery</h4><p>Two 3–12V motors, 7.4V–12V power.</p></div>
+              <div class="requirement-card"><i class="fas fa-wifi"></i><h4>WiFi Network</h4><p>2.4GHz router.</p></div>
+              <div class="requirement-card"><i class="fas fa-mobile-alt"></i><h4>BT Terminal App</h4><p>Serial Bluetooth Terminal.</p></div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h3>Setup Steps</h3>
-          <ol style="margin-left:15px;line-height:1.5;font-size:14px;"><li>Wire hardware as per pin map; connect common grounds.</li><li>Open Arduino IDE, select ESP32 board and COM port.</li><li>Paste code and upload.</li><li>Pair BT app with <code>ESP32_RobotCar</code>.</li><li>Send commands and verify motion.</li></ol>
-        </section>
+          <section class="workshop-section workshop-content">
+            <h3>Pin Configuration</h3>
+            <table class="pin-table">
+              <tr><th>Component</th><th>ESP32 Pin</th><th>Function</th></tr>
+              <tr><td>ENA / ENB</td><td>25 / 26</td><td>Motor PWM</td></tr>
+              <tr><td>IN1–IN4</td><td>16,17,18,19</td><td>Motor direction</td></tr>
+              <tr><td>OLED SDA / SCL</td><td>21 / 22</td><td>I2C display</td></tr>
+              <tr><td>Mode Pin</td><td>33</td><td>Mode toggle</td></tr>
+            </table>
+          </section>
 
-        <section class="workshop-section workshop-content">
-          <h3>Dos & Don’ts</h3>
-          <div class="tips-grid"><div class="tip-card"><h4>Do</h4><ul><li>Use stable motor power.</li><li>Start with safe speed values.</li><li>Confirm direction mapping before full run.</li></ul></div><div class="tip-card"><h4>Don't</h4><ul><li>Don't connect TX/RX incorrectly.</li><li>Don't exceed motor driver current.</li><li>Don't run without proper wiring checks.</li></ul></div></div>
-        </section>
+          <section class="workshop-section workshop-content">
+            <h3>Key Features</h3>
+            <ul style="margin-left:20px; line-height:1.8;">
+              <li>Single firmware with dual control modes</li>
+              <li>WiFi webserver &amp; Bluetooth simultaneously</li>
+              <li>OLED real-time status display</li>
+              <li>GPIO-based mode switching</li>
+              <li>Automatic failsafe (5 sec timeout)</li>
+              <li>Speed control 160-242 PWM</li>
+            </ul>
+          </section>
+
+          <section class="workshop-section workshop-content">
+            <h3>Integration Steps</h3>
+            <ol style="margin-left:15px;line-height:1.8;font-size:14px;">
+              <li>Install: BluetoothSerial, U8g2 libraries.</li>
+              <li>Update WiFi credentials in code.</li>
+              <li>Upload to ESP32.</li>
+              <li>Test Bluetooth mode first.</li>
+              <li>Toggle GPIO 33 to GND for WiFi mode.</li>
+              <li>Both modes work simultaneously.</li>
+            </ol>
+          </section>
+        </div>
+        <!-- End Project MM.1 -->
+
+        <!-- Project MM.2: Coming Soon -->
+        <div id="project-mm-2" class="project-content">
+          <section class="workshop-section coming-soon">
+            <div class="workshop-intro">
+              <h2>MM.2: Advanced Multimode Car - Auto + WiFi + Bluetooth</h2>
+              <div style="text-align:center; padding:60px 20px;">
+                <i class="fas fa-hourglass-end" style="font-size:48px; color:#9ca3af; margin-bottom:20px;"></i>
+                <h3 style="color:#6b7280;">Coming Soon</h3>
+                <p style="color:#9ca3af; font-size:16px;">Autonomous obstacle avoidance + WiFi + Bluetooth in single firmware.</p>
+                <p style="color:#9ca3af; margin-top:20px;">Available on GitHub soon!</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- End Project MM.2 -->
+
       </div>
-      <!-- End Project 2 -->
+      <!-- End Multimode Section -->
 
-      <!-- Project 3: Obstacle Avoidance with IR + Ultrasonic -->
-      <div id="project-3" class="project-content">
-        <section class="workshop-section">
-          <div class="workshop-intro">
-            <h2>Project 3: Multimode Obstacle Avoidance Car</h2>
-            <p class="intro-text">This project mirrors Project 1 style with hardware + software + steps + guides. It combines IR obstacle avoidance, ultrasonic detection, and fallback Bluetooth/manual modes using repo source code.</p>
-            <div class="project-highlights">
-              <div class="highlight"><i class="fas fa-satellite-dish"></i><h4>IR + Ultrasonic</h4><p>Choose IR or HC-SR04 obstacle detection.</p></div>
-              <div class="highlight"><i class="fas fa-robot"></i><h4>Multimode Control</h4><p>Web + Bluetooth + IR modes in one firmware.</p></div>
-              <div class="highlight"><i class="fas fa-laptop-code"></i><h4>Repo Code Source</h4><p>Exact file from repo used for stable logic and mode switching.</p></div>
-              <div class="highlight"><i class="fas fa-shield-alt"></i><h4>Safety</h4><p>Auto-stop and emergency handling in distance mode.</p></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Hardware & Software</h3>
-          <div class="requirements-grid">
-            <div class="requirement-card"><i class="fas fa-microchip"></i><h4>ESP32 + L298N</h4><p>For dual motor control and PWM speed.</p></div>
-            <div class="requirement-card"><i class="fas fa-broadcast-tower"></i><h4>Bluetooth</h4><p>Mode commands and manual drive via app.</p></div>
-            <div class="requirement-card"><i class="fas fa-wave-square"></i><h4>HC-SR04</h4><p>Distance measurement and automatic obstacle stop.</p></div>
-            <div class="requirement-card"><i class="fas fa-tv"></i><h4>IR Sensor</h4><p>Manual IR remote commands and turn controls.</p></div>
-            <div class="requirement-card"><i class="fab fa-arduino"></i><h4>Arduino IDE</h4><p>Compile and upload using ESP32 board support and required libraries.</p></div>
-          </div>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Pin Mapping</h3>
-          <table class="pin-table">
-            <tr><th>Signal</th><th>ESP32 Pin</th><th>Used for</th></tr>
-            <tr><td>ENA / ENB</td><td>25 / 26</td><td>Motor PWM speed</td></tr>
-            <tr><td>IN1–IN4</td><td>16,17,18,19</td><td>Motor direction inputs</td></tr>
-            <tr><td>Trig / Echo</td><td>13 / 12</td><td>HC-SR04 ultrasonic</td></tr>
-            <tr><td>IR Receiver</td><td>32</td><td>IR remote decode</td></tr>
-            <tr><td>OLED SDA / SCL</td><td>21 / 22</td><td>Status display</td></tr>
-            <tr><td>Bluetooth RX/TX</td><td>27 / 14</td><td>Serial BT commands</td></tr>
-          </table>
-          <div style="margin-top:10px; padding:10px; background:#f3f4f6; border-radius:8px;">Source: <code>Robo-Cars/Esp32_Multimode_Bluetooth_WebServer_L298N_OLED_MIT_APP_VoiceCMD.ino</code></div>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Multimode Code Snapshot</h3>
-          <div class="code-container">
-            <div class="code-tabs"><button class="code-tab-btn active" data-code="m3-code">Multimode core</button><button class="code-tab-btn" data-code="m3-modes">Mode control</button></div>
-            <div class="code-content">
-              <div id="m3-code" class="code-pane active"><pre><code class="language-cpp">#include &lt;BluetoothSerial.h&gt;
-#include &lt;ESPAsyncWebServer.h&gt;
-#include &lt;Adafruit_SSD1306.h&gt;
-#include &lt;IRremote.h&gt;
-BluetoothSerial SerialBT;
-AsyncWebServer server(80);
-#define ENA 25 #define IN1 16 #define IN2 17 #define IN3 18 #define IN4 19 #define ENB 26
-#define TRIG 13 #define ECHO 12 #define IRPIN 32
-int mode=1; //1 web, 2 bt, 3 ir, 4 auto
-void setup(){ Serial.begin(115200); SerialBT.begin("ESP32_MultiCar"); pinMode(TRIG,OUTPUT); pinMode(ECHO,INPUT); IrReceiver.begin(IRPIN, ENABLE_LED_FEEDBACK); ... }
-void loop(){ checkBluetooth(); checkIR(); readDistance(); if(mode==4 && distance&lt;25){stopCar(); avoidObstacle();} }
-void forward(){ digitalWrite(IN1,LOW); digitalWrite(IN2,HIGH); digitalWrite(IN3,LOW); digitalWrite(IN4,HIGH); ledcWrite(0,speed); ledcWrite(1,speed); }
-</code></pre></div>
-              <div id="m3-modes" class="code-pane"><pre><code class="language-text">Mode controls:
-- Web buttons: F,B,L,R,S + Speed
-- Bluetooth: F,B,L,R,S + #speed + M1..M4
-- IR: remote numeric keys
-- Auto: ultrasonic threshold and obstacle algorithm
-
-Recommended: Start in manual mode (M2), test then switch auto mode.</code></pre></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Step-by-Step</h3>
-          <ol style="margin-left:15px;line-height:1.5;font-size:14px;"><li>Build wiring harness with motor driver, sensors, OLED.</li><li>Install libraries: AsyncWebServer, Adafruit SSD1306, IRremote, BluetoothSerial.</li><li>Upload code and open Serial Monitor for debug logs.</li><li>Open web UI and test manual commands first.</li><li>Switch to auto mode and tune distance threshold (10–25 cm).</li></ol>
-        </section>
-
-        <section class="workshop-section workshop-content">
-          <h3>Do / Don't</h3>
-          <div class="tips-grid"><div class="tip-card"><h4>Do</h4><ul><li>Keep sensor wires short and secure.</li><li>Test each sensor before full driving.</li><li>Use lower speed in auto mode for safe stopping.</li></ul></div><div class="tip-card"><h4>Don't</h4><ul><li>Don't leave mode switch bouncing unchecked.</li><li>Don't drive in low lighting with IR-only mode.</li><li>Don't exceed motor driver current or skip heat dissipation.</li></ul></div></div>
-        </section>
-      </div>
-      <!-- End Project 3 -->
     </div>
+    <!-- End Main Workshop Content -->
   </div>
   <!-- End Workshop Container -->
 

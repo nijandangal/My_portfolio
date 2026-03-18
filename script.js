@@ -675,6 +675,154 @@ function improveAccessibility() {
 
 improveAccessibility();
 
+/* ============= WORKSHOP: MODE SWITCHING ============= */
+function initializeWorkshop() {
+  initializeModeSwitching();
+  initializeProjectNavigation();
+  initializeCodeTabs();
+  showDefaultProject();
+}
+
+function showDefaultProject() {
+  // Get last selected project per mode or use defaults
+  const lastMode = localStorage.getItem('workshopMode') || 'single';
+  const lastProject = localStorage.getItem(`lastProject_${lastMode}`);
+  
+  if (lastProject) {
+    // Show last selected project
+    const projectLink = document.querySelector(`[data-project="${lastProject}"]`);
+    if (projectLink) {
+      projectLink.click();
+    }
+  } else {
+    // Show first project based on mode
+    if (lastMode === 'single') {
+      const firstProject = document.querySelector('#single-mode .project-link');
+      if (firstProject) firstProject.click();
+    } else {
+      const firstProject = document.querySelector('#multi-mode .project-link');
+      if (firstProject) firstProject.click();
+    }
+  }
+}
+
+function initializeModeSwitching() {
+  const modeButtons = document.querySelectorAll('.mode-btn');
+  
+  modeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-mode');
+      switchMode(mode);
+      
+      // Update active button
+      modeButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Show last selected project for this mode or first project
+      showDefaultProject();
+    });
+  });
+}
+
+function switchMode(mode) {
+  const singleSection = document.getElementById('single-section');
+  const multiSection = document.getElementById('multi-section');
+  const singleMode = document.getElementById('single-mode');
+  const multiMode = document.getElementById('multi-mode');
+  
+  if (mode === 'single') {
+    singleSection.style.display = 'block';
+    multiSection.style.display = 'none';
+    singleMode.style.display = 'block';
+    multiMode.style.display = 'none';
+  } else {
+    singleSection.style.display = 'none';
+    multiSection.style.display = 'block';
+    singleMode.style.display = 'none';
+    multiMode.style.display = 'block';
+  }
+  
+  // Store preference
+  localStorage.setItem('workshopMode', mode);
+}
+
+function initializeProjectNavigation() {
+  const projectLinks = document.querySelectorAll('.project-link');
+  
+  projectLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const projectId = link.getAttribute('data-project');
+      showProject(projectId);
+      
+      // Update active links
+      projectLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+}
+
+function showProject(projectId) {
+  // Hide all project contents
+  const allProjects = document.querySelectorAll('.project-content');
+  allProjects.forEach(project => project.classList.remove('active'));
+  
+  // Show selected project
+  const selectedProject = document.getElementById(projectId);
+  if (selectedProject) {
+    selectedProject.classList.add('active');
+    
+    // Save last selected project for current mode
+    const currentMode = localStorage.getItem('workshopMode') || 'single';
+    localStorage.setItem(`lastProject_${currentMode}`, projectId);
+  }
+}
+
+function initializeCodeTabs() {
+  const codeTabs = document.querySelectorAll('.code-tab-btn');
+  
+  codeTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const codeId = btn.getAttribute('data-code');
+      const container = btn.closest('.code-container');
+      
+      if (container) {
+        // Deactivate all tabs and panes in this container
+        container.querySelectorAll('.code-tab-btn').forEach(b => b.classList.remove('active'));
+        container.querySelectorAll('.code-pane').forEach(pane => pane.classList.remove('active'));
+        
+        // Activate selected tab and pane
+        btn.classList.add('active');
+        const pane = container.querySelector(`#${codeId}`);
+        if (pane) {
+          pane.classList.add('active');
+        }
+      }
+    });
+  });
+  
+  // Set first tab as active by default
+  document.querySelectorAll('.code-container').forEach(container => {
+    const firstBtn = container.querySelector('.code-tab-btn');
+    const firstPane = container.querySelector('.code-pane');
+    if (firstBtn && firstPane) {
+      firstBtn.classList.add('active');
+      firstPane.classList.add('active');
+    }
+  });
+}
+
+/* ============= WORKSHOP INITIALIZATION ============= */
+document.addEventListener('DOMContentLoaded', () => {
+  initializeWorkshop();
+  
+  // Restore previously selected mode
+  const savedMode = localStorage.getItem('workshopMode') || 'single';
+  const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedMode}"]`);
+  if (modeBtn) {
+    modeBtn.click();
+  }
+});
+
 /* ============= PROJECT 2: ESP32 WEB CLIENT CONTROLLER ============= */
 let device = null;
 let updateTimer = null;

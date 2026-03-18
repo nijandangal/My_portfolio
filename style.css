@@ -1802,6 +1802,8 @@ section {
 .workshop-intro {
   text-align: center;
   margin-bottom: 50px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .intro-text {
@@ -1816,6 +1818,8 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .highlight {
@@ -1829,18 +1833,19 @@ section {
 
 .highlight:hover {
   transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 .highlight i {
   font-size: 36px;
   color: var(--primary);
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   display: block;
 }
 
 .highlight h4 {
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--dark);
 }
 
@@ -1890,6 +1895,8 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .requirement-card {
@@ -1963,6 +1970,9 @@ section {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+  table-layout: fixed;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .pin-table th,
@@ -1970,6 +1980,8 @@ section {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .pin-table th {
@@ -1998,53 +2010,324 @@ section {
   line-height: 1.6;
 }
 
-/* ============= CODE CONTAINER ============= */
-.code-container {
-  background: white;
-  border-radius: 12px;
+/* ============= PROJECT CONTENT SPACING ============= */
+.file-reference {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text);
+  border-left: 3px solid var(--primary);
+}
+
+.file-reference code {
+  background: #e5e7eb;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+}
+
+.code-description {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.code-description code {
+  background: #f3f4f6;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 13px;
+  color: var(--primary);
+}
+
+.setup-list {
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.setup-list li {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+
+/* ============= WORKSHOP CONTAINER & MODE SELECTOR ============= */
+.mode-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 1400px;
+}
+
+.mode-btn {
+  padding: 12px 28px;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.mode-btn.active {
+  background: var(--primary);
+  color: white;
   box-shadow: var(--shadow);
+}
+
+/* ============= WORKSHOP CONTAINER ============= */
+.workshop-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 60px 20px;
+}
+
+.workshop-sidebar {
+  background: white;
+  padding: 0;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  height: fit-content;
+  position: sticky;
+  top: 120px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.workshop-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0;
+  padding: 25px 25px 15px 25px;
+  border-bottom: 2px solid var(--primary);
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.mode-content {
+  display: block;
+  padding: 0 25px 25px 25px;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-category {
+  margin-bottom: 20px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--light);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--dark);
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+}
+
+.category-header:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+  color: var(--primary);
+}
+
+.category-header i {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+.subcategory-list {
+  list-style: none;
+  padding: 0 0 0 15px;
+  margin: 0;
+  border-left: 2px solid var(--border);
+  padding-left: 20px;
+}
+
+.subcategory-list li {
+  margin-bottom: 8px;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  background: var(--light);
+  color: var(--primary);
+  padding-left: 18px;
+}
+
+.project-link.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.project-number {
+  min-width: 28px;
+  height: 28px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.project-link.active .project-number {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* ============= WORKSHOP MAIN CONTENT ============= */
+.workshop-main {
+  background: white;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  padding: 40px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.mode-section {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.mode-section.hidden {
+  display: none;
+}
+
+.project-content {
+  display: none;
+  animation: fadeIn 0.4s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+.project-content.active {
+  display: block;
+}
+
+.workshop-section {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid var(--border);
+}
+
+.workshop-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.workshop-section.coming-soon {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.code-container {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(15, 23, 42, 0.95));
+  border-radius: 12px;
   overflow: hidden;
-  margin: 20px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
 }
 
 .code-tabs {
   display: flex;
-  background: #f3f4f6;
-  border-bottom: 2px solid #e5e7eb;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0;
   flex-wrap: wrap;
 }
 
 .code-tab-btn {
-  padding: 12px 20px;
-  background: none;
+  padding: 12px 16px;
+  background: transparent;
   border: none;
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   font-weight: 600;
-  color: #6b7280;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
   font-size: 13px;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
 }
 
 .code-tab-btn:hover {
-  background: #ffffff;
-  color: var(--primary);
+  color: white;
 }
 
 .code-tab-btn.active {
-  background: white;
   color: var(--primary);
   border-bottom-color: var(--primary);
+  background: rgba(99, 102, 241, 0.1);
 }
 
 .code-content {
   position: relative;
-  background: white;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 600px;
+  max-width: 100%;
 }
 
 .code-pane {
   display: none;
+  padding: 20px;
 }
 
 .code-pane.active {
@@ -2052,22 +2335,529 @@ section {
 }
 
 .code-pane pre {
-  padding: 20px;
   margin: 0;
-  overflow-x: auto;
-  max-height: 500px;
-  overflow-y: auto;
-  background: #1f2937;
-  color: #e5e7eb;
   font-family: 'Courier Prime', monospace;
   font-size: 13px;
   line-height: 1.5;
-  border: none;
-  border-radius: 0;
+  color: #e2e8f0;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 100%;
 }
 
 .code-pane code {
-  color: #e5e7eb;
+  color: #e2e8f0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tip-card {
+  padding: 25px;
+  border-radius: 12px;
+  background: white;
+  border-left: 4px solid var(--primary);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.tip-card i {
+  font-size: 24px;
+  color: var(--primary);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.tip-card h4 {
+  font-size: 16px;
+  color: var(--dark);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.tip-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tip-card li {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.tip-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .workshop-container {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-sidebar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    position: static;
+    top: auto;
+    max-height: auto;
+    overflow-y: visible;
+    scrollbar-width: auto;
+  }
+
+  .workshop-sidebar::-webkit-scrollbar {
+    display: auto;
+  }
+
+  .sidebar-title {
+    position: static;
+  }
+
+  .mode-content {
+    padding: 0 20px 20px 20px;
+  }
+
+  .project-category {
+    margin-bottom: 15px;
+  }
+
+  .category-header {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .subcategory-list {
+    padding-left: 15px;
+  }
+
+  .project-link {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mode-selector {
+    padding: 15px 10px;
+    margin: 30px auto;
+    gap: 10px;
+  }
+
+  .mode-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .workshop-container {
+    padding: 0 10px 40px 10px;
+    gap: 15px;
+  }
+
+  .workshop-sidebar {
+    padding: 0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-title {
+    padding: 20px 15px 10px 15px;
+    font-size: 16px;
+  }
+
+  .mode-content {
+    padding: 0 15px 15px 15px;
+  }
+
+  .project-category {
+    margin-bottom: 12px;
+  }
+
+  .category-header {
+    padding: 9px 10px;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .category-header i {
+    font-size: 16px;
+  }
+
+  .subcategory-list {
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+
+  .subcategory-list li {
+    margin-bottom: 6px;
+  }
+
+  .project-link {
+    padding: 7px 8px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .project-number {
+    min-width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .workshop-main {
+    padding: 25px;
+    border-radius: 12px;
+  }
+
+  .workshop-intro {
+    margin-bottom: 35px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+    margin: 0 auto 30px;
+  }
+
+  .project-highlights {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .highlight {
+    padding: 20px;
+  }
+
+  .highlight i {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .highlight h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .highlight p {
+    font-size: 12px;
+  }
+
+  .requirements-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .requirement-card {
+    padding: 20px;
+  }
+
+  .requirement-card i {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .requirement-card h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .requirement-card p {
+    font-size: 12px;
+  }
+
+  .pin-table {
+    font-size: 12px;
+  }
+
+  .pin-table th,
+  .pin-table td {
+    padding: 10px 8px;
+  }
+
+  .code-container {
+    margin-bottom: 15px;
+  }
+
+  .code-tabs {
+    flex-wrap: wrap;
+  }
+
+  .code-tab-btn {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .code-pane {
+    padding: 15px;
+  }
+
+  .code-pane pre {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .tip-card {
+    padding: 20px;
+  }
+
+  .tip-card i {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .tip-card h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .tip-card ul {
+    font-size: 12px;
+  }
+
+  .setup-list {
+    margin-left: 15px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+  }
+
+  .setup-list li {
+    font-size: 13px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 40px 15px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+  .mode-selector {
+    padding: 12px 10px;
+    margin: 25px auto;
+    gap: 8px;
+  }
+
+  .mode-btn {
+    padding: 9px 16px;
+    font-size: 12px;
+    border-radius: 20px;
+  }
+
+  .workshop-container {
+    padding: 0 8px 30px 8px;
+    gap: 10px;
+  }
+
+  .workshop-sidebar {
+    margin-bottom: 15px;
+  }
+
+  .sidebar-title {
+    padding: 18px 12px 8px 12px;
+    font-size: 15px;
+  }
+
+  .mode-content {
+    padding: 0 12px 12px 12px;
+  }
+
+  .project-category {
+    margin-bottom: 10px;
+  }
+
+  .category-header {
+    padding: 8px 8px;
+    font-size: 12px;
+  }
+
+  .project-link {
+    padding: 6px 6px;
+    font-size: 11px;
+  }
+
+  .project-number {
+    min-width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+
+  .workshop-main {
+    padding: 18px;
+  }
+
+  .workshop-section {
+    margin-bottom: 35px;
+    padding-bottom: 35px;
+  }
+
+  .workshop-intro {
+    margin-bottom: 25px;
+  }
+
+  .workshop-intro h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .intro-text {
+    font-size: 14px;
+    max-width: 100%;
+    margin: 0 0 25px 0;
+  }
+
+  .project-highlights {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .highlight {
+    padding: 18px;
+  }
+
+  .highlight i {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .highlight h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .highlight p {
+    font-size: 11px;
+  }
+
+  .requirements-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .requirement-card {
+    padding: 18px;
+  }
+
+  .requirement-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .requirement-card h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .requirement-card p {
+    font-size: 11px;
+  }
+
+  .pin-table {
+    font-size: 11px;
+  }
+
+  .pin-table th,
+  .pin-table td {
+    padding: 8px 6px;
+  }
+
+  .code-container {
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+
+  .code-tabs {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .code-tab-btn {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .code-pane {
+    padding: 12px;
+    max-height: 500px;
+  }
+
+  .code-pane pre {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tip-card {
+    padding: 18px;
+  }
+
+  .tip-card i {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .tip-card h4 {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .tip-card ul,
+  .tip-card li {
+    font-size: 11px;
+  }
+
+  .setup-list {
+    margin-left: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  .setup-list li {
+    font-size: 12px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
 }
 
 /* Copy Button for Code */
@@ -2631,112 +3421,6 @@ section {
 .workshop-content {
   background: var(--light);
   border-radius: 20px;
-}
-
-/* ============= WORKSHOP SIDEBAR ============= */
-.workshop-container {
-  display: flex;
-  gap: 30px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.workshop-sidebar {
-  width: 230px;
-  position: fixed;
-  top: 100px;
-  left: 20px;
-  height: calc(100vh - 120px);
-  background: white;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 25px;
-  overflow-y: auto;
-  z-index: 100;
-}
-
-.sidebar-title {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
-
-.project-list {
-  list-style: none;
-}
-
-.project-list li {
-  margin-bottom: 10px;
-}
-
-.project-link {
-  display: flex;
-  align-items: flex-start;
-  padding: 12px 15px;
-  background: var(--light);
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
-  cursor: pointer;
-  word-break: break-word;
-}
-.project-link span:last-child {
-  display: inline-block;
-  max-width: 160px;
-  white-space: normal;
-  word-break: break-word;
-}
-
-.project-link:hover {
-  background: #e5e7eb;
-  color: var(--primary);
-}
-
-.project-link.active {
-  background: var(--primary);
-  color: white;
-  border-left-color: var(--primary);
-}
-
-.project-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  color: white;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 700;
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-
-.project-link.active .project-number {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.workshop-main {
-  flex: 1;
-  min-width: 0;
-  margin-left: 270px;
-}
-
-.project-content {
-  display: none;
-}
-
-.project-content.active {
-  display: block;
-  animation: fadeIn 0.3s ease;
 }
 
 /* ============= ESP32 WIDGET STYLING ============= */
@@ -3742,47 +4426,7 @@ input:checked + .slider:before {
     overflow-x: auto;
   }
 
-  /* Workshop Sidebar Responsive */
-  .workshop-container {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .workshop-sidebar {
-    width: 100%;
-    position: static;
-    max-width: none;
-    height: auto;
-  }
-
-  .workshop-main {
-    margin-left: 0;
-  }
-
-  .project-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
-  }
-
-  .project-link {
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .project-number {
-    margin-right: 0;
-    margin-bottom: 5px;
-  }
-
-  .project-link span:last-child {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 480px) {
+  @media (max-width: 480px) {
   .theme-toggle-menu {
     grid-template-columns: repeat(4, 1fr);
     gap: 4px;
