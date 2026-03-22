@@ -38,7 +38,7 @@
 
   <script>
     // Replace with your Cloudflare Worker URL
-    var ws = new WebSocket("https://esp32-car-relay.nijandangal.workers.dev");
+    var ws = new WebSocket("wss://esp32-car-relay.nijandangal.workers.dev");
 
     ws.onmessage = function(event){
       document.getElementById('status').innerText = event.data;
