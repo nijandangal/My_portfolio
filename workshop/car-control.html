@@ -6,7 +6,11 @@
   <style>
     body {font-family: Arial; text-align:center; margin:0; padding:0;}
     .grid {display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto auto auto; gap:10px;}
-    .btn {width:100%; height:80px; font-size:20px; border:none; border-radius:10px; user-select:none; touch-action:none;}
+    .btn {
+      width:100%; height:80px; font-size:20px; border:none; border-radius:10px;
+      user-select:none; touch-action:none; transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+    .btn:active {transform: scale(0.95); opacity:0.8;} /* visual press effect */
     .forward {background:#4CAF50; color:white; grid-column:2; grid-row:1;}
     .backward {background:#f44336; color:white; grid-column:2; grid-row:3;}
     .left {background:#2196F3; color:white; grid-column:1; grid-row:2;}
@@ -37,20 +41,28 @@
   </div>
 
   <script>
-    // Replace with your Cloudflare Worker URL
+    // WebSocket connection
     var ws = new WebSocket("wss://esp32-car-relay.nijandangal.workers.dev");
 
-    ws.onmessage = function(event){
+    ws.onopen = () => console.log("WebSocket connected");
+    ws.onmessage = (event) => {
       document.getElementById('status').innerText = event.data;
     };
 
-    function sendCmd(cmd){ ws.send(cmd); }
+    function sendCmd(cmd){
+      if(ws.readyState === WebSocket.OPEN){
+        ws.send(cmd);
+        console.log("Sent:", cmd);
+      }
+    }
 
     function bindButton(id, cmd){
       var btn=document.getElementById(id);
-      btn.addEventListener('mousedown',()=>sendCmd(cmd));
-      btn.addEventListener('mouseup',()=>sendCmd('stop'));
-      btn.addEventListener('mouseleave',()=>sendCmd('stop'));
+      // Mouse events
+      btn.addEventListener('mousedown',()=>{sendCmd(cmd);});
+      btn.addEventListener('mouseup',()=>{sendCmd('stop');});
+      btn.addEventListener('mouseleave',()=>{sendCmd('stop');});
+      // Touch events
       btn.addEventListener('touchstart',(e)=>{e.preventDefault();sendCmd(cmd);});
       btn.addEventListener('touchend',(e)=>{e.preventDefault();sendCmd('stop');});
       btn.addEventListener('touchcancel',(e)=>{e.preventDefault();sendCmd('stop');});
